@@ -1,0 +1,33 @@
+2b2442e9fcd3fc8c8f85ab19f741bc52e444a5491fa4e24c81f5d043c720228a  system.raw
+ea3ea1f063b10073a551d97e11d31169ca4648f5
+resources/binaries-tree/etc/systemd/system/attestation-agent.service.d/10-v5-measure.conf
+resources/binaries-tree/etc/systemd/system/initdata-measure.service
+resources/binaries-tree/etc/systemd/system/kata-agent.service.d/._10-v5-measure.conf
+resources/binaries-tree/etc/systemd/system/kata-agent.service.d/10-v5-measure.conf
+resources/binaries-tree/etc/systemd/system/multi-user.target.wants/initdata-measure.service
+SKIPPED (V5_HARDEN_A5C=0): setup-nat-for-imds.service left as the image ships it
+SKIPPED (V5_HARDEN_B1=0): run-kata-containers.mount left as the image ships it
+image multi-user.target.wants:
+total 0
+drwxr-xr-x  2 root root  606 Sep  4 22:25 .
+drwxr-xr-x 13 root root 1387 Sep  4 22:25 ..
+lrwxrwxrwx  1 root root   49 Sep  4 22:25 afterburn-checkin.service -> /usr/lib/systemd/system/afterburn-checkin.service
+lrwxrwxrwx  1 root root   32 Sep  4 22:25 agent-protocol-forwarder.path -> ../agent-protocol-forwarder.path
+lrwxrwxrwx  1 root root   23 Sep  4 22:25 api-server-rest.path -> ../api-server-rest.path
+lrwxrwxrwx  1 root root   25 Sep  4 22:25 attestation-agent.path -> ../attestation-agent.path
+lrwxrwxrwx  1 root root   56 Sep  4 22:25 authselect-apply-changes.service -> /usr/lib/systemd/system/authselect-apply-changes.service
+lrwxrwxrwx  1 root root   29 Sep  4 22:25 confidential-data-hub.path -> ../confidential-data-hub.path
+lrwxrwxrwx  1 root root   41 Sep  4 22:25 gen-issue.service -> /usr/lib/systemd/system/gen-issue.service
+lrwxrwxrwx  1 root root   27 Sep  4 22:25 initdata-measure.service -> ../initdata-measure.service
+lrwxrwxrwx  1 root root   18 Sep  4 22:25 kata-agent.path -> ../kata-agent.path
+lrwxrwxrwx  1 root root   45 Sep  4 22:25 process-user-data.service -> /etc/systemd/system/process-user-data.service
+lrwxrwxrwx  1 root root   48 Sep  4 22:25 remote-cryptsetup.target -> /usr/lib/systemd/system/remote-cryptsetup.target
+lrwxrwxrwx  1 root root   40 Sep  4 22:25 remote-fs.target -> /usr/lib/systemd/system/remote-fs.target
+lrwxrwxrwx  1 root root   52 Sep  4 22:25 remote-integritysetup.target -> /usr/lib/systemd/system/remote-integritysetup.target
+lrwxrwxrwx  1 root root   49 Sep  4 22:25 remote-veritysetup.target -> /usr/lib/systemd/system/remote-veritysetup.target
+lrwxrwxrwx  1 root root   23 Sep  4 22:25 scratch-storage.path -> ../scratch-storage.path
+lrwxrwxrwx  1 root root   29 Sep  4 22:25 setup-nat-for-imds.service -> ../setup-nat-for-imds.service
+lrwxrwxrwx  1 root root   45 Sep  4 22:25 systemd-homed.service -> /usr/lib/systemd/system/systemd-homed.service
+lrwxrwxrwx  1 root root   48 Sep  4 22:25 systemd-networkd.service -> /usr/lib/systemd/system/systemd-networkd.service
+lrwxrwxrwx  1 root root   44 Sep  4 22:25 systemd-oomd.service -> /usr/lib/systemd/system/systemd-oomd.service
+overlay_sha256=d950d1bcb4f8e78bd3d1f9b397edf705b9124034e4b9b1c50ee13f2cb4b942ca overlay_rev=7

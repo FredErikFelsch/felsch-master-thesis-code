@@ -1,0 +1,5 @@
+VERDICT parse:   quote 4935 B, FMSPC 00806f050000, MRTD c1ee9c16e3afc506cfe042c5b846a368528f3b37618eafb27469bc114cf914e9222c91618470e7f2b28ac360968270a5
+VERDICT library: libsgx-dcap-default-qpl 1.27.101.1-noble1, libsgx-dcap-quote-verify 1.27.101.1-noble1
+VERDICT dcap:    VERIFIED qv_result=OK fmspc=00806f050000 (accepted set: ['0x0'])
+VERDICT binding: REPORTDATA == ascii(runtime_data) (checked constant-time by the appraiser)
+VERDICT mrtd:    c1ee9c16e3afc506cfe042c5b846a368528f3b37618eafb27469bc114cf914e9222c91618470e7f2b28ac360968270a5

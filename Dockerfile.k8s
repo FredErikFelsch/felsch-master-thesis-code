@@ -1,0 +1,44 @@
+# Code image for GKE. In V5 it is the runner image that the peer pods pull. The V4 deployment
+# also runs its controller, Authority and trusted init from it.
+#
+# One image runs every entrypoint, and the Kubernetes manifests select one through the
+# container command. Unlike Dockerfile.runner, which needs a local base image, this builds from
+# a public base, so it is reproducible on any machine with Docker and registry access. The
+# third-party dependencies are `cryptography` (Ed25519, used by every role) and the
+# `kubernetes` client, which the controller and the trusted init use to talk to the API server.
+# The runner does not import the client but shares the image.
+# The default ENTRYPOINT is the frozen runner, `python3 -m booking_v4.runner_process`, so a Job
+# that overrides nothing runs the runner.
+#
+# The interpreter of python:3.11-slim is /usr/local/bin/python3, and there is no
+# /usr/bin/python3. Anything that sets an explicit container command must therefore take the
+# path from RUNNER_PYTHON in scripts/gke/.digests (scripts/gke/20_build_push_images.sh reads it
+# out of the built image) instead of hardcoding one. A wrong absolute path surfaces only inside
+# the guest, as a CreateContainer failure after a full TD boot and image pull.
+FROM python:3.11-slim
+
+# Pinned versions. `--require-hashes` would pin the downloaded artefacts as well.
+RUN pip install --no-cache-dir "cryptography==43.0.1" "kubernetes==31.0.0"
+
+# Only the packages the deployment paths need go into the image.
+COPY booking_v0 /app/booking_v0
+COPY booking_v1 /app/booking_v1
+COPY booking_v2 /app/booking_v2
+COPY booking_v3 /app/booking_v3
+COPY booking_v4 /app/booking_v4
+# V5 adds the in-TD sequence (boot key, AAEL events, evidence) and the probe entry point. This
+# is the image the GKE path builds and the peer pods run, and Dockerfile.runner is the local
+# variant. A COPY added only there would leave booking_v5 missing in the cluster.
+COPY booking_v5 /app/booking_v5
+# COPY keeps the host file modes. A checkout with 0600 files would be unreadable for the
+# non-root UID below (PermissionError on the first import), so the modes are normalised here,
+# independent of the developer's umask. Root owns the code, which is read-only for the runtime
+# UID, everyone may read it, and directories get the traversal bit.
+RUN chown -R root:root /app && chmod -R u=rwX,go=rX /app
+WORKDIR /app
+ENV PYTHONPATH=/app PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1
+
+# Non-root, because the image sets USER 65532, which matches runAsUser in the manifests. The
+# runtime adds readOnlyRootFilesystem, cap-drop ALL and the NetworkPolicy.
+USER 65532:65532
+ENTRYPOINT ["python3", "-m", "booking_v4.runner_process"]

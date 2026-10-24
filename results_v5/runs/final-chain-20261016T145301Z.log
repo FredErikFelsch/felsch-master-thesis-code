@@ -1,0 +1,159 @@
+
+[14:53:01Z] preflight (start at report)
+
+[14:53:03Z] preflight ok
+
+===== [14:53:03Z] START report_v5 (final) =====
+series: cold 20261016T110359Z, warm 20261016T112258Z
+wrote /path/to/repo/thesis/tables/t1-security-matrix.tex
+wrote /path/to/repo/thesis/tables/t1-scenarios.tex
+wrote /path/to/repo/thesis/tables/t1-world.tex
+wrote /path/to/repo/thesis/tables/t2-equivalence.tex
+wrote /path/to/repo/thesis/tables/t3-latency.tex
+wrote /path/to/repo/thesis/tables/t4-cost-ops.tex
+wrote /path/to/repo/thesis/tables/t5-freeze.tex
+wrote /path/to/repo/thesis/tables/t6-demo.tex
+wrote /path/to/repo/thesis/tables/t6b-llm.tex
+wrote /path/to/repo/thesis/tables/t6c-llm-models.tex
+wrote /path/to/repo/thesis/tables/v5-numbers.tex
+wrote /path/to/repo/results_v5/README.md
+{
+ "cold": "20261016T110359Z",
+ "warm": "20261016T112258Z",
+ "negative": "20261016T104745Z",
+ "derived": {
+  "att_cold_s": 1.03,
+  "att_cold_share": 0.932,
+  "att_warm_s": 1.019,
+  "att_warm_share": 4.575,
+  "teardown_warm_share": 88.544,
+  "lifecycle_cold_share": 99.545,
+  "speedup": 4.959,
+  "pool_min": 5.0,
+  "t_boot": 89.545,
+  "t_warm": 22.279,
+  "t_cold": 110.474
+ },
+ "ops": {
+  "ov7": {
+   "boots": 26,
+   "rtmr0": 1,
+   "confirmed": 19
+  },
+  "ov9": {
+   "boots": 224,
+   "rtmr0": 2,
+   "confirmed": 224
+  },
+  "ov13": {
+   "boots": 48,
+   "rtmr0": 0,
+   "confirmed": 48
+  },
+  "ov14": {
+   "boots": 141,
+   "rtmr0": 2,
+   "confirmed": 141
+  }
+ },
+ "cold_n": 10,
+ "warm_n": 9,
+ "demo_runs": 95,
+ "world": {
+  "leaks_p2": [
+   "world-attacker-recipient",
+   "world-negative-price",
+   "world-paid-false",
+   "world-price-drift",
+   "world-select-swap"
+  ],
+  "leaks_p21": [
+   "world-attacker-recipient"
+  ],
+  "all_as_predicted": true,
+  "backends_agree": true
+ },
+ "llm": {
+  "by_status": {
+   "aborted": 28,
+   "attacks-only": 13,
+   "evaluated": 117,
+   "infra-refused": 7,
+   "legacy-unclassified": 96,
+   "other-application": 22,
+   "plan-rejected": 21,
+   "unclassified": 19
+  },
+  "populations": {
+   "model-human/guarded/duffel": {
+    "n": 23,
+    "m1": 0,
+    "m2": 4,
+    "clean_n": 0,
+    "clean_done": 0
+   },
+   "model/guarded/duffel": {
+    "n": 18,
+    "m1": 0,
+    "m2": 0,
+    "clean_n": 9,
+    "clean_done": 1
+   },
+   "model/guarded/mock": {
+    "n": 11,
+    "m1": 0,
+    "m2": 5,
+    "clean_n": 4,
+    "clean_done": 4
+   },
+   "model/unguarded/mock": {
+    "n": 7,
+    "m1": 2,
+    "m2": 2,
+    "clean_n": 0,
+    "clean_done": 0
+   },
+   "scripted/guarded/duffel": {
+    "n": 18,
+    "m1": 0,
+    "m2": 6,
+    "clean_n": 3,
+    "clean_done": 3
+   },
+   "scripted/guarded/mock": {
+    "n": 35,
+    "m1": 0,
+    "m2": 30,
+    "clean_n": 4,
+    "clean_done": 4
+   },
+   "scripted/unguarded/duffel": {
+    "n": 1,
+    "m1": 0,
+    "m2": 0,
+    "clean_n": 0,
+    "clean_done": 0
+   },
+   "scripted/unguarded/mock": {
+    "n": 4,
+    "m1": 3,
+    "m2": 3,
+    "clean_n": 0,
+    "clean_done": 0
+   }
+  },
+  "unclassified": 19
+ }
+}
+===== [14:53:05Z] OK    report_v5 (final)  (2s) =====
+
+===== [14:53:05Z] START 47 demo down =====
+
+===== [14:53:05Z] START 91 cleanup probe =====
+[1;34m[v5][0m cleanup: probe namespaces v5-probe v5-netprobe v5-netprobe-open (peer pods inside are deleted first, so the CAA removes their VMs)
+[1;34m[v5][0m cleanup: kata-remote pods an earlier run left in a terminal phase
+[1;34m[v5][0m cleanup: PeerPod CRs with no pod and no VM
+[1;34m[v5][0m   agent-system/runner-td-4ltrd-resource-png8k: no pod, no VM for podvm-runner-td-4ltrd-03eba339, removing the finalizer
+[1;34m[v5][0m   agent-system/runner-td-945ts-resource-hsld7: no pod, no VM for podvm-runner-td-945ts-00283832, removing the finalizer
+[1;34m[v5][0m   agent-system/runner-td-g42v5-resource-kxnmk: pod VM podvm-runner-td-g42v5-39211788 still exists, leaving the finalizer alone
+[1;34m[v5][0m cleanup: node-debugger pods (kubectl debug node/…) in every namespace

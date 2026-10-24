@@ -1,0 +1,63 @@
+# V5 controller identity. The controller runs on the operator machine, but not with the
+# cluster-admin context. It gets a ServiceAccount whose Role holds what spawn, attach, ledger
+# read and cleanup need, and a token-based kubeconfig context (scripts/gke-v5/30_deploy_v5.sh
+# mints it with `kubectl create token v5-controller`).
+#
+# Trust assumption: the regular controller code makes no authorisation decision,
+# the monitor and the Authority do. That is a property of the code, not a technical restriction
+# of this identity. The Role below allows creating pods, attaching to them, port-forwarding to
+# them and reading their logs in the namespace, creating Secrets, and get, update, patch and
+# delete of the Secret `ar-pull`. This repository contains no admission control, PodSecurity
+# setting or ValidatingAdmissionPolicy that limits the spec of a pod created with it (node,
+# ServiceAccount, labels, volumes). The credential is therefore a privileged deployment
+# credential and the controller a trusted provisioning component. Its compromise may undermine
+# the assumed separation from the Authority and the gateway, and resistance to that compromise
+# is not claimed for the evaluated deployment. The concrete paths were read from the manifests
+# and were not reproduced on a cluster.
+#
+# Resources the Role does not name: deployments, configmaps (so not the reference ConfigMap),
+# services, persistent volume claims, anything cluster-scoped. That lists verbs the Role lacks.
+# It is not a bound on what a pod created with it can reach.
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata: {name: v5-controller, namespace: agent-system}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata: {name: v5-controller, namespace: agent-system}
+rules:
+  # spawn / observe / destroy runner pods
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["create", "get", "list", "watch", "delete"]
+  # the protocol channel: attach over WebSocket is a GET handshake ("get"), SPDY is "create"
+  # (verified live in V4.4c). pods/log for the audit. pods/portforward for the gateway's
+  # observation port (ledger reads), same verb pair for the same reason.
+  - apiGroups: [""]
+    resources: ["pods/attach", "pods/portforward"]
+    verbs: ["get", "create"]
+  - apiGroups: [""]
+    resources: ["pods/log"]
+    verbs: ["get"]
+  # the per-spawn guest-pull credential. `create` cannot be name-scoped in RBAC. Every
+  # other verb is limited to the one Secret the controller owns.
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["create"]
+  - apiGroups: [""]
+    resources: ["secrets"]
+    resourceNames: ["ar-pull"]
+    verbs: ["get", "update", "patch", "delete"]
+  # the recovery path only: PeerPod CRs (read to match by instanceID, patch to drop the
+  # finalizer once the cloud confirmed the VM is gone). No create and no delete.
+  - apiGroups: ["confidentialcontainers.org"]
+    resources: ["peerpods"]
+    verbs: ["get", "list", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata: {name: v5-controller, namespace: agent-system}
+subjects:
+  - {kind: ServiceAccount, name: v5-controller, namespace: agent-system}
+roleRef: {kind: Role, name: v5-controller, apiGroup: rbac.authorization.k8s.io}

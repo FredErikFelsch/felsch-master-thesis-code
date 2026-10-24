@@ -1,0 +1,261 @@
+{
+  "data": {
+    "void_window_ends_at": null,
+    "intended_payment_methods": [],
+    "synced_at": "2026-09-22T15:22:59Z",
+    "available_actions": [
+      "cancel",
+      "change",
+      "update"
+    ],
+    "airline_initiated_changes": [],
+    "tax_currency": "EUR",
+    "documents": [],
+    "tax_amount": "4.75",
+    "base_amount": "26.41",
+    "base_currency": "EUR",
+    "total_currency": "EUR",
+    "offer_id": "off_0000BAffU2NCWAqssFgZP8",
+    "booking_reference": "3USZ4V",
+    "booking_references": [
+      {
+        "booking_reference": "3USZ4V",
+        "carrier": {
+          "logo_symbol_url": "https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/ZZ.svg",
+          "logo_lockup_url": null,
+          "conditions_of_carriage_url": "https://duffelairways.com/dummy-url/conditions-of-carriage",
+          "iata_code": "ZZ",
+          "name": "Duffel Airways",
+          "id": "arl_00009VME7D6ivUu8dn35WK"
+        }
+      }
+    ],
+    "slices": [
+      {
+        "destination_type": "airport",
+        "origin_type": "airport",
+        "fare_brand_name": "Basic",
+        "segments": [
+          {
+            "origin_terminal": "2",
+            "destination_terminal": "1",
+            "aircraft": {
+              "iata_code": "773",
+              "name": "Boeing 777-300",
+              "id": "arc_00009VMF8AhXSSRnQDI6HE"
+            },
+            "departing_at": "2026-10-22T16:15:00",
+            "arriving_at": "2026-10-22T16:52:00",
+            "stops": [],
+            "operating_carrier": {
+              "logo_symbol_url": "https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/ZZ.svg",
+              "logo_lockup_url": null,
+              "conditions_of_carriage_url": "https://duffelairways.com/dummy-url/conditions-of-carriage",
+              "iata_code": "ZZ",
+              "name": "Duffel Airways",
+              "id": "arl_00009VME7D6ivUu8dn35WK"
+            },
+            "marketing_carrier": {
+              "logo_symbol_url": "https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/ZZ.svg",
+              "logo_lockup_url": null,
+              "conditions_of_carriage_url": "https://duffelairways.com/dummy-url/conditions-of-carriage",
+              "iata_code": "ZZ",
+              "name": "Duffel Airways",
+              "id": "arl_00009VME7D6ivUu8dn35WK"
+            },
+            "operating_carrier_flight_number": "2659",
+            "marketing_carrier_flight_number": "2659",
+            "passengers": [
+              {
+                "baggages": [
+                  {
+                    "quantity": 1,
+                    "type": "checked"
+                  },
+                  {
+                    "quantity": 1,
+                    "type": "carry_on"
+                  }
+                ],
+                "cabin_class_marketing_name": "Economy",
+                "passenger_id": "pas_0000BAffU28fODE49AsxkY",
+                "seat": null,
+                "cabin_class": "economy"
+              }
+            ],
+            "distance": "33.62388486076853",
+            "duration": "PT37M",
+            "destination": {
+              "city_name": "Newark",
+              "icao_code": "KEWR",
+              "iata_city_code": "NYC",
+              "iata_country_code": "US",
+              "iata_code": "EWR",
+              "latitude": 40.691016,
+              "longitude": -74.171581,
+              "city": {
+                "city_name": null,
+                "icao_code": null,
+                "iata_city_code": "NYC",
+                "iata_country_code": "US",
+                "iata_code": "NYC",
+                "latitude": null,
+                "longitude": null,
+                "time_zone": null,
+                "type": "city",
+                "name": "New York",
+                "id": "cit_nyc_us"
+              },
+              "time_zone": "America/New_York",
+              "type": "airport",
+              "name": "Newark Liberty International Airport",
+              "id": "arp_ewr_us"
+            },
+            "origin": {
+              "city_name": "New York",
+              "icao_code": "KJFK",
+              "iata_city_code": "NYC",
+              "iata_country_code": "US",
+              "iata_code": "JFK",
+              "latitude": 40.640556,
+              "longitude": -73.778519,
+              "city": {
+                "city_name": null,
+                "icao_code": null,
+                "iata_city_code": "NYC",
+                "iata_country_code": "US",
+                "iata_code": "NYC",
+                "latitude": null,
+                "longitude": null,
+                "time_zone": null,
+                "type": "city",
+                "name": "New York",
+                "id": "cit_nyc_us"
+              },
+              "time_zone": "America/New_York",
+              "type": "airport",
+              "name": "John F. Kennedy International Airport",
+              "id": "arp_jfk_us"
+            },
+            "id": "seg_0000BAffU2NCWAqssFgZP6"
+          }
+        ],
+        "conditions": {
+          "change_before_departure": {
+            "penalty_currency": "EUR",
+            "penalty_amount": "10.00",
+            "allowed": true
+          }
+        },
+        "duration": "PT37M",
+        "destination": {
+          "city_name": "Newark",
+          "icao_code": "KEWR",
+          "iata_city_code": "NYC",
+          "iata_country_code": "US",
+          "iata_code": "EWR",
+          "latitude": 40.691016,
+          "longitude": -74.171581,
+          "city": {
+            "city_name": null,
+            "icao_code": null,
+            "iata_city_code": "NYC",
+            "iata_country_code": "US",
+            "iata_code": "NYC",
+            "latitude": null,
+            "longitude": null,
+            "time_zone": null,
+            "type": "city",
+            "name": "New York",
+            "id": "cit_nyc_us"
+          },
+          "time_zone": "America/New_York",
+          "type": "airport",
+          "name": "Newark Liberty International Airport",
+          "id": "arp_ewr_us"
+        },
+        "origin": {
+          "city_name": "New York",
+          "icao_code": "KJFK",
+          "iata_city_code": "NYC",
+          "iata_country_code": "US",
+          "iata_code": "JFK",
+          "latitude": 40.640556,
+          "longitude": -73.778519,
+          "city": {
+            "city_name": null,
+            "icao_code": null,
+            "iata_city_code": "NYC",
+            "iata_country_code": "US",
+            "iata_code": "NYC",
+            "latitude": null,
+            "longitude": null,
+            "time_zone": null,
+            "type": "city",
+            "name": "New York",
+            "id": "cit_nyc_us"
+          },
+          "time_zone": "America/New_York",
+          "type": "airport",
+          "name": "John F. Kennedy International Airport",
+          "id": "arp_jfk_us"
+        },
+        "id": "sli_0000BAffU2NCWAqssFgZP7"
+      }
+    ],
+    "payment_status": {
+      "price_guarantee_expires_at": "2026-09-24T15:22:03Z",
+      "payment_required_by": "2026-09-25T15:22:03Z",
+      "paid_at": null,
+      "awaiting_payment": true
+    },
+    "total_amount": "31.16",
+    "created_at": "2026-09-22T15:22:59.369879Z",
+    "live_mode": false,
+    "cancellation": null,
+    "passengers": [
+      {
+        "born_on": "1980-07-24",
+        "loyalty_programme_accounts": [],
+        "family_name": "Tester",
+        "given_name": "Ada",
+        "infant_passenger_id": null,
+        "phone_number": "+442080160508",
+        "user_id": null,
+        "gender": "f",
+        "email": "ada.tester@example.com",
+        "title": "mrs",
+        "type": "adult",
+        "id": "pas_0000BAffU28fODE49AsxkY"
+      }
+    ],
+    "conditions": {
+      "refund_before_departure": {
+        "penalty_currency": "EUR",
+        "penalty_amount": "10.00",
+        "allowed": true
+      },
+      "change_before_departure": {
+        "penalty_currency": "EUR",
+        "penalty_amount": "10.00",
+        "allowed": true
+      }
+    },
+    "cancelled_at": null,
+    "changes": [],
+    "content": "managed",
+    "services": [],
+    "users": [],
+    "metadata": null,
+    "type": "hold",
+    "owner": {
+      "logo_symbol_url": "https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/ZZ.svg",
+      "logo_lockup_url": null,
+      "conditions_of_carriage_url": "https://duffelairways.com/dummy-url/conditions-of-carriage",
+      "iata_code": "ZZ",
+      "name": "Duffel Airways",
+      "id": "arl_00009VME7D6ivUu8dn35WK"
+    },
+    "id": "ord_0000BAffZASVso3FOocIq2"
+  }
+}

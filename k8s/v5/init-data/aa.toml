@@ -1,0 +1,13 @@
+# Attestation Agent configuration inside the runner TD, measured through the init-data.
+# The agent only produces evidence with runtime_data. The runner fetches no KBS resources, so
+# the KBS URL below is never contacted.
+[token_configs]
+[token_configs.kbs]
+url = "http://kbs.trustee.svc.cluster.local:8080"
+
+# Runtime measurements. With the event log off, the agent answers POST /aa/aael with HTTP 200
+# but {"success":"false"}, and RTMR3 stays zero. With it on, the agent extends PCR 17, which is
+# RTMR3, with every AAEL entry. The boot-key and fragment-bind events are anchored there.
+[eventlog_config]
+enable_eventlog = true
+init_pcr = 17

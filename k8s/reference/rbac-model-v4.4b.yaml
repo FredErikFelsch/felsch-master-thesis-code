@@ -1,0 +1,101 @@
+# V4.4b: RBAC model for the trusted-runner-controller boundary.
+#
+# A static model only. It defines these roles and their intended separation, and it
+# does not enforce them (no cluster, no admission). The applied manifests in
+# k8s/apply/ are verified live against a real Kubernetes deployment (GKE). The
+# model encodes the same invariant the process-separated controller already
+# enforces locally:
+#
+#     the untrusted orchestrator holds no provisioning authority.
+#     Only the trusted controller may create and manage runner Jobs.
+#     The runner itself has no Kubernetes API access at all.
+#
+# Namespace assumed: agent-system.
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: orchestrator-sa
+  namespace: agent-system
+# The orchestrator gets no Role/RoleBinding granting Job (or Pod) verbs. It can
+# reach the controller only over the narrow application RPC, not the
+# Kubernetes API. This is the RBAC form of "who provisions": not the orchestrator.
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: controller-sa
+  namespace: agent-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: runner-controller
+  namespace: agent-system
+rules:
+  # The controller alone owns the runner Job lifecycle, narrowly scoped: it may
+  # create one short-lived Job per fragment and observe or delete it, with no
+  # secrets, no configmap writes and no cluster-scoped verbs.
+  - apiGroups: ["batch"]
+    resources: ["jobs"]
+    verbs: ["create", "get", "list", "watch", "delete"]
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["pods/log"]
+    verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: controller-can-manage-runners
+  namespace: agent-system
+subjects:
+  - kind: ServiceAccount
+    name: controller-sa
+    namespace: agent-system
+roleRef:
+  kind: Role
+  name: runner-controller
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: runner-sa
+  namespace: agent-system
+# The runner has no Kubernetes API access: no Role is bound to runner-sa, and its
+# Job template sets automountServiceAccountToken: false so no token is even
+# mounted. The runner reaches only the Authority/Gateway ClusterIP service (a
+# NetworkPolicy restricts that, see k8s/apply/networkpolicy.yaml). It does not talk
+# to the API server.
+---
+# Sketch of the per-fragment runner Job the controller (controller-sa) creates in
+# V4.4c. Included here as the fixed launch profile the controller owns. Not
+# applied by this file. Image is pinned by digest. The pod carries no API token.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: runner-
+  namespace: agent-system
+spec:
+  backoffLimit: 0            # no retry: a runner that crashes after its grant is not restarted with the same grant
+  ttlSecondsAfterFinished: 60
+  template:
+    spec:
+      serviceAccountName: runner-sa
+      automountServiceAccountToken: false
+      restartPolicy: Never
+      containers:
+        - name: runner
+          image: thesis/runner@sha256:<digest>   # pinned by the controller
+          # command/args, the fragment/envelope and the trusted endpoint are
+          # injected by the controller, not chosen by the orchestrator.
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 65532
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]

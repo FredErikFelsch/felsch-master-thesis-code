@@ -1,0 +1,35 @@
+a8fbe025268fa06089f6c36fa2bfec1c9c7fc1540d1f0adcea1604f94cac5674  system.raw
+ea3ea1f063b10073a551d97e11d31169ca4648f5
+resources/binaries-tree/etc/systemd/system/attestation-agent.service.d/10-v5-measure.conf
+resources/binaries-tree/etc/systemd/system/initdata-measure.service
+resources/binaries-tree/etc/systemd/system/kata-agent.service.d/10-v5-measure.conf
+resources/binaries-tree/etc/systemd/system/multi-user.target.wants/initdata-measure.service
+resources/binaries-tree/usr/lib/systemd/system-preset/20-v5.preset
+setup-nat-for-imds.sh neutralised (A5c noop): unit graph unchanged, NAT/proxy-ARP path never set up
+removed /etc/systemd/system/run-kata\x2dcontainers.mount (run-kata-containers.mount)
+removed /etc/systemd/system/multi-user.target.wants/run-kata\x2dcontainers.mount (run-kata-containers.mount)
+run-kata-containers.mount removed (B1): sandbox boot no longer waits on a mount whose source does not exist
+image multi-user.target.wants:
+total 0
+drwxr-xr-x  2 root root  606 Sep  5 14:45 .
+drwxr-xr-x 13 root root 1351 Sep  5 14:45 ..
+lrwxrwxrwx  1 root root   49 Sep  5 14:44 afterburn-checkin.service -> /usr/lib/systemd/system/afterburn-checkin.service
+lrwxrwxrwx  1 root root   32 Sep  5 14:44 agent-protocol-forwarder.path -> ../agent-protocol-forwarder.path
+lrwxrwxrwx  1 root root   23 Sep  5 14:44 api-server-rest.path -> ../api-server-rest.path
+lrwxrwxrwx  1 root root   25 Sep  5 14:44 attestation-agent.path -> ../attestation-agent.path
+lrwxrwxrwx  1 root root   56 Sep  5 14:44 authselect-apply-changes.service -> /usr/lib/systemd/system/authselect-apply-changes.service
+lrwxrwxrwx  1 root root   29 Sep  5 14:44 confidential-data-hub.path -> ../confidential-data-hub.path
+lrwxrwxrwx  1 root root   41 Sep  5 14:44 gen-issue.service -> /usr/lib/systemd/system/gen-issue.service
+lrwxrwxrwx  1 root root   27 Sep  5 14:44 initdata-measure.service -> ../initdata-measure.service
+lrwxrwxrwx  1 root root   18 Sep  5 14:44 kata-agent.path -> ../kata-agent.path
+lrwxrwxrwx  1 root root   45 Sep  5 14:45 process-user-data.service -> /etc/systemd/system/process-user-data.service
+lrwxrwxrwx  1 root root   48 Sep  5 14:45 remote-cryptsetup.target -> /usr/lib/systemd/system/remote-cryptsetup.target
+lrwxrwxrwx  1 root root   40 Sep  5 14:44 remote-fs.target -> /usr/lib/systemd/system/remote-fs.target
+lrwxrwxrwx  1 root root   52 Sep  5 14:45 remote-integritysetup.target -> /usr/lib/systemd/system/remote-integritysetup.target
+lrwxrwxrwx  1 root root   49 Sep  5 14:45 remote-veritysetup.target -> /usr/lib/systemd/system/remote-veritysetup.target
+lrwxrwxrwx  1 root root   23 Sep  5 14:44 scratch-storage.path -> ../scratch-storage.path
+lrwxrwxrwx  1 root root   29 Sep  5 14:44 setup-nat-for-imds.service -> ../setup-nat-for-imds.service
+lrwxrwxrwx  1 root root   45 Sep  5 14:45 systemd-homed.service -> /usr/lib/systemd/system/systemd-homed.service
+lrwxrwxrwx  1 root root   48 Sep  5 14:44 systemd-networkd.service -> /usr/lib/systemd/system/systemd-networkd.service
+lrwxrwxrwx  1 root root   44 Sep  5 14:45 systemd-oomd.service -> /usr/lib/systemd/system/systemd-oomd.service
+overlay_sha256=e1c7e53d9a21e29a46caa940e668f9cbb85c40fd61b8f06fcb83dcf67adb5eab overlay_rev=9

@@ -1,0 +1,4 @@
+----- VERDICT 20260911T203655Z -----
+P1 no-init-data peer pod: READY_UNMEASURED_OK
+P2 measured runner:       EVIDENCE_OK
+P3 runtime measurement:   RTMR_OK   (both AAEL events of the production sequence)

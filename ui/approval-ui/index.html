@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Approval</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root { --bg:#f6f7f9; --card:#fff; --ink:#1b1f24; --muted:#6b7280; --line:#e5e7eb;
+          --ok:#15803d; --no:#b91c1c; --accent:#1d4ed8; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0f1115; --card:#181b21; --ink:#e6e8eb; --muted:#9aa3ad; --line:#2a2f37; }
+  }
+  body { margin:0; padding:16px; background:var(--bg); color:var(--ink);
+         font:15px/1.45 system-ui, -apple-system, Segoe UI, sans-serif; }
+  h1 { font-size:16px; margin:0 0 12px; color:var(--muted); font-weight:600; letter-spacing:.02em; }
+  .idle { color:var(--muted); }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px; margin-bottom:12px; }
+  .card h2 { margin:0 0 10px; font-size:18px; }
+  dl { display:grid; grid-template-columns:max-content 1fr; gap:4px 14px; margin:0 0 12px; }
+  dt { color:var(--muted); } dd { margin:0; }
+  code { font:13px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; word-break:break-all; }
+  ol { margin:0; padding-left:20px; }
+  .btns { display:flex; gap:10px; justify-content:flex-end; }
+  button { padding:8px 16px; border-radius:8px; border:1px solid var(--line); cursor:pointer;
+           font-weight:600; background:var(--card); color:var(--ink); }
+  button.ok { background:var(--ok); border-color:var(--ok); color:#fff; }
+  button.no { border-color:var(--no); color:var(--no); }
+  button:disabled { opacity:.5; cursor:default; }
+  .note { font-size:13px; color:var(--muted); margin-top:8px; }
+  .err { color:var(--no); font-size:13px; }
+  .ttl { font-size:12px; color:var(--muted); margin-top:6px; }
+  .ttl.soon { color:var(--no); }
+  .warn { border:1px solid var(--no); border-radius:8px; padding:10px 12px; margin:0 0 12px;
+          background:color-mix(in srgb, var(--no) 8%, transparent); font-size:13px; }
+  .warn b { color:var(--no); display:block; margin-bottom:4px; }
+  .warn ul { margin:0; padding-left:18px; }
+  .ctl { border-top:1px solid var(--line); margin-top:20px; padding-top:12px; font-size:14px; }
+  .ctl h3 { margin:0 0 6px; font-size:13px; color:var(--muted); font-weight:600; }
+  .ctl label { display:block; margin:2px 0; cursor:pointer; }
+  /* ?controls=1: only the demo controls (the shell's drawer, under the Authority's page). */
+  body.controls-only > h1, body.controls-only > #root, body.controls-only > p.note { display:none; }
+  body.controls-only .ctl { border-top:0; margin-top:0; padding-top:0; }
+</style>
+</head>
+<body>
+<h1>Approval</h1>
+<div id="root" class="idle">Nothing pending.</div>
+<p class="note">Decisions here go to the approval API and not through the chat. A chat message cannot approve.
+This panel is trusted against the conversation but not attested. What you sign is the digest, and what you read comes from the controller's request file.</p>
+<div class="ctl">
+  <h3>Demo controls</h3>
+  External input the agent will read in the next run:
+  <label><input type="radio" name="ext" value="benign"> benign</label>
+  <label><input type="radio" name="ext" value="injection"> indirect prompt injection (naive attack from the Agent Security Bench, ASB)</label>
+  <label><input type="radio" name="ext" value="injection-combined"> indirect prompt injection (ASB combined attack: escape characters, fake completion, context ignoring)</label>
+  <label><input type="radio" name="ext" value="injection-correction"> indirect prompt injection (plausible correction: another order is named for the payment, no override)</label>
+  <div class="note">Same request, same agent, same policy, same deployment. Only the untrusted observation differs.</div>
+  <div style="margin-top:8px">Attacker's hold order that the injected content asks the agent to pay (duffel, empty for a placeholder id):</div>
+  <input id="forder" type="text" placeholder="ord_…" style="width:100%;box-sizing:border-box;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink);font:13px ui-monospace,monospace">
+  <div id="forder-err" class="err"></div>
+  <details style="margin-top:6px"><summary class="note" style="cursor:pointer">Injected text (what the agent will read on top of the request)</summary>
+    <pre id="inj" style="white-space:pre-wrap;font-size:12px;color:var(--muted);margin:6px 0 0"></pre></details>
+  <div style="margin-top:10px">Attacker on the node beneath the runner, before the next run (attested modes only):</div>
+  <label><input type="radio" name="atk" value="none"> none</label>
+  <label><input type="radio" name="atk" value="a10"> a10 · forged boot key (the host reports a key the TD does not hold)</label>
+  <label><input type="radio" name="atk" value="a16"> a16 · tampered fragment (attest A, deliver B)</label>
+  <label><input type="radio" name="atk" value="a18"> a18 · wrong substrate (a foreign pod-VM subnet asserted)</label>
+  <div class="note">Refused by the TD or the relying party with a ledger delta of 0. The monitor plays no part in that refusal.
+  Both switches are read when a run starts, so set them before you send the chat message. The run's first chat line repeats what it read.</div>
+</div>
+<script>
+const CONTROLS_ONLY = new URLSearchParams(location.search).has("controls");
+if (CONTROLS_ONLY) document.body.classList.add("controls-only");
+/* The panel polls the pending list and answers with the id and policy hash of the record it
+   displays. It renders only what the API returned, and nothing here comes from the chat. */
+const root = document.getElementById("root");
+const decided = new Set();          // ids answered from this page (until the API drops them)
+let shown = "";
+// The proof-of-concept approver identity: a token from the page's #token=... fragment, sent as
+// a bearer on every POST. It is unset locally (loopback trust) and required when APPROVAL_TOKEN is set.
+const token = (location.hash.match(/token=([^&]+)/) || [])[1] || "";
+const headers = {"Content-Type": "application/json", ...(token ? {"Authorization": "Bearer " + decodeURIComponent(token)} : {})};
+
+// --- money:begin (evaluated on its own by booking_v5/tests_code_closure.py) ---------------
+// Minor units per currency for the currencies this system evaluates. Any other currency, or none,
+// shows the raw value: no guessing a scale, no currency library, nothing from the input echoed.
+const MINOR_DIGITS = {EUR: 2, USD: 2, GBP: 2, JPY: 0};
+function money(minor, cur) {
+  if (minor === null || minor === undefined) return "?";
+  if (!Number.isSafeInteger(minor) || minor < 0) return "invalid amount";
+  const code = typeof cur === "string" && /^[A-Z]{3}$/.test(cur) ? cur : "";
+  const digits = MINOR_DIGITS[code];
+  if (digits === undefined) return minor + " minor units" + (code ? " " + code : "");
+  if (digits === 0) return minor + " " + code;
+  const unit = 10 ** digits;
+  return Math.floor(minor / unit) + "." + String(minor % unit).padStart(digits, "0") + " " + code;
+}
+// --- money:end ----------------------------------------------------------------------------
+function esc(s) { return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+function taskCard(r) {
+  const p = r.parameters || {};
+  const route = p.origin && p.destination ? `${p.origin} → ${p.destination}` : "(none bound)";
+  const effects = (r.steps || []).map(s => `${esc(s.tool)}${s.approval ? " (approval)" : ""}`).join(" → ");
+  const notes = (r.review && r.review.notes) || [];
+  const warn = notes.length ? `<div class="warn"><b>What this plan cannot check</b>
+      <ul>${notes.map(n => `<li>${esc(n)}</li>`).join("")}</ul>
+      A step listed here runs on your decision alone. If the plan looks incomplete (a step missing that a later step depends on), reject it and ask again.</div>` : "";
+  return `<h2>Task approval</h2>${warn}
+    <dl>
+      <dt>Route</dt><dd>${esc(route)}${p.date ? ", " + esc(p.date) : ""}${p.cabin ? ", " + esc(p.cabin) : ""}</dd>
+      <dt>Budget</dt><dd>&le; ${esc(money(r.budget_minor, r.currency))}</dd>
+      ${r.planning_context && r.planning_context.current_date ? `<dt>Planned on</dt><dd>${esc(r.planning_context.current_date)} (${esc(r.planning_context.current_weekday)})</dd>` : ""}
+      <dt>Allowed effects</dt><dd>${effects || "(none)"}</dd>
+      <dt>policy_hash</dt><dd><code>${esc(r.policy_hash)}</code></dd>
+      <dt>approval_id</dt><dd><code>${esc(r.approval_id)}</code></dd>
+    </dl>`;
+}
+
+function stepCard(r) {
+  const a = r.arguments || {};
+  const isPay = /pay/.test(r.tool);
+  const rows = Object.entries(a).map(([k, v]) => `<dt>${esc(k)}</dt><dd><code>${esc(JSON.stringify(v))}</code></dd>`).join("");
+  return `<h2>${isPay ? "Payment approval" : "Step approval"}</h2>
+    <dl>
+      <dt>Tool</dt><dd>${esc(r.tool)} (step ${esc(Number.isInteger(r.step) ? r.step + 1 : "?")})</dd>
+      ${isPay && a.amount_minor != null ? `<dt>Amount</dt><dd>${esc(money(a.amount_minor, a.currency))}</dd>` : ""}
+      ${rows}
+      <dt>fragment_hash</dt><dd><code>${esc(r.fragment_hash)}</code></dd>
+      <dt>policy_hash</dt><dd><code>${esc(r.policy_hash)}</code></dd>
+      <dt>approval_id</dt><dd><code>${esc(r.approval_id)}</code></dd>
+    </dl>`;
+}
+
+function render(list) {
+  const live = list.filter(r => !decided.has(r.approval_id));
+  const key = JSON.stringify(live.map(r => r.approval_id));
+  if (key === shown) return;
+  shown = key;
+  if (!live.length) { root.className = "idle"; root.innerHTML = "Nothing pending."; return; }
+  root.className = "";
+  root.innerHTML = live.map(r => `<div class="card" data-id="${esc(r.approval_id)}">
+      ${r.kind === "task" ? taskCard(r) : stepCard(r)}
+      <div class="btns">
+        <button class="no" data-act="reject">Reject</button>
+        <button class="ok" data-act="approve">Approve</button>
+      </div>
+      <div class="err"></div>
+      <div class="ttl" data-at="${esc(r.requested_at || "")}" data-timeout="${esc(r.timeout || "")}"></div>
+    </div>`).join("");
+  root.querySelectorAll("button").forEach(b => b.onclick = () => decide(b));
+  root._records = Object.fromEntries(live.map(r => [r.approval_id, r]));
+}
+
+async function decide(btn) {
+  const card = btn.closest(".card"), id = card.dataset.id, rec = root._records[id];
+  card.querySelectorAll("button").forEach(b => b.disabled = true);
+  const res = await fetch(`/api/approvals/${encodeURIComponent(id)}/${btn.dataset.act}`, {
+    method: "POST", headers,
+    body: JSON.stringify({policy_hash: rec.policy_hash})});   // the id is in the path, the hash in the body
+  const body = await res.json().catch(() => ({}));
+  if (res.ok) { decided.add(id); shown = ""; poll(); }
+  else {
+    // 409 "already decided": another window answered first, and the next poll drops the card.
+    // 404: the request expired, was replaced or was answered, so this card is stale. Nothing is
+    // re-requested here, because a new request can only come from the run. Only a transient
+    // error enables the buttons again.
+    const why = body.error === "already decided" ? "Already decided in another window."
+              : res.status === 404 ? "Expired or no longer pending. Nothing was approved."
+              : (body.error || res.status);
+    card.querySelector(".err").textContent = why;
+    if (res.status !== 404 && res.status !== 409) card.querySelectorAll("button").forEach(b => b.disabled = false);
+  }
+}
+
+async function poll() {
+  try { render(await (await fetch("/api/approvals/pending", {cache: "no-store"})).json()); }
+  catch (e) { /* the API restarts, the next poll sees it */ }
+}
+if (!CONTROLS_ONLY) { poll(); setInterval(poll, 1500); }
+
+// The runner treats a request without a decision within its timeout as not approved. The
+// card says how long is left (display only, the API decides on the id and the hash).
+function tick() {
+  document.querySelectorAll(".ttl").forEach(el => {
+    const at = parseFloat(el.dataset.at), t = parseFloat(el.dataset.timeout);
+    if (!at || !t) return;
+    const left = Math.max(0, Math.round(at + t - Date.now() / 1000));
+    el.textContent = left > 0 ? `Without a decision in ${Math.floor(left / 60)}:${String(left % 60).padStart(2, "0")} the runner treats this as not approved.`
+                              : "Expired: the runner treats this as not approved.";
+    el.classList.toggle("soon", left < 60);
+  });
+}
+setInterval(tick, 1000);
+async function loadControls() {
+  try {
+    const c = await (await fetch("/api/demo/controls", {cache: "no-store"})).json();
+    document.querySelectorAll("input[name=ext]").forEach(r => r.checked = r.value === c.external_input);
+    document.querySelectorAll("input[name=atk]").forEach(r => r.checked = r.value === c.node_attack);
+    const f = document.getElementById("forder");
+    if (document.activeElement !== f) f.value = c.foreign_order || "";
+    document.getElementById("inj").textContent = c.injection_text || "";
+  } catch (e) { /* next time */ }
+}
+document.getElementById("forder").onchange = async (ev) => {
+  const res = await fetch("/api/demo/foreign-order", {method: "POST", headers, body: JSON.stringify({order_id: ev.target.value.trim()})});
+  const body = await res.json().catch(() => ({}));
+  document.getElementById("forder-err").textContent = res.ok ? "" : (body.error || res.status);
+  loadControls();
+};
+document.querySelectorAll("input[name=atk]").forEach(r => r.onchange = async () => {
+  const res = await fetch("/api/demo/node-attack", {method: "POST", headers, body: JSON.stringify({attack: r.value})});
+  if (!res.ok) loadControls();
+});
+document.querySelectorAll("input[name=ext]").forEach(r => r.onchange = async () => {
+  const res = await fetch("/api/demo/external-input", {method: "POST", headers, body: JSON.stringify({mode: r.value})});
+  if (!res.ok) loadControls();
+});
+loadControls();
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+{
+  "stamp": "20261003T162810Z",
+  "run_id": "run-20261003T162805Z-r3",
+  "manifest": {
+    "manifest_version": 1,
+    "recorded_at": "2026-10-03T16:35:40Z",
+    "git": {
+      "commit": "f1ca1cba474ed6757887ba6de16c093d8f112c85",
+      "dirty": false,
+      "branch": "main"
+    },
+    "policies": {
+      "P2": "66c97606690fe0cd7d442928cf4db514157e682d8f8b6ee53fb13cfdb458e655",
+      "P2.1": "254054d2ab7db1d1f5c7ab2244ceefbb5e536c469481b4ec895650859ea260d4",
+      "P3": "de054d83d565c2c882770ab165c4a935ba02dafb61e67d1877a7470892e19a52",
+      "P3+pay-approval": "28df9debbcff93a11c20ec4ce11f1014e0322e7eece59116fb968017ce52fef8"
+    },
+    "registry": {
+      "policy_schema": "ps-3",
+      "constraint": "cr-1",
+      "fact": "fr-2",
+      "fact_extension": "fr-2.1"
+    },
+    "ttl": {
+      "token_s": 120,
+      "intervention_s": 300
+    },
+    "clock_mode": "system",
+    "verifier": "TdxVerifier",
+    "images": {
+      "CONTROLLER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:3cd6b17a404739a4701333b21acdd007c74851b453eba4a0d8f995440f3089da",
+      "RUNNER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:3cd6b17a404739a4701333b21acdd007c74851b453eba4a0d8f995440f3089da",
+      "RUNNER_PROCESS_SHA256": "ee153e2790a7a5481d60d04e750a7770c13a99866448bbc9756041d5c54464db",
+      "RUNNER_SOURCE_SHA256": "63297a9b599d1dd1830f5a5189ced40ddf9b3f7df6c49e4d7c9902d33f2b5f03",
+      "RUNNER_PYTHON": "/usr/local/bin/python3",
+      "SERVICES_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking-services@sha256:55dcff9a6807f02ed2fa765702d42680c0ab6b845030fcee028c4fcaacc153c7"
+    },
+    "freeze": {
+      "stamp": "20261003T073223Z",
+      "sha256": "9ecbd16622c87f16bebc621c661d14f1cf110d387b8c2e97c97edf2f066f6aed"
+    },
+    "python": "3.13.3",
+    "platform": "macOS-27.0-arm64-arm-64bit-Mach-O",
+    "observation_check": "bound"
+  },
+  "steps": [
+    {
+      "run_id": "run-20261003T162805Z-r3",
+      "step": 0,
+      "td": "runner-td-wjdzk",
+      "outcome": "REFUSED(boot-measurement-mismatch)",
+      "accepted": false,
+      "effects": 0,
+      "pending_effects": 0,
+      "foreign_effects": 0,
+      "fragment_hash": "d657de526d3a0ef47147a0ef685e42a014e8611facf6fc17b1a674ab028b2efb",
+      "state_hash": "c9db55f95f6bd2f97b4b13f5bf6d659494daea2468feaffcc3aa1939f3d2f8f1",
+      "refusal": {
+        "rule": "boot-measurement-mismatch",
+        "detail": "rtmr0 got=5eeb1d573d3aad53a115ac7ccce2d773ced06ff7175038843d98b2bddf786123ff54094e27878243688bae4e5bd920ce want=c49d22aff6edb37cb6178defb05e0e2b512c26960e6ee73b1ea303365a31def807ab2ad71e5874236feca2ca552c6307",
+        "stage": "relying-party"
+      },
+      "result_status": null,
+      "result_reason": null,
+      "has_successor": false,
+      "appraisal": {},
+      "timings": {
+        "spawn": 0.914889125037007,
+        "ready": 0.0,
+        "boot_key": 0.5135405840119347,
+        "evidence": 0.3480735420016572,
+        "verification": 0.12643870792817324,
+        "execution": null,
+        "destroy": 16.954545750049874
+      },
+      "total_s": 18.857487709028646,
+      "handoff": "warm",
+      "cleanup_mode": "gce_confirmed_finalizer_cleanup",
+      "indeterminate": null,
+      "ledger_measured": true,
+      "ledger_error": null,
+      "cleanup_error": null,
+      "evidence_bin": "/home/user/Documents/Master/Thesis/mocks/results_v5/e2e/20261003T162810Z/evidence-runner-td-wjdzk.bin",
+      "substrate_variance": {
+        "kind": "substrate-rtmr0-variance",
+        "observed_rtmr0": "5eeb1d573d3aad53a115ac7ccce2d773ced06ff7175038843d98b2bddf786123ff54094e27878243688bae4e5bd920ce",
+        "expected_rtmr0": "c49d22aff6edb37cb6178defb05e0e2b512c26960e6ee73b1ea303365a31def807ab2ad71e5874236feca2ca552c6307",
+        "pck_leaf_serial": "0xaa329827b98bc8e15e1bdc13e65ea85760fa84a5",
+        "fmspc": "00806f050000",
+        "freeze_stamp": "20261003T073223Z",
+        "evidence_path": "/home/user/Documents/Master/Thesis/mocks/results_v5/e2e/20261003T162810Z/evidence-runner-td-wjdzk.bin",
+        "note": "the refusal stands: this TD executed no fragment and produced no effect. Only the latency series counts it separately instead of aborting, because RTMR0 is the provider's field, not ours."
+      }
+    }
+  ]
+}

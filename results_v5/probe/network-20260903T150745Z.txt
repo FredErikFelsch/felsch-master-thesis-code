@@ -1,0 +1,35 @@
+== regular pod (baseline: A5 as in V4.4c) ==
+-- pod: phase=Succeeded after 12 s; last event: Started: Container started
+BLOCKED canary:9000
+BLOCKED 34.118.233.10:9000
+BLOCKED 1.1.1.1:443
+OPEN    kube-dns.kube-system.svc.cluster.local:53
+-- routes --
+default via 169.254.4.6 dev eth0 
+169.254.4.6 dev eth0 scope link 
+-- addrs --
+    inet 127.0.0.1/8 scope host lo
+    inet 10.32.1.252/32 scope global eth0
+== peer pod, tunnelled networking (A5) ==
+-- pod: phase=Succeeded after 120 s; last event: Started: Container started
+BLOCKED canary:9000
+nc: bad address 'canary'
+BLOCKED 34.118.233.10:9000
+BLOCKED 1.1.1.1:443
+BLOCKED kube-dns.kube-system.svc.cluster.local:53
+-- routes --
+nc: bad address 'kube-dns.kube-system.svc.cluster.local'
+default via 169.254.4.6 dev eth0 
+169.254.4.6 dev eth0 scope link 
+169.254.169.254 dev veth2 scope link 
+-- addrs --
+    inet 127.0.0.1/8 scope host lo
+    inet 10.32.1.253/32 scope global eth0
+== pod VM subnet check (A5b precondition): NIC must be in 192.168.200.0/24 ==
+NAME                       SUBNETWORK  NETWORK_IP
+podvm-nginx-peer-1802841a  v5-podvm    192.168.200.29
+== direct external networking enabled? (A5b precondition; CAA config) ==
+no external-networking setting found -> A5b NOT_APPLICABLE (tunnelled mode)
+== A5b firewall policy as deployed (deny all direct TD egress, allow only the Google API VIP) ==
+policy v5-runner-td-policy not found
+SUBNET_OK v5-podvm

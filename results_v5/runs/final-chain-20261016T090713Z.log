@@ -1,0 +1,813 @@
+
+[09:07:13Z] preflight (start at gate)
+[model check] ok: claude-sonnet-5-5 10 in, 5 out
+
+[09:07:18Z] preflight ok
+
+===== [09:07:18Z] START gate: 40 offline =====
+CHECK V0 baseline:                   PASS  All 11 tests passed. 
+CHECK V1 lifecycle and constraints:  PASS  All 36 tests passed. 
+CHECK V2 effect ledger:              PASS  All 38 tests passed. 
+CHECK V3 monitor, Authority, gateway: PASS  Ran 73 tests in 0.254s OK 
+CHECK V3 negative cases: forged, replayed, misdirected tokens and records: PASS  Ran 13 tests in 0.016s OK 
+CHECK V3 failure ledger: what the Authority records after a failed or uncertain effect: PASS  Ran 10 tests in 0.011s OK 
+CHECK V3 gateway order: a spent then expired token is a past dispatch, each binding refuses alone: PASS  Ran 11 tests in 0.013s OK 
+CHECK V4 durable store, restart, crash windows: PASS  Ran 26 tests in 14.655s OK 
+CHECK V4 controller (container-dependent cases may skip): PASS  Ran 18 tests in 0.005s OK (skipped=16) 
+CHECK V4 container profile (skips without a container runtime): PASS  Ran 18 tests in 0.000s OK (skipped=18) 
+CHECK V4 container environment:      PASS  Ran 13 tests in 0.026s OK 
+CHECK V4 Kubernetes profile (skips without a cluster): PASS  Ran 8 tests in 0.000s OK (skipped=8) 
+CHECK V4 Kubernetes manifests, offline: PASS  Ran 21 tests in 1.189s OK 
+CHECK V4 service endpoint surface:   PASS  Ran 14 tests in 2.913s OK 
+CHECK offline tests:                 PASS  Ran 40 tests in 0.118s OK 
+CHECK fixture tests:                 PASS  Ran 34 tests in 0.081s OK (skipped=2) 
+CHECK rtmr replay tests:             PASS  Ran 8 tests in 0.001s OK 
+CHECK substrate variance tests:      PASS  Ran 22 tests in 0.192s OK 
+CHECK runner phase-order tests:      PASS  Ran 9 tests in 0.006s OK 
+CHECK peer-pod cleanup tests:        PASS  Ran 5 tests in 0.010s OK 
+CHECK probe analysis dry run:        PASS  Ran 5 tests in 0.521s OK 
+CHECK cluster script (12):           PASS  Ran 14 tests in 22.259s OK 
+CHECK probe scripts (18/19):         PASS  Ran 22 tests in 0.371s OK 
+CHECK pod-VM overlay hardening:      PASS  Ran 35 tests in 1.429s OK 
+CHECK attach protocol end to end:    PASS  Ran 10 tests in 0.015s OK 
+CHECK effect ledger over the durable gateway, role surfaces: PASS  Ran 17 tests in 8.318s OK 
+CHECK V5 end to end over the real services (offline): PASS  Ran 26 tests in 12.361s OK (skipped=13) 
+CHECK DCAP collateral cache: validity-bounded, no network per verdict: PASS  Ran 8 tests in 0.123s OK 
+CHECK continuation gate: second session only for a pending intervention: PASS  Ran 9 tests in 11.783s OK 
+CHECK semantic equivalence of the attested path: PASS  Ran 6 tests in 48.056s OK 
+CHECK demo acts (scripted agent, V0 baseline and V3 monitor): PASS  Ran 57 tests in 23.124s OK 
+CHECK agent-run analysis: provider, malicious, utility, fail-closed classes: PASS  Ran 81 tests in 1.015s OK 
+CHECK V4 recovery test double: the removed effectful recovery still recovers (control): PASS  Ran 1 test in 0.518s OK 
+CHECK V4.2 durable semantics (regression): PASS  Ran 45 tests in 36.878s OK 
+CHECK V5 deployment artefacts (manifests, identity, scripts): PASS  Ran 27 tests in 1.177s OK 
+CHECK live world: spec, effect map, context, admission, scenario/fault knobs: PASS  Ran 30 tests in 0.007s OK 
+CHECK live adapter: provider deviations, payment status/order/amount/currency, form accepted / meaning refused: PASS  59 cases: 15 form deviations accepted, 44 meaning deviations refused by name, 0 mismatches 
+CHECK live credential sources (env, OpenBao): PASS  Ran 22 tests in 0.015s OK 
+CHECK live payment through the durable two-phase dispatch (UNCERTAIN survives): PASS  Ran 10 tests in 8.987s OK 
+CHECK live profile wiring (no credential on the controller in v5): PASS  Ran 29 tests in 0.058s OK 
+CHECK V5 x Duffel composition: PL1 activated, isolated policy attacks, uncertain payment, a16 alone: PASS  Ran 45 tests in 36.269s OK 
+CHECK seeded world: fail-closed gateway and Authority admission: PASS  Ran 13 tests in 0.491s OK 
+CHECK OpenBao deployment artefacts:  PASS  Ran 18 tests in 0.042s OK 
+CHECK one fail-closed world wiring for every entry point: PASS  Ran 12 tests in 0.018s OK 
+CHECK downstream idempotency key: derived by the gateway, not by the controller: PASS  Ran 6 tests in 0.518s OK 
+CHECK the uncertain-outcome evidence names its injected fault: PASS  Ran 7 tests in 0.005s OK 
+CHECK chat routing: one input resumes a waiting run, which is not replanned or approved by it: PASS  Ran 16 tests in 0.111s OK 
+CHECK UI: the approval facade and the chat facade are kept apart: PASS  Ran 38 tests in 6.238s OK 
+CHECK UI and session edges: pause ends the turn, cross-conversation, pending approval, CSRF, orphan: PASS  Ran 9 tests in 0.047s OK 
+CHECK chat continuation: each tool result once, the human's reply after them: PASS  Ran 5 tests in 0.020s OK 
+CHECK A5c: the freeze names the measured image and reads its hardening, 19 judges the metadata path: PASS  Ran 8 tests in 0.061s OK 
+CHECK approval gate: a forged, replayed or misdirected WebAuthn assertion is refused: PASS  Ran 21 tests in 0.006s OK 
+CHECK approval gate: only a pinned passkey creates a run or approves a step, the controller cannot: PASS  Ran 25 tests in 14.623s OK 
+CHECK approval gate: the page the Authority serves, request hygiene, pinned approvers: PASS  Ran 15 tests in 12.264s OK 
+CHECK approval gate: whole runs decided at the Authority (person, harness), no bypass: PASS  Ran 7 tests in 16.085s OK 
+CHECK approval service: one serve lock, no interleaved mutation and persistence: PASS  Ran 2 tests in 2.102s OK 
+CHECK approval gate: the signature counter does not go back: PASS  Ran 4 tests in 2.611s OK 
+CHECK enrolment needs a one-time code and the operator's confirmation of the key: PASS  Ran 8 tests in 0.277s OK 
+CHECK approval surface: closed methods are refused from the first request: PASS  Ran 3 tests in 1.694s OK 
+CHECK binding version guard, the AA reply is parsed: PASS  Ran 6 tests in 0.001s OK 
+CHECK every call site goes through the guarded entry point: PASS  Ran 3 tests in 0.494s OK 
+CHECK code closure: normalize types, intervention report, shipped flags and pins: PASS  Ran 162 tests in 25.099s OK 
+CHECK DCAP collateral is fetched only from the pinned root CRL URL: PASS  Ran 5 tests in 3.531s OK 
+CHECK probe and run init-data digests, the deployment reproduces the run digest: PASS  Ran 22 tests in 0.213s OK 
+CHECK probe recovery path is closed: PASS  Ran 5 tests in 0.513s OK 
+CHECK session package: what a missing sender authentication does and does not reach: PASS  Ran 3 tests in 0.009s OK 
+CHECK characterisation: the Authority signs a changed fact of a bound runner (accepted limit, not a defence): PASS  Ran 4 tests in 0.020s OK 
+CHECK attested decision path:        PASS  Ran 9 tests in 0.031s OK 
+CHECK equivalence evaluation of the attested path: PASS  Ran 9 tests in 0.008s OK 
+CHECK init-data digest is deterministic: PASS  Ran 4 tests in 0.002s OK 
+CHECK observation surface and its trust assumption: PASS  Ran 21 tests in 7.184s OK (skipped=2) 
+CHECK attested transport proxy:      PASS  Ran 14 tests in 1.747s OK 
+CHECK OPA 0.68.0:                    PASS  /path/to/repo/results_v5/opa/opa
+CHECK Kata agent policy: pinned image, one guest pull, annotation (OPA 0.68.0): PASS  Ran 23 tests in 1.571s OK (skipped=1) 
+CHECK test inventory: 40_verify_v5.sh and verify.py cover every test module: PASS  Ran 5 tests in 0.010s OK 
+
+VERDICT: offline checks PASS
+===== [09:13:27Z] OK    gate: 40 offline  (369s) =====
+
+[09:13:28Z] 98a with CREATE_CLUSTER=1
+
+===== [09:13:28Z] START 98a freeze prepare =====
+
+[09:13:28Z] preflight
+
+[09:13:29Z] preflight ok (create_cluster=1)
+
+===== [09:13:29Z] START 00 preflight =====
+[1;34m[v5][0m 1. local tools
+  [1;32mOK[0m    gcloud
+  [1;32mOK[0m    kubectl
+  [1;32mOK[0m    helm
+  [1;32mOK[0m    python3
+  [1;32mOK[0m    gke-gcloud-auth-plugin
+  [1;32mOK[0m    python: yaml + cryptography
+  [1;32mOK[0m    booking_v5 offline suite passes
+[1;34m[v5][0m 2. gcloud identity and project
+  [1;32mOK[0m    active account user@example.com
+  [1;32mOK[0m    project project-example
+  [1;32mOK[0m    ADC present
+[1;34m[v5][0m 3. APIs (12 enables them, but enabling needs serviceusage rights)
+  [1;32mOK[0m    container.googleapis.com enabled
+  [1;32mOK[0m    compute.googleapis.com enabled
+  [1;32mOK[0m    artifactregistry.googleapis.com enabled
+  [1;32mOK[0m    iam.googleapis.com enabled
+[1;34m[v5][0m 4. IAM: can this account do what 12/14 need? (Resource Manager testIamPermissions)
+  [1;32mOK[0m    container.clusters.create
+  [1;32mOK[0m    compute.firewalls.create
+  [1;32mOK[0m    compute.instances.setMetadata
+  [1;32mOK[0m    iam.serviceAccounts.create
+  [1;32mOK[0m    resourcemanager.projects.setIamPolicy
+[1;34m[v5][0m 5. TDX C3 in europe-west4-a: machine type, confidential support, quota
+  [1;32mOK[0m    c3-standard-4 exists in europe-west4-a
+  [1;32mOK[0m    e2-standard-4 (worker) exists in europe-west4-a
+  [1;32mOK[0m    europe-west4-a is a documented TDX C3 zone
+        C3_CPUS limit=24 usage=0
+        CPUS limit=200 usage=0
+        IN_USE_ADDRESSES limit=8 usage=0
+  [1;32mOK[0m    C3_CPUS quota 24 (4 per TD, 12 = 3 TDs in parallel)
+[1;34m[v5][0m 6. GKE version for Ubuntu/containerd in europe-west4-a (regular channel)
+  [1;33mWARN[0m  could not read GKE server config
+[1;34m[v5][0m 7. CoCo pod-VM image reachable? (14 needs the pin, 12 does not)
+  [1;32mOK[0m    PODVM_IMAGE podvm-fedora-tdx-caa-0-21-1-ov14 readable
+  [1;32mOK[0m    pin profile V5_PINS=probe: CAA 0.21.1 (v0.21.1-amd64), pod-VM image project-example/podvm-fedora-tdx-caa-0-21-1-ov14, node SA peerpods@project-example.iam.gserviceaccount.com
+  [1;32mOK[0m    CAA_VERSION=0.21.1
+[1;34m[v5][0m 8. SSH to GKE nodes (12 patches containerd via gcloud compute ssh)
+  [1;32mOK[0m    an SSH firewall rule exists (default-allow-ssh or custom)
+  [1;32mOK[0m    gcloud ssh key present
+[1;34m[v5][0m 9. V4.4c image digest available for the measured-runner probe (18)
+  [1;33mWARN[0m  no .digests: run ../gke/20_build_push_images.sh before 18
+[1;34m[v5][0m preflight OK. WARN lines are acceptable for 12. The pod-VM image pin and the CAA service account are needed before 14
+===== [09:13:46Z] OK    00 preflight  (17s) =====
+
+===== [09:13:46Z] START 12 create cluster =====
+[1;34m[v5][0m enabling APIs
+Operation "operations/acat.p2-000000000000-3474332f-cb65-4954-a2fb-756d4010aa36" finished successfully.
+[1;34m[v5][0m peerpods service account peerpods@project-example.iam.gserviceaccount.com (becomes the node SA and with it the CAA's credentials, see _config.sh)
+Updated IAM policy for project [project-example].
+Updated IAM policy for project [project-example].
+Updated IAM policy for project [project-example].
+Updated IAM policy for project [project-example].
+Updated IAM policy for project [project-example].
+[1;34m[v5][0m creating thesis-v5 (1× e2-standard-4, UBUNTU_CONTAINERD, Dataplane V2)
+Creating cluster thesis-v5 in europe-west4-a...
+...............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................done.
+Created [https://container.googleapis.com/v1/projects/project-example/zones/europe-west4-a/clusters/thesis-v5].
+To inspect the contents of your cluster, go to: https://console.cloud.google.com/kubernetes/workload_/gcloud/europe-west4-a/thesis-v5?project=project-example
+kubeconfig entry generated for thesis-v5.
+NAME       LOCATION        MASTER_VERSION      MASTER_IP       MACHINE_TYPE   NODE_VERSION        NUM_NODES  STATUS   STACK_TYPE
+thesis-v5  europe-west4-a  1.36.4-gke.1391002  203.0.113.10  e2-standard-4  1.36.4-gke.1391002  1          RUNNING  IPV4
+Fetching cluster endpoint and auth data.
+kubeconfig entry generated for thesis-v5.
+[1;34m[v5][0m maintenance exclusion v5-freeze: no minor or node upgrades until 2026-10-30T09:18:55Z (the containerd patch does not survive a node recreation)
+Updating thesis-v5...
+done.
+Updated [https://container.googleapis.com/v1/projects/project-example/zones/europe-west4-a/clusters/thesis-v5].
+To inspect the contents of your cluster, go to: https://console.cloud.google.com/kubernetes/workload_/gcloud/europe-west4-a/thesis-v5?project=project-example
+[1;34m[v5][0m node pool v5-pool: 1× e2-standard-4, node 1.35.8-gke.1225000, SA peerpods@project-example.iam.gserviceaccount.com, scope cloud-platform
+Note: Modifications on the boot disks of node VMs do not persist across node recreations. Nodes are recreated during manual-upgrade, auto-upgrade, auto-repair, and auto-scaling. To preserve modifications across node recreation, use a DaemonSet.
+Creating node pool v5-pool...
+..............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................done.
+Created [https://container.googleapis.com/v1/projects/project-example/zones/europe-west4-a/clusters/thesis-v5/nodePools/v5-pool].
+NAME     MACHINE_TYPE   DISK_SIZE_GB  NODE_VERSION
+v5-pool  e2-standard-4  50            1.35.8-gke.1225000
+[1;34m[v5][0m retiring GKE's default-pool (wrong SA/scopes for the CAA)
+Deleting node pool default-pool...
+......................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................done.
+Deleted [https://container.googleapis.com/v1/projects/project-example/zones/europe-west4-a/clusters/thesis-v5/nodePools/default-pool].
+[1;34m[v5][0m patching containerd on every worker: discard_unpacked_layers=false (peer pods need the layers)
+Warning: Permanently added 'compute.5555767399879037690' (ED25519) to the list of known hosts.
+##############################################################################
+# WARNING: Any changes on the boot disk of the node must be made via
+#          DaemonSet in order to preserve them across node (re)creations.
+#          Node will be (re)created during manual-upgrade, auto-upgrade,
+#          auto-repair or auto-scaling.
+#          See https://cloud.google.com/kubernetes-engine/docs/concepts/node-images#modifications
+#          for more information.
+##############################################################################
+[1;34m[v5][0m cluster network default, node subnet default (10.164.0.0/20)
+[1;34m[v5][0m pod-VM subnet v5-podvm (192.168.200.0/24) in network default: every runner TD gets its NIC here
+Created [https://www.googleapis.com/compute/v1/projects/project-example/regions/europe-west4/subnetworks/v5-podvm].
+[1;34m[v5][0m firewall: CAA forwarder 15150/tcp + VXLAN 4789/udp, only from the node subnet 10.164.0.0/20 to the pod-VM subnet
+Creating firewall...
+..Created [https://www.googleapis.com/compute/v1/projects/project-example/global/firewalls/v5-allow-peerpod-tunnel].
+done.
+[1;34m[v5][0m firewall: VXLAN 4789/udp return path, only from the pod-VM subnet to the node subnet 10.164.0.0/20
+Creating firewall...
+..Created [https://www.googleapis.com/compute/v1/projects/project-example/global/firewalls/v5-allow-peerpod-tunnel-return].
+done.
+[1;34m[v5][0m firewall policy v5-runner-td-policy: runner-TD egress over the direct NIC (A5b)
+Created [https://www.googleapis.com/compute/v1/projects/project-example/global/firewallPolicies/v5-runner-td-policy].
+[1;34m[v5][0m   rule 65000: DENY all egress from 192.168.200.0/24
+Updated [https://www.googleapis.com/compute/v1/projects/project-example/global/firewallPolicies/v5-runner-td-policy].
+[1;34m[v5][0m   rule 1000: ALLOW 192.168.200.0/24 -> 199.36.153.8/30 tcp:443 (image pull)
+Updated [https://www.googleapis.com/compute/v1/projects/project-example/global/firewallPolicies/v5-runner-td-policy].
+[1;34m[v5][0m   rule 1001: ALLOW 192.168.200.0/24 -> 10.164.0.0/20 udp:4789 (VXLAN to the worker)
+Updated [https://www.googleapis.com/compute/v1/projects/project-example/global/firewallPolicies/v5-runner-td-policy].
+[1;34m[v5][0m private DNS zones -> 199.36.153.8/30 (googleapis.com, pkg.dev, gcr.io) in network default
+Created [https://dns.googleapis.com/dns/v1/projects/project-example/managedZones/v5-googleapis].
+Created [https://dns.googleapis.com/dns/v1/projects/project-example/managedZones/v5-pkgdev].
+Created [https://dns.googleapis.com/dns/v1/projects/project-example/managedZones/v5-gcrio].
+[1;34m[v5][0m associating newly created firewall policy v5-runner-td-policy with network default (A5b becomes active now)
+Updated [https://www.googleapis.com/compute/v1/projects/project-example/global/firewallPolicies/v5-runner-td-policy].
+[1;34m[v5][0m NOTE: the CAA must place pod VMs in v5-podvm (GCP_SUBNETWORK). 19_probe_network.sh verifies that the pod VM's NIC is in 192.168.200.0/24.
+[1;34m[v5][0m cluster ready: gke_project-example_europe-west4-a_thesis-v5
+===== [09:28:41Z] OK    12 create cluster  (895s) =====
+
+===== [09:28:41Z] START 15 render caa values =====
+[1;34m[v5][0m service account peerpods@project-example.iam.gserviceaccount.com + roles
+Updated IAM policy for project [project-example].
+Updated IAM policy for project [project-example].
+Updated IAM policy for project [project-example].
+Updated IAM policy for project [project-example].
+Updated IAM policy for project [project-example].
+[1;34m[v5][0m checking that the node pool v5-pool runs as peerpods@project-example.iam.gserviceaccount.com with the cloud-platform scope
+[1;34m[v5][0m pod-VM image: project-example/podvm-fedora-tdx-caa-0-21-1-ov14
+READY	UEFI_COMPATIBLE;TDX_CAPABLE;SEV_SNP_CAPABLE;GVNIC
+[1;34m[v5][0m rendering k8s/v5/caa/values-gcp.yaml (chart: install/charts/peerpods of CAA v0.21.1)
+# Rendered by 15_render_caa_values.sh. Do not edit, re-run the script instead.
+# Credentials: none in here. The CAA uses the node SA (peerpods@project-example.iam.gserviceaccount.com).
+# 14 bypasses the entrypoint's GCP_CREDENTIALS check by starting the binary directly.
+provider: gcp
+image:
+  name: quay.io/confidential-containers/cloud-api-adaptor
+  tag: "v0.21.1-amd64"
+secrets:
+  mode: reference
+  existingSecretName: ""
+webhook:
+  enabled: false          # needs cert-manager, our profile sets runtimeClassName itself
+resourceCtrl:
+  enabled: true           # deletes dangling pod VMs (a stale TD must not survive its pod)
+daemonset:
+  updateStrategy:         # hostNetwork: a surged pod collides on :8000 with the old one
+    maxUnavailable: 1
+    maxSurge: 0
+providerConfigs:
+  gcp:
+    GCP_PROJECT_ID: "project-example"
+    GCP_ZONE: "europe-west4-a"
+    GCP_NETWORK: "global/networks/default"
+    GCP_SUBNETWORK: "regions/europe-west4/subnetworks/v5-podvm"
+    GCP_MACHINE_TYPE: "c3-standard-4"
+    GCP_DISK_TYPE: "pd-balanced"
+    GCP_CONFIDENTIAL_TYPE: "TDX"
+    DISABLECVM: "false"
+    USE_PUBLIC_IP: "false"
+    PODVM_IMAGE_NAME: "projects/project-example/global/images/podvm-fedora-tdx-caa-0-21-1-ov14"
+    ROOT_VOLUME_SIZE: "20"
+    FORWARDER_PORT: "15150"
+    VXLAN_PORT: "4789"
+    PEERPODS_LIMIT_PER_NODE: "10"
+[1;34m[v5][0m values rendered (keys follow providers/gcp.yaml of the pinned chart)
+===== [09:28:57Z] OK    15 render caa values  (16s) =====
+
+===== [09:28:57Z] START 14 install coco =====
+[1;34m[v5][0m cleanup: kata-remote pods an earlier run left in a terminal phase
+[1;34m[v5][0m cleanup: PeerPod CRs with no pod and no VM
+[1;34m[v5][0m pin profile V5_PINS=probe: CAA 0.21.1 (v0.21.1-amd64), pod-VM image project-example/podvm-fedora-tdx-caa-0-21-1-ov14
+Hinweis: Wechsle zu 'ea3ea1f063b10073a551d97e11d31169ca4648f5'.
+
+Sie befinden sich im Zustand eines 'losgelösten HEAD'. Sie können sich
+umschauen, experimentelle Änderungen vornehmen und diese committen, und
+Sie können alle möglichen Commits, die Sie in diesem Zustand machen,
+ohne Auswirkungen auf irgendeinen Branch verwerfen, indem Sie zu einem
+anderen Branch wechseln.
+
+Wenn Sie einen neuen Branch erstellen möchten, um Ihre erstellten Commits
+zu behalten, können Sie das (jetzt oder später) durch Nutzung von
+'switch' mit der Option -c tun. Beispiel:
+
+  git switch -c <neuer-Branchname>
+
+Oder um diese Operation rückgängig zu machen:
+  git switch -
+
+Sie können diesen Hinweis ausschalten, indem Sie die Konfigurationsvariable
+'advice.detachedHead' auf 'false' setzen.
+
+[1;34m[v5][0m worker label node.kubernetes.io/worker= (DaemonSet selector)
+[1;34m[v5][0m helm: peerpods chart (appVersion: "v0.21.1") into confidential-containers-system
+Release "peerpods" does not exist. Installing it now.
+NAME: peerpods
+LAST DEPLOYED: Fri Oct 16 11:29:06 2026
+NAMESPACE: confidential-containers-system
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+[1;34m[v5][0m starting the CAA binary directly (ADC instead of a key file), with the node's CA bundle
+Waiting for daemon set "cloud-api-adaptor-daemonset" rollout to finish: 0 out of 1 new pods have been updated...
+Waiting for daemon set "cloud-api-adaptor-daemonset" rollout to finish: 0 out of 1 new pods have been updated...
+Waiting for daemon set "cloud-api-adaptor-daemonset" rollout to finish: 0 of 1 updated pods are available...
+daemon set "cloud-api-adaptor-daemonset" successfully rolled out
+[1;34m[v5][0m waiting for kata-deploy to label the worker (katacontainers.io/kata-runtime=true)
+[1;34m[v5][0m hardening kata-remote annotation allowlist to cc_init_data only
+##############################################################################
+# WARNING: Any changes on the boot disk of the node must be made via
+#          DaemonSet in order to preserve them across node (re)creations.
+#          Node will be (re)created during manual-upgrade, auto-upgrade,
+#          auto-repair or auto-scaling.
+#          See https://cloud.google.com/kubernetes-engine/docs/concepts/node-images#modifications
+#          for more information.
+##############################################################################
+/opt/kata/share/defaults/kata-containers/configuration-remote.toml: enable_annotations = ["cc_init_data"]
+/opt/kata/share/defaults/kata-containers/runtimes/remote/configuration-remote.toml: enable_annotations = ["cc_init_data"]
+[1;34m[v5][0m CAA log (should show the gcp config and no credentials error):
+2026/10/16 09:29:39 [adaptor/cloud] Cloud provider external plugin loading is disabled, skipping plugin loading
+cloud-api-adaptor version v0.21.1
+  commit: ea3ea1f063b10073a551d97e11d31169ca4648f5
+  go: go1.25.10
+cloud-api-adaptor: starting Cloud API Adaptor daemon for "gcp"
+2026/10/16 09:29:39 [adaptor/cloud/gcp] gcp config: gcp.Config{GcpCredentials:"**********", ProjectID:"project-example", Zone:"europe-west4-a", ImageName:"projects/project-example/global/images/podvm-fedora-tdx-caa-0-21-1-ov14", MachineType:"c3-standard-4", Network:"global/networks/default", Subnetwork:"regions/europe-west4/subnetworks/v5-podvm", DiskType:"pd-balanced", DisableCVM:false, ConfidentialType:"TDX", RootVolumeSize:20, Tags:provider.KeyValueFlag(nil), UsePublicIP:false, MachineTypes:gcp.machineTypes(nil), MachineTypeSpecList:[]provider.InstanceTypeSpec(nil)}
+2026/10/16 09:29:39 [adaptor] server config: &cloud.ServerConfig{TLSConfig:(*tlsutil.TLSConfig)(0xc0004c0200), SocketPath:"/run/peerpod/hypervisor.sock", PauseImage:"", PodsDir:"/run/peerpod/pods", ForwarderPort:"15150", ProxyTimeout:300000000000, Initdata:"", EnableCloudConfigVerify:false, PeerPodsLimitPerNode:10, RootVolumeSize:0, EnableScratchSpace:false}
+2026/10/16 09:29:39 [util/k8sops] initialized PeerPodService
+2026/10/16 09:29:39 [probe/probe] Using port: 8000
+2026/10/16 09:29:39 [util/k8sops] set up extended resources
+2026/10/16 09:29:39 [util/k8sops] Successfully set extended resource for node gke-thesis-v5-v5-pool-ad88cf00-hlvd
+2026/10/16 09:29:39 [adaptor] server started
+2026/10/16 09:30:16 [probe/probe] nodeName: gke-thesis-v5-v5-pool-ad88cf00-hlvd
+2026/10/16 09:30:16 [probe/probe] Selected pods count: 20
+2026/10/16 09:30:16 [probe/probe] All PeerPods standup. we do not check the PeerPods status any more.
+[1;34m[v5][0m CoCo ready: runtimeclass kata-remote present, CAA running as node SA peerpods@project-example.iam.gserviceaccount.com
+===== [09:33:21Z] OK    14 install coco  (264s) =====
+
+===== [09:33:21Z] START 20 build and push runner image =====
+[1;34m[v44c][0m ensuring Artifact Registry repo thesis exists in europe-west1
+[1;34m[v44c][0m granting the GKE node service account read-only access to Artifact Registry
+Updated IAM policy for repository [thesis].
+[1;34m[v44c][0m verifying the Artifact Registry reader binding
+[1;34m[v44c][0m   Artifact Registry pull identity: 000000000000-compute@developer.gserviceaccount.com
+[1;34m[v44c][0m configuring docker auth for europe-west1-docker.pkg.dev (uses the existing gcloud login)
+WARNING: Your config file at [/Users/user/.docker/config.json] contains these credential helper entries:
+
+{
+  "credHelpers": {
+    "europe-west1-docker.pkg.dev": "gcloud"
+  }
+}
+Adding credentials for: europe-west1-docker.pkg.dev
+gcloud credential helpers already registered correctly.
+[1;34m[v44c][0m building + pushing europe-west1-docker.pkg.dev/project-example/thesis/booking:v44c for linux/amd64 (GKE e2 nodes are x86-64)
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.k8s
+#1 transferring dockerfile: 2.74kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.11-slim
+#2 DONE 1.7s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 938B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 2.07MB 0.1s done
+#4 DONE 0.1s
+
+#5 [ 1/10] FROM docker.io/library/python:3.11-slim@sha256:e88e9763f943ec1834f992a4b51e0f24500486803e8bc534e5767af9ea65f6ce
+#5 resolve docker.io/library/python:3.11-slim@sha256:e88e9763f943ec1834f992a4b51e0f24500486803e8bc534e5767af9ea65f6ce done
+#5 sha256:e88e9763f943ec1834f992a4b51e0f24500486803e8bc534e5767af9ea65f6ce 10.37kB / 10.37kB done
+#5 sha256:e529028263dbe6910a2d96f7d2b8f5266385e917fd45d286ef166977c094a51e 1.75kB / 1.75kB done
+#5 sha256:541096ae9b05d3b850341b78790e2ed31e94d5aa0ea086933c6ff0c09ffa2e63 5.49kB / 5.49kB done
+#5 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 0B / 29.84MB 0.1s
+#5 sha256:0f752a1982d6f819fc2c9e78ac1514c63f2f2e1dec7885ffd4cb6809ba4a26ca 0B / 1.29MB 0.1s
+#5 sha256:759a7f30c31818dda4c97b407b24d93da479c306568d185ced927e1a749164f1 0B / 14.46MB 0.1s
+#5 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 7.34MB / 29.84MB 0.4s
+#5 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 14.72MB / 29.84MB 0.6s
+#5 sha256:0f752a1982d6f819fc2c9e78ac1514c63f2f2e1dec7885ffd4cb6809ba4a26ca 1.29MB / 1.29MB 0.6s done
+#5 sha256:496c1a902b3a93cea3e54b90b79dbcaa0e58ad90c3fe9dd0a43c9557dc47f17d 0B / 250B 0.6s
+#5 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 16.78MB / 29.84MB 0.7s
+#5 sha256:759a7f30c31818dda4c97b407b24d93da479c306568d185ced927e1a749164f1 4.19MB / 14.46MB 0.7s
+#5 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 24.12MB / 29.84MB 0.9s
+#5 sha256:759a7f30c31818dda4c97b407b24d93da479c306568d185ced927e1a749164f1 11.53MB / 14.46MB 0.9s
+#5 sha256:496c1a902b3a93cea3e54b90b79dbcaa0e58ad90c3fe9dd0a43c9557dc47f17d 250B / 250B 0.8s done
+#5 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 29.84MB / 29.84MB 1.1s
+#5 sha256:759a7f30c31818dda4c97b407b24d93da479c306568d185ced927e1a749164f1 14.46MB / 14.46MB 1.0s done
+#5 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 29.84MB / 29.84MB 1.1s done
+#5 extracting sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 0.1s
+#5 extracting sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 0.5s done
+#5 extracting sha256:0f752a1982d6f819fc2c9e78ac1514c63f2f2e1dec7885ffd4cb6809ba4a26ca 0.0s done
+#5 extracting sha256:759a7f30c31818dda4c97b407b24d93da479c306568d185ced927e1a749164f1 0.1s
+#5 extracting sha256:759a7f30c31818dda4c97b407b24d93da479c306568d185ced927e1a749164f1 0.3s done
+#5 extracting sha256:496c1a902b3a93cea3e54b90b79dbcaa0e58ad90c3fe9dd0a43c9557dc47f17d done
+#5 DONE 2.1s
+
+#6 [ 2/10] RUN pip install --no-cache-dir "cryptography==43.0.1" "kubernetes==31.0.0"
+#6 1.879 Collecting cryptography==43.0.1
+#6 2.073   Downloading cryptography-43.0.1-cp39-abi3-manylinux_2_28_x86_64.whl.metadata (5.4 kB)
+#6 2.117 Collecting kubernetes==31.0.0
+#6 2.136   Downloading kubernetes-31.0.0-py2.py3-none-any.whl.metadata (1.5 kB)
+#6 2.280 Collecting cffi>=1.12 (from cryptography==43.0.1)
+#6 2.298   Downloading cffi-2.1.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.5 kB)
+#6 2.338 Collecting certifi>=14.05.14 (from kubernetes==31.0.0)
+#6 2.355   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+#6 2.383 Collecting six>=1.9.0 (from kubernetes==31.0.0)
+#6 2.399   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+#6 2.428 Collecting python-dateutil>=2.5.3 (from kubernetes==31.0.0)
+#6 2.446   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+#6 2.494 Collecting pyyaml>=5.4.1 (from kubernetes==31.0.0)
+#6 2.572   Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+#6 2.670 Collecting google-auth>=1.0.1 (from kubernetes==31.0.0)
+#6 2.689   Downloading google_auth-2.62.0-py3-none-any.whl.metadata (6.0 kB)
+#6 2.738 Collecting websocket-client!=0.40.0,!=0.41.*,!=0.42.*,>=0.32.0 (from kubernetes==31.0.0)
+#6 2.759   Downloading websocket_client-1.9.2-py3-none-any.whl.metadata (8.3 kB)
+#6 2.805 Collecting requests (from kubernetes==31.0.0)
+#6 2.824   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+#6 2.855 Collecting requests-oauthlib (from kubernetes==31.0.0)
+#6 2.875   Downloading requests_oauthlib-2.0.0-py2.py3-none-any.whl.metadata (11 kB)
+#6 2.908 Collecting oauthlib>=3.2.2 (from kubernetes==31.0.0)
+#6 2.928   Downloading oauthlib-4.0.0-py3-none-any.whl.metadata (8.6 kB)
+#6 2.990 Collecting urllib3>=1.24.2 (from kubernetes==31.0.0)
+#6 3.098   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+#6 3.127 Collecting durationpy>=0.7 (from kubernetes==31.0.0)
+#6 3.145   Downloading durationpy-0.11-py3-none-any.whl.metadata (474 bytes)
+#6 3.177 Collecting pycparser (from cffi>=1.12->cryptography==43.0.1)
+#6 3.198   Downloading pycparser-3.11-py3-none-any.whl.metadata (8.2 kB)
+#6 3.265 Collecting pyasn1-modules>=0.2.1 (from google-auth>=1.0.1->kubernetes==31.0.0)
+#6 3.286   Downloading pyasn1_modules-0.4.2-py3-none-any.whl.metadata (3.5 kB)
+#6 3.528 Collecting charset_normalizer<4,>=2 (from requests->kubernetes==31.0.0)
+#6 3.624   Downloading charset_normalizer-3.5.2-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+#6 3.642      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 46.4/46.4 kB 3.2 MB/s eta 0:00:00
+#6 3.682 Collecting idna<4,>=2.5 (from requests->kubernetes==31.0.0)
+#6 3.700   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+#6 3.782 Collecting pyasn1<0.7.0,>=0.6.1 (from pyasn1-modules>=0.2.1->google-auth>=1.0.1->kubernetes==31.0.0)
+#6 3.801   Downloading pyasn1-0.6.4-py3-none-any.whl.metadata (8.4 kB)
+#6 3.833 Downloading cryptography-43.0.1-cp39-abi3-manylinux_2_28_x86_64.whl (4.0 MB)
+#6 3.946    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.0/4.0 MB 36.0 MB/s eta 0:00:00
+#6 3.969 Downloading kubernetes-31.0.0-py2.py3-none-any.whl (1.9 MB)
+#6 3.993    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.9/1.9 MB 86.3 MB/s eta 0:00:00
+#6 4.012 Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+#6 4.014    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 137.0/137.0 kB 397.2 MB/s eta 0:00:00
+#6 4.033 Downloading cffi-2.1.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (217 kB)
+#6 4.035    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 217.8/217.8 kB 435.3 MB/s eta 0:00:00
+#6 4.134 Downloading durationpy-0.11-py3-none-any.whl (4.1 kB)
+#6 4.156 Downloading google_auth-2.62.0-py3-none-any.whl (267 kB)
+#6 4.163    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 267.9/267.9 kB 155.1 MB/s eta 0:00:00
+#6 4.187 Downloading oauthlib-4.0.0-py3-none-any.whl (159 kB)
+#6 4.192    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 159.7/159.7 kB 152.0 MB/s eta 0:00:00
+#6 4.214 Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+#6 4.223    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 229.9/229.9 kB 178.2 MB/s eta 0:00:00
+#6 4.244 Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (806 kB)
+#6 4.254    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 806.6/806.6 kB 138.4 MB/s eta 0:00:00
+#6 4.272 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+#6 4.293 Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+#6 4.296    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 135.7/135.7 kB 185.3 MB/s eta 0:00:00
+#6 4.315 Downloading websocket_client-1.9.2-py3-none-any.whl (95 kB)
+#6 4.317    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 95.8/95.8 kB 276.6 MB/s eta 0:00:00
+#6 4.338 Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+#6 4.341    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 73.1/73.1 kB 174.8 MB/s eta 0:00:00
+#6 4.361 Downloading requests_oauthlib-2.0.0-py2.py3-none-any.whl (24 kB)
+#6 4.383 Downloading charset_normalizer-3.5.2-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (269 kB)
+#6 4.390    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 270.0/270.0 kB 70.4 MB/s eta 0:00:00
+#6 4.409 Downloading idna-3.20-py3-none-any.whl (69 kB)
+#6 4.414    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 69.6/69.6 kB 146.7 MB/s eta 0:00:00
+#6 4.435 Downloading pyasn1_modules-0.4.2-py3-none-any.whl (181 kB)
+#6 4.441    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 181.3/181.3 kB 71.4 MB/s eta 0:00:00
+#6 4.458 Downloading pycparser-3.11-py3-none-any.whl (51 kB)
+#6 4.461    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 51.2/51.2 kB 184.3 MB/s eta 0:00:00
+#6 4.479 Downloading pyasn1-0.6.4-py3-none-any.whl (84 kB)
+#6 4.482    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 84.4/84.4 kB 224.6 MB/s eta 0:00:00
+#6 4.622 Installing collected packages: durationpy, websocket-client, urllib3, six, pyyaml, pycparser, pyasn1, oauthlib, idna, charset_normalizer, certifi, requests, python-dateutil, pyasn1-modules, cffi, requests-oauthlib, cryptography, google-auth, kubernetes
+#6 6.103 Successfully installed certifi-2026.7.22 cffi-2.1.1 charset_normalizer-3.5.2 cryptography-43.0.1 durationpy-0.11 google-auth-2.62.0 idna-3.20 kubernetes-31.0.0 oauthlib-4.0.0 pyasn1-0.6.4 pyasn1-modules-0.4.2 pycparser-3.11 python-dateutil-2.9.0.post0 pyyaml-6.0.3 requests-2.34.2 requests-oauthlib-2.0.0 six-1.17.0 urllib3-2.8.0 websocket-client-1.9.2
+#6 6.103 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#6 6.294 
+#6 6.294 [notice] A new release of pip is available: 24.0 -> 26.2.1
+#6 6.294 [notice] To update, run: pip install --upgrade pip
+#6 DONE 6.8s
+
+#7 [ 3/10] COPY booking_v0 /app/booking_v0
+#7 DONE 0.0s
+
+#8 [ 4/10] COPY booking_v1 /app/booking_v1
+#8 DONE 0.0s
+
+#9 [ 5/10] COPY booking_v2 /app/booking_v2
+#9 DONE 0.0s
+
+#10 [ 6/10] COPY booking_v3 /app/booking_v3
+#10 DONE 0.0s
+
+#11 [ 7/10] COPY booking_v4 /app/booking_v4
+#11 DONE 0.0s
+
+#12 [ 8/10] COPY booking_v5 /app/booking_v5
+#12 DONE 0.0s
+
+#13 [ 9/10] RUN chown -R root:root /app && chmod -R u=rwX,go=rX /app
+#13 DONE 0.2s
+
+#14 [10/10] WORKDIR /app
+#14 DONE 0.0s
+
+#15 exporting to image
+#15 exporting layers
+#15 exporting layers 0.2s done
+#15 writing image sha256:dcd851af4a2831f54a21cc96b532a02d742ecc17bcf23dcf8f99928397942c40
+#15 writing image sha256:dcd851af4a2831f54a21cc96b532a02d742ecc17bcf23dcf8f99928397942c40 done
+#15 naming to europe-west1-docker.pkg.dev/project-example/thesis/booking:v44c done
+#15 DONE 0.2s
+
+#16 pushing europe-west1-docker.pkg.dev/project-example/thesis/booking:v44c with docker
+#16 pushing layer 5f70bf18a086
+#16 pushing layer 5e3d309dd09c
+#16 pushing layer 8caac1e17711
+#16 pushing layer a8ffc304bd44
+#16 pushing layer cd96f613ff55
+#16 pushing layer 7f8c9126a53d
+#16 pushing layer fe4ad41883ff
+#16 pushing layer 481c287262b0
+#16 pushing layer 07dfa2ff3e47
+#16 pushing layer 020f37c339b9
+#16 pushing layer ba18d048b43a
+#16 pushing layer 56864e09c373
+#16 pushing layer 15f1c8eb1ab1
+#16 pushing layer a8ffc304bd44 220.46kB / 488.29kB 0.4s
+#16 pushing layer 5e3d309dd09c 2.19MB / 2.06MB 0.5s
+#16 pushing layer 8caac1e17711 1.04MB / 989.68kB 0.5s
+#16 pushing layer a8ffc304bd44 519.68kB / 488.29kB 0.4s
+#16 pushing layer cd96f613ff55 305.15kB / 289.63kB 0.5s
+#16 pushing layer 7f8c9126a53d 125.95kB / 117.61kB 0.5s
+#16 pushing layer 8caac1e17711 1.0s done
+#16 pushing layer 5e3d309dd09c 1.1s done
+#16 pushing layer a8ffc304bd44 1.1s done
+#16 pushing layer 7f8c9126a53d 1.1s done
+#16 pushing layer fe4ad41883ff 131.58kB / 118.15kB 1.2s
+#16 pushing layer 481c287262b0 67.58kB / 56.61kB 1.2s
+#16 pushing layer 07dfa2ff3e47 4.82MB / 70.24MB 1.4s
+#16 pushing layer 020f37c339b9 5.12kB / 36B 1.4s
+#16 pushing layer 07dfa2ff3e47 9.14MB / 70.24MB 1.5s
+#16 pushing layer 07dfa2ff3e47 13.04MB / 70.24MB 1.6s
+#16 pushing layer 07dfa2ff3e47 18.05MB / 70.24MB 1.7s
+#16 pushing layer fe4ad41883ff 1.8s done
+#16 pushing layer 481c287262b0 1.7s done
+#16 pushing layer 07dfa2ff3e47 22.92MB / 70.24MB 1.8s
+#16 pushing layer 07dfa2ff3e47 39.72MB / 70.24MB 1.9s
+#16 pushing layer 07dfa2ff3e47 49.80MB / 70.24MB 2.0s
+#16 pushing layer 07dfa2ff3e47 57.75MB / 70.24MB 2.1s
+#16 pushing layer 07dfa2ff3e47 62.53MB / 70.24MB 2.2s
+#16 pushing layer 07dfa2ff3e47 67.81MB / 70.24MB 2.3s
+#16 pushing layer ba18d048b43a 4.77MB / 42.44MB 2.3s
+#16 pushing layer 56864e09c373 4.13MB / 3.81MB 2.3s
+#16 pushing layer 07dfa2ff3e47 72.68MB / 70.24MB 2.4s
+#16 pushing layer ba18d048b43a 9.50MB / 42.44MB 2.4s
+#16 pushing layer ba18d048b43a 19.99MB / 42.44MB 2.6s
+#16 pushing layer 020f37c339b9 2.6s done
+#16 pushing layer ba18d048b43a 24.79MB / 42.44MB 2.7s
+#16 pushing layer ba18d048b43a 29.61MB / 42.44MB 2.8s
+#16 pushing layer cd96f613ff55 2.8s done
+#16 pushing layer ba18d048b43a 34.42MB / 42.44MB 2.9s
+#16 pushing layer 56864e09c373 2.8s done
+#16 pushing layer 07dfa2ff3e47 2.9s done
+#16 pushing layer ba18d048b43a 39.19MB / 42.44MB 3.0s
+#16 pushing layer ba18d048b43a 44.26MB / 42.44MB 3.1s
+#16 pushing layer 15f1c8eb1ab1 8.10MB / 78.82MB 3.2s
+#16 pushing layer 15f1c8eb1ab1 12.47MB / 78.82MB 3.3s
+#16 pushing layer 15f1c8eb1ab1 17.41MB / 78.82MB 3.4s
+#16 pushing layer 15f1c8eb1ab1 22.30MB / 78.82MB 3.5s
+#16 pushing layer ba18d048b43a 3.6s done
+#16 pushing layer 15f1c8eb1ab1 29.78MB / 78.82MB 3.6s
+#16 pushing layer 15f1c8eb1ab1 39.05MB / 78.82MB 3.8s
+#16 pushing layer 15f1c8eb1ab1 47.90MB / 78.82MB 4.0s
+#16 pushing layer 15f1c8eb1ab1 52.81MB / 78.82MB 4.1s
+#16 pushing layer 15f1c8eb1ab1 57.19MB / 78.82MB 4.3s
+#16 pushing layer 15f1c8eb1ab1 61.59MB / 78.82MB 4.4s
+#16 pushing layer 15f1c8eb1ab1 66.40MB / 78.82MB 4.5s
+#16 pushing layer 15f1c8eb1ab1 71.79MB / 78.82MB 4.6s
+#16 pushing layer 15f1c8eb1ab1 81.25MB / 78.82MB 4.8s
+#16 pushing layer 15f1c8eb1ab1 5.1s done
+#16 pushing layer 5f70bf18a086 6.2s done
+#16 DONE 7.8s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/biij9hw2hac93g6fyly99jefw
+[1;34m[v44c][0m resolving the interpreter path and checking booking_v5 inside the image
+[1;34m[v44c][0m   interpreter: /usr/local/bin/python3, booking_v4 and booking_v5 import
+[1;34m[v44c][0m pinned image: europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:7efef13effa607b9e9d513d3288de5f56a42e41e0b6d2afba39e1191db3871a0
+[1;34m[v44c][0m runner_process.py sha256: 93eb0e7a3ba74f82963547fbf389ac24e1f22f89d8a0add4c77a67a1e54a1a3c
+[1;34m[v44c][0m runner source sha256: 4496b223c75904772bde049c05756202232e82123562f036641f3339d8baa4cb
+[1;34m[v44c][0m interpreter in the image: /usr/local/bin/python3
+[1;34m[v44c][0m wrote /path/to/repo/scripts/gke/.digests
+===== [09:34:01Z] OK    20 build and push runner image  (40s) =====
+
+===== [09:34:01Z] START 13 genpolicy (new init-data) =====
+[1;34m[v5][0m downloading kata-tools-static-3.31.0-amd64.tar.zst (genpolicy, rules.rego, settings)
+[1;34m[v5][0m rules.rego: kata 3.31.0 + GHSA-fmg6-v47x-52wr backport, sha256 cf220e811a23c719…
+[1;34m[v5][0m genpolicy settings: kata=3.31.0, OCI=1.3.0
+[1;34m[v5][0m genpolicy (kata 3.31.0, OCI 1.3.0) on runner-pod.yaml, pulls image layers once (cache: /path/to/repo/results_v5/genpolicy-3.31.0/layers)
+[1;34m[v5][0m policy written: /path/to/repo/k8s/v5/init-data/policy.rego (    2478 lines)
+[v5] policy template: 1 image reference(s) replaced by ${RUNNER_IMAGE}
+62:S_NAME_KEY = "io.kubernetes.cri.sandbox-name"
+63:S_NAMESPACE_KEY = "io.kubernetes.cri.sandbox-namespace"
+[1;34m[v5][0m init-data sha256 for the freeze = e04cc56d988d1bbae57287e88f489223d3ed5714689314951155810f3815b512
+===== [09:34:08Z] OK    13 genpolicy (new init-data)  (7s) =====
+
+===== [09:34:08Z] START 23 build services =====
+[1;34m[v5][0m building europe-west1-docker.pkg.dev/project-example/thesis/booking-services:v5-20261016T093409Z (linux/amd64, Ubuntu 24.04 + Intel QVL)
+WARNING: Your config file at [/Users/user/.docker/config.json] contains these credential helper entries:
+
+{
+  "credHelpers": {
+    "europe-west1-docker.pkg.dev": "gcloud"
+  }
+}
+Adding credentials for: europe-west1-docker.pkg.dev
+gcloud credential helpers already registered correctly.
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.services
+#1 transferring dockerfile: 3.22kB done
+#1 WARN: FromPlatformFlagConstDisallowed: FROM --platform flag should not use constant value "linux/amd64" (line 7)
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:24.04
+#2 DONE 1.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 938B done
+#3 DONE 0.0s
+
+#4 [ 1/15] FROM docker.io/library/ubuntu:24.04@sha256:534baea6a22c03a63003dbc8dbe78fe34bc0d7e595d9a9dc9834884ff530eb55
+#4 resolve docker.io/library/ubuntu:24.04@sha256:534baea6a22c03a63003dbc8dbe78fe34bc0d7e595d9a9dc9834884ff530eb55 done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 564.55kB 0.0s done
+#5 DONE 0.0s
+
+#6 [ 2/15] RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl gnupg       python3 python3-pip python3-cryptography python3-pyasn1 python3-requests python3-yaml &&     install -d /etc/apt/keyrings &&     curl -fsSL https://download.01.org/intel-sgx/sgx_repo/ubuntu/intel-sgx-deb.key | gpg --dearmor -o /etc/apt/keyrings/intel-sgx.gpg &&     echo "deb [signed-by=/etc/apt/keyrings/intel-sgx.gpg] https://download.01.org/intel-sgx/sgx_repo/ubuntu noble main" > /etc/apt/sources.list.d/intel-sgx.list &&     apt-get update && apt-get install -y --no-install-recommends libsgx-dcap-quote-verify libsgx-dcap-default-qpl &&     pip3 install --no-cache-dir --break-system-packages "kubernetes==31.0.0" &&     rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [ 3/15] RUN dpkg -l | awk '/libsgx-dcap-quote-verify|libsgx-dcap-default-qpl/ {print $2" "$3}' > /etc/dcap-versions.txt
+#7 CACHED
+
+#8 [ 4/15] COPY booking_v0 /app/booking_v0
+#8 DONE 0.0s
+
+#9 [ 5/15] COPY booking_v1 /app/booking_v1
+#9 DONE 0.0s
+
+#10 [ 6/15] COPY booking_v2 /app/booking_v2
+#10 DONE 0.0s
+
+#11 [ 7/15] COPY booking_v3 /app/booking_v3
+#11 DONE 0.0s
+
+#12 [ 8/15] COPY booking_v4 /app/booking_v4
+#12 DONE 0.0s
+
+#13 [ 9/15] COPY booking_v5 /app/booking_v5
+#13 DONE 0.0s
+
+#14 [10/15] COPY booking_live /app/booking_live
+#14 DONE 0.0s
+
+#15 [11/15] COPY attack /app/attack
+#15 DONE 0.0s
+
+#16 [12/15] COPY booking_approval /app/booking_approval
+#16 DONE 0.0s
+
+#17 [13/15] COPY k8s/v5/init-data /app/k8s/v5/init-data
+#17 DONE 0.0s
+
+#18 [14/15] RUN chown -R root:root /app && chmod -R u=rwX,go=rX /app
+#18 DONE 0.3s
+
+#19 [15/15] WORKDIR /app
+#19 DONE 0.0s
+
+#20 exporting to image
+#20 exporting layers 0.1s done
+#20 writing image sha256:c4d7649ca83be0aac9c4cf0f6d504487d26eab168823a8dd99c4da05abb5f22b done
+#20 naming to europe-west1-docker.pkg.dev/project-example/thesis/booking-services:v5-20261016T093409Z done
+#20 DONE 0.1s
+
+#21 pushing europe-west1-docker.pkg.dev/project-example/thesis/booking-services:v5-20261016T093409Z with docker
+#21 pushing layer 5f70bf18a086
+#21 pushing layer 2403c02b4a4b
+#21 pushing layer f2bfc6f412d8
+#21 pushing layer 2179ddba4c88
+#21 pushing layer 9c95439c5636
+#21 pushing layer acd1d9194c50
+#21 pushing layer 388ba13205f0
+#21 pushing layer b5419c7efcaa
+#21 pushing layer 837d0aa6300b
+#21 pushing layer ca12fb07bc2e
+#21 pushing layer 6cb86cf08da5
+#21 pushing layer c0f84b870af1
+#21 pushing layer 48f96f4ca4c1
+#21 pushing layer eed697fa0720
+#21 pushing layer d81fb2a7c6ee
+#21 pushing layer 2403c02b4a4b 2.28MB / 2.61MB 0.4s
+#21 pushing layer f2bfc6f412d8 83.97kB / 78.83kB 0.3s
+#21 pushing layer 2403c02b4a4b 2.79MB / 2.61MB 0.4s
+#21 pushing layer 2179ddba4c88 205.31kB / 182.87kB 0.5s
+#21 pushing layer acd1d9194c50 299.52kB / 278.01kB 0.5s
+#21 pushing layer 9c95439c5636 16.38kB / 12.94kB 0.6s
+#21 pushing layer f2bfc6f412d8 0.8s done
+#21 pushing layer 2179ddba4c88 1.1s done
+#21 pushing layer 9c95439c5636 1.2s done
+#21 pushing layer 388ba13205f0 1.04MB / 989.68kB 1.1s
+#21 pushing layer 2403c02b4a4b 1.2s done
+#21 pushing layer b5419c7efcaa 519.68kB / 488.29kB 1.2s
+#21 pushing layer 837d0aa6300b 305.15kB / 289.63kB 1.3s
+#21 pushing layer ca12fb07bc2e 125.95kB / 117.61kB 1.3s
+#21 pushing layer acd1d9194c50 1.5s done
+#21 pushing layer ca12fb07bc2e 1.7s done
+#21 pushing layer 6cb86cf08da5 131.58kB / 118.15kB 1.6s
+#21 pushing layer 837d0aa6300b 1.7s done
+#21 pushing layer b5419c7efcaa 2.0s done
+#21 pushing layer c0f84b870af1 67.58kB / 56.61kB 1.8s
+#21 pushing layer c0f84b870af1 2.3s done
+#21 pushing layer 388ba13205f0 2.5s done
+#21 pushing layer 6cb86cf08da5 3.6s done
+#21 pushing layer d81fb2a7c6ee 4.7s done
+#21 pushing layer 5f70bf18a086 4.7s done
+#21 pushing layer 48f96f4ca4c1 4.7s done
+#21 pushing layer eed697fa0720 4.7s done
+#21 DONE 5.3s
+
+ [33m1 warning found (use docker --debug to expand):
+[0m - FromPlatformFlagConstDisallowed: FROM --platform flag should not use constant value "linux/amd64" (line 7)
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/6qrjdtezg4o92xdx7xzavraeh
+[1;34m[v5][0m pinned SERVICES_IMAGE=europe-west1-docker.pkg.dev/project-example/thesis/booking-services@sha256:460ac74e98061f822658a7c2dab29721059c98e6360700871e2eee3624425627
+libsgx-dcap-default-qpl 1.27.101.1-noble1
+libsgx-dcap-quote-verify 1.27.101.1-noble1
+imports ok
+===== [09:34:22Z] OK    23 build services  (14s) =====
+
+===== [09:34:22Z] START 18 probe peer pod =====
+[1;34m[v5][0m cleanup: deleting stale probe resources from earlier runs
+[1;34m[v5][0m precheck: containerd discard_unpacked_layers=false still in place (kata-deploy rewrites the config)
+gke-thesis-v5-v5-pool-ad88cf00-hlvd:   discard_unpacked_layers = false
+[1;34m[v5][0m cleanup: removing probe pods from earlier runs
+[1;34m[v5][0m precheck: CAA DaemonSet ready and its hypervisor socket present (a fresh rollout needs a moment)
+[1;34m[v5][0m P1 boot survives a failed measurement: a peer pod without init-data must still become Ready on podvm-fedora-tdx-caa-0-21-1-ov14
+nginx-peer (no init-data) NOT_READY after 180 s, pod VM seen: 1
+Pending
+Scheduled: Successfully assigned v5-probe/nginx-peer to gke-thesis-v5-v5-pool-ad88cf00-hlvd
+NAME                       MACHINE_TYPE   CONFIDENTIAL_INSTANCE_CONFIG                                            ITEMS
+podvm-nginx-peer-b511efc2  c3-standard-4  {'enableConfidentialCompute': True, 'confidentialInstanceType': 'TDX'}
+[1;34m[v5][0m P1 complete: removing the P1 peer pod before P2
+[1;34m[v5][0m   nginx-peer still Terminating (no sandbox to unwind), force-removing the API object
+[1;34m[v5][0m   deleting pod VM podvm-nginx-peer-b511efc2 (its pod never started, so the CAA will not)
+[1;34m[v5][0m P2 measured runner: our image under the measured profile, the production V5 bind sequence as initial command
+[1;34m[v5][0m runner interpreter: /usr/local/bin/python3 (from .digests)
+[1;34m[v5][0m preflight: /usr/local/bin/python3 -m booking_v5.probe_bind runs in the pinned image
+[1;34m[v5][0m rules.rego: kata 3.31.0 + GHSA-fmg6-v47x-52wr backport, sha256 cf220e811a23c719…
+[1;34m[v5][0m genpolicy settings: kata=3.31.0, OCI=1.3.0
+[1;34m[v5][0m genpolicy (kata 3.31.0, OCI 1.3.0) on runner-peer-20261016T093426Z.plain.yaml, pulls image layers once (cache: /path/to/repo/results_v5/genpolicy-3.31.0/layers)
+[1;34m[v5][0m policy written: /path/to/repo/results_v5/probe/runner-peer-20261016T093426Z.policy.rego (    2490 lines)
+runner-peer READY 102 s
+[1;34m[v5][0m guest boot log: probe/serial-runner-peer-20261016T093426Z.txt (1015 lines, VM podvm-runner-peer-66c1c0d4)
+931:         Starting initdata-measure.service … init-data digest into TDX RTMR3...
+936:[FAILED] Failed to start authselect-apply-c…service - Apply authselect changes.
+938:[    9.392603] initdata-measure: RTMR3 extended (event digest 981b67f797362c13)
+939:[  OK  ] Finished initdata-measure.service …re init-data digest into TDX RTMR3.
+955:[FAILED] Failed to start agent-protocol-for…service - Agent Protocol Forwarder.
+----- VERDICT 20261016T093426Z -----
+P1 no-init-data peer pod: NOT_READY
+P2 measured runner:       EVIDENCE_OK
+P3 runtime measurement:   RTMR_OK   (both AAEL events of the production sequence)
+[1;31m[v5] ERROR:[0m abort: the pod VM exists but the pod never became Ready: the overlay breaks the boot when the measurement fails (a Requires= crept back in, or an ordering cycle). Read the serial log
+[1;34m[v5][0m cleanup: removing v5-probe probe workloads
+===== [09:41:06Z] FAIL  18 probe peer pod  (rc=1, 404s) =====
+
+========================================
+[09:41:06Z] run 20261016T091328Z
+completed steps: 7
+  OK   00 preflight
+  OK   12 create cluster
+  OK   15 render caa values
+  OK   14 install coco
+  OK   20 build and push runner image
+  OK   13 genpolicy (new init-data)
+  OK   23 build services
+  FAIL 18 probe peer pod
+
+VERDICT: FAILED at 18 probe peer pod
+total: 27 min
+log: /path/to/repo/results_v5/runs/freeze-prepare-20261016T091328Z.log
+========================================
+===== [09:41:06Z] FAIL  98a freeze prepare  (rc=1, 1658s) =====
+
+[09:41:06Z] HARD STOP at: 98a freeze prepare (the cluster, if any, is left running)
+
+========================================
+[09:41:06Z] run 20261016T090713Z
+completed steps: 1
+  OK   gate: 40 offline
+  FAIL 98a freeze prepare
+
+VERDICT: FAILED at 98a freeze prepare
+total: 33 min
+log: /path/to/repo/results_v5/runs/final-chain-20261016T090713Z.log
+========================================
+
+########################################################################
+AFTER THE CHAIN: the phases from START_AT on have run, and nothing is committed.
+  1. Read the step list and the soft failures above. A failed phase is rerun
+     with START_AT=<phase>.
+  2. Review the regenerated tables (git diff --stat thesis/tables/) and the
+     logs under results_v5/runs before committing anything.
+########################################################################

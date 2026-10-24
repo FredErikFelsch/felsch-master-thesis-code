@@ -1,0 +1,9 @@
+
+===== [14:53:05Z] START 91 cleanup probe =====
+[1;34m[v5][0m cleanup: probe namespaces v5-probe v5-netprobe v5-netprobe-open (peer pods inside are deleted first, so the CAA removes their VMs)
+[1;34m[v5][0m cleanup: kata-remote pods an earlier run left in a terminal phase
+[1;34m[v5][0m cleanup: PeerPod CRs with no pod and no VM
+[1;34m[v5][0m   agent-system/runner-td-4ltrd-resource-png8k: no pod, no VM for podvm-runner-td-4ltrd-03eba339, removing the finalizer
+[1;34m[v5][0m   agent-system/runner-td-945ts-resource-hsld7: no pod, no VM for podvm-runner-td-945ts-00283832, removing the finalizer
+[1;34m[v5][0m   agent-system/runner-td-g42v5-resource-kxnmk: pod VM podvm-runner-td-g42v5-39211788 still exists, leaving the finalizer alone
+[1;34m[v5][0m cleanup: node-debugger pods (kubectl debug node/…) in every namespace

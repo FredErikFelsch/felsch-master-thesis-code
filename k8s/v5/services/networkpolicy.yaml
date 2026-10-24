@@ -1,0 +1,88 @@
+# V5 NetworkPolicies in agent-system. Effective only because the cluster
+# enforces NetworkPolicy (GKE Dataplane V2, shown live for peer pods by 19, A5).
+#
+#   runner      -> authority:8443 (session, grant), gateway:8443 (execute), DNS. Nothing else.
+#   gateway     <- runner on 8443 only. Egress: DNS (the counterparty is in-process). The
+#                  observation port 8444 has one pod ingress, the Authority, for the
+#                  effect-ledger check. Otherwise only pods/portforward (kubelet-originated),
+#                  so no other pod in the cluster can read the ledger.
+#   authority   <- runner on 8443. Egress: DNS, the gateway's observation port 8444, HTTPS to
+#                  Intel PCS (collateral). Not to the gateway's execution port or a counterparty.
+#   forbidden by absence: authority -> gateway:8443, gateway -> authority (redeem is not needed:
+#                  the gateway verifies tokens with the verify key), runner -> anything else.
+#
+# DNS rule shape: namespace + port only (namespace + pod-label is dropped on Dataplane V2,
+# bisected live in V4.4c).
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: default-deny-all, namespace: agent-system}
+spec:
+  podSelector: {}
+  policyTypes: ["Ingress", "Egress"]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: runner-egress, namespace: agent-system}
+spec:
+  podSelector: {matchLabels: {app: runner}}
+  policyTypes: ["Ingress", "Egress"]
+  egress:
+    - to: [{podSelector: {matchLabels: {app: authority}}}]
+      ports: [{protocol: TCP, port: 8443}]
+    - to: [{podSelector: {matchLabels: {app: gateway}}}]
+      ports: [{protocol: TCP, port: 8443}]
+    - to: [{namespaceSelector: {matchLabels: {kubernetes.io/metadata.name: kube-system}}}]
+      ports: [{protocol: UDP, port: 53}, {protocol: TCP, port: 53}]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: gateway-policy, namespace: agent-system}
+spec:
+  podSelector: {matchLabels: {app: gateway}}
+  policyTypes: ["Ingress", "Egress"]
+  ingress:
+    - from: [{podSelector: {matchLabels: {app: runner}}}]
+      ports: [{protocol: TCP, port: 8443}]
+    # The Authority reads the effect ledger over the observation surface. Read-only,
+    # no identity, no state mutation. It is the only gateway surface the Authority
+    # may reach, and the only ingress on 8444 besides pods/portforward.
+    - from: [{podSelector: {matchLabels: {app: authority}}}]
+      ports: [{protocol: TCP, port: 8444}]
+  egress:
+    - to: [{namespaceSelector: {matchLabels: {kubernetes.io/metadata.name: kube-system}}}]
+      ports: [{protocol: UDP, port: 53}, {protocol: TCP, port: 53}]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: authority-policy, namespace: agent-system}
+spec:
+  podSelector: {matchLabels: {app: authority}}
+  policyTypes: ["Ingress", "Egress"]
+  ingress:
+    - from: [{podSelector: {matchLabels: {app: runner}}}]
+      ports: [{protocol: TCP, port: 8443}]
+  egress:
+    # The observation surface of the gateway, for the effect-ledger check. The
+    # execution surface (8443) stays closed to the Authority. It issues grants and
+    # does not perform effects.
+    - to: [{podSelector: {matchLabels: {app: gateway}}}]
+      ports: [{protocol: TCP, port: 8444}]
+    - to: [{namespaceSelector: {matchLabels: {kubernetes.io/metadata.name: kube-system}}}]
+      ports: [{protocol: UDP, port: 53}, {protocol: TCP, port: 53}]
+    # Intel PCS for DCAP collateral (api.trustedservices.intel.com). Any IPv4 on 443. The
+    # Authority is trusted, and only the runner's confinement is claimed.
+    - to: [{ipBlock: {cidr: 0.0.0.0/0}}]
+      ports: [{protocol: TCP, port: 443}]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: init-egress, namespace: agent-system}
+spec:
+  podSelector: {matchLabels: {app: trusted-init}}
+  policyTypes: ["Ingress", "Egress"]
+  egress:
+    - to: [{namespaceSelector: {matchLabels: {kubernetes.io/metadata.name: kube-system}}}]
+      ports: [{protocol: UDP, port: 53}, {protocol: TCP, port: 53}]
+    - to: [{ipBlock: {cidr: 0.0.0.0/0}}]
+      ports: [{protocol: TCP, port: 443}]

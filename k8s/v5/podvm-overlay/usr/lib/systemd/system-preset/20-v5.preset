@@ -1,0 +1,5 @@
+# V5: keep initdata-measure.service enabled across every `systemctl preset-all` that runs
+# while the image is built. Fedora's 99-default-disable.preset says `disable *`; a unit with
+# an [Install] section that no preset enables loses its multi-user.target.wants symlink there.
+# ov6 shipped the symlink and the built image (ov6, inspected 4 Sep) did not contain it.
+enable initdata-measure.service

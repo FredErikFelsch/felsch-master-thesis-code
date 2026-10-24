@@ -1,0 +1,104 @@
+# V5: OpenBao as the gateway's credential store.
+#
+# OpenBao changes where the provider credential comes from, not the boundary it sits behind.
+# The gateway is still the only party that holds a provider credential. The agent does not see
+# one, the runner cannot ask for one, and the credential enters the gateway once, at start-up,
+# as a value. So not every provider call shows up as a secret read.
+#
+# The gateway does not authenticate with the pod's default ServiceAccount token:
+# `automountServiceAccountToken: false` stays on the gateway, so the pod receives no
+# general-purpose Kubernetes API credential. It receives one projected token, bound to the
+# audience `openbao` and valid for an hour, mounted at /var/run/secrets/openbao/token.
+# A token scoped to one audience cannot be replayed against the Kubernetes API, which makes
+# this narrower than switching automounting back on.
+#
+# OpenBao needs RBAC of its own. The Kubernetes auth method asks the API server, through
+# TokenReview, whether a presented token is genuine. The `system:auth-delegator` binding
+# below is for that. Without it every login fails with a permission error that looks like a
+# misconfigured role.
+#
+# The server runs in development mode: in memory, unsealed at start, with a root token from a
+# Secret. Restarting it loses every stored secret, and 37_install_openbao.sh writes them again.
+# That is enough to demonstrate the boundary and is not a production deployment.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: openbao-sa
+  namespace: agent-system
+automountServiceAccountToken: true      # OpenBao itself calls TokenReview
+---
+# TokenReview is a cluster-scoped API, so this binding is cluster-scoped. system:auth-delegator
+# grants the TokenReview and SubjectAccessReview calls, that is the right to ask "is this token
+# genuine" and "may it do this". It confers no access to any namespace, workload or secret.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: openbao-auth-delegator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:auth-delegator
+subjects:
+  - kind: ServiceAccount
+    name: openbao-sa
+    namespace: agent-system
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openbao
+  namespace: agent-system
+spec:
+  replicas: 1
+  strategy: {type: Recreate}
+  selector: {matchLabels: {app: openbao}}
+  template:
+    metadata:
+      labels: {app: openbao, role: secret-store}
+    spec:
+      serviceAccountName: openbao-sa
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 100
+        fsGroup: 1000
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: openbao
+          image: ${OPENBAO_IMAGE}
+          args: ["server", "-dev", "-dev-listen-address=0.0.0.0:8200"]
+          env:
+            - name: BAO_DEV_ROOT_TOKEN_ID
+              valueFrom:
+                secretKeyRef: {name: openbao-root, key: token}
+            # IPC_LOCK is dropped below, so the server must not try to mlock memory.
+            - {name: SKIP_SETCAP, value: "true"}
+          ports:
+            - {name: api, containerPort: 8200}
+          readinessProbe:
+            httpGet: {path: "/v1/sys/health?standbyok=true", port: 8200}
+            initialDelaySeconds: 2
+            periodSeconds: 2
+            timeoutSeconds: 2
+            failureThreshold: 30
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities: {drop: ["ALL"]}
+          volumeMounts:
+            - {name: tmp, mountPath: /tmp}
+            - {name: home, mountPath: /home/openbao}
+          resources:
+            limits: {memory: 256Mi}
+            requests: {memory: 128Mi, cpu: 50m}
+      volumes:
+        - {name: tmp, emptyDir: {}}
+        - {name: home, emptyDir: {}}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: openbao, namespace: agent-system}
+spec:
+  type: ClusterIP
+  selector: {app: openbao}
+  ports:
+    - {name: api, port: 8200, targetPort: 8200}

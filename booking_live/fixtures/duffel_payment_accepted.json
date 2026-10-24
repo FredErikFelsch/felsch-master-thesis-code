@@ -1,0 +1,15 @@
+{
+  "meta": null,
+  "data": {
+    "airline_credit_id": null,
+    "failure_reason": null,
+    "order_id": "ord_0000BAffZASVso3FOocIq2",
+    "live_mode": false,
+    "created_at": "2026-09-22T15:24:37.959782Z",
+    "amount": "31.16",
+    "currency": "EUR",
+    "type": "balance",
+    "status": "succeeded",
+    "id": "pay_0000BAffiG7zXNyAo2TviV"
+  }
+}

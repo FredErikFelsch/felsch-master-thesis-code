@@ -1,0 +1,108 @@
+{
+  "stamp": "20260905T153817Z",
+  "run_id": "run-20260905T153817Z",
+  "results": {
+    "A14": {
+      "refusal": "evidence-missing",
+      "legacy_establish": "METHOD_NOT_FOUND",
+      "pass": true
+    },
+    "A10": {
+      "run_id": "run-20260905T153817Z",
+      "step": 0,
+      "td": "runner-td-c9nlm",
+      "outcome": "REFUSED(binding-mismatch)",
+      "accepted": false,
+      "effects": 0,
+      "pending_effects": 0,
+      "foreign_effects": 0,
+      "fragment_hash": "f915caef29551ce4f5da7e65140dabd73ca99d1f51bac13466d41170ac2884d2",
+      "state_hash": "1d26b479d715aebb4b36c28bb119cf9af74202bf69efad724be13d5a0c1db278",
+      "refusal": {
+        "rule": "binding-mismatch",
+        "detail": "",
+        "stage": "relying-party"
+      },
+      "result_status": null,
+      "timings": {
+        "spawn": 70.29433316699578,
+        "ready": 68.58340366600896,
+        "boot_key": 0.528834333003033,
+        "evidence": 0.35343641600047704,
+        "verification": 1.7506597500032512,
+        "execution": null,
+        "destroy": 16.72716358299658
+      },
+      "total_s": 89.65442724899913,
+      "cleanup_mode": "gce_confirmed_finalizer_cleanup",
+      "indeterminate": null,
+      "pass": true
+    },
+    "A16": {
+      "run_id": "run-20260905T153817Z",
+      "step": 0,
+      "td": "runner-td-h2s9j",
+      "outcome": "ANOMALOUS",
+      "accepted": false,
+      "effects": 0,
+      "pending_effects": 0,
+      "foreign_effects": 0,
+      "fragment_hash": "f915caef29551ce4f5da7e65140dabd73ca99d1f51bac13466d41170ac2884d2",
+      "state_hash": "1d26b479d715aebb4b36c28bb119cf9af74202bf69efad724be13d5a0c1db278",
+      "refusal": null,
+      "result_status": "RUNNER_ERROR",
+      "timings": {
+        "spawn": 85.9825724580005,
+        "ready": 85.12731083300605,
+        "boot_key": 0.5289209170005051,
+        "evidence": 0.3545544590015197,
+        "verification": 1.7468919999955688,
+        "execution": 0.24310050001076888,
+        "destroy": 15.832548124992172
+      },
+      "total_s": 104.68858845900104,
+      "cleanup_mode": "gce_confirmed_finalizer_cleanup",
+      "indeterminate": null,
+      "pass": true,
+      "note": "the TD refused the swapped fragment (RUNNER_ERROR, ledger 0)"
+    },
+    "A11": {
+      "pass": true,
+      "refused_in_td": true,
+      "ledger_rows": 0,
+      "detail": "ProtocolError: expected 'v5-evidence', got 'runner-result'",
+      "note": "the runner bound once; a second challenge was refused in the TD (ledger 0)"
+    },
+    "A18": {
+      "run_id": "run-20260905T153817Z",
+      "step": 0,
+      "td": "runner-td-dg8fb",
+      "outcome": "REFUSED(substrate-profile-mismatch)",
+      "accepted": false,
+      "effects": 0,
+      "pending_effects": 0,
+      "foreign_effects": 0,
+      "fragment_hash": "f915caef29551ce4f5da7e65140dabd73ca99d1f51bac13466d41170ac2884d2",
+      "state_hash": "1d26b479d715aebb4b36c28bb119cf9af74202bf69efad724be13d5a0c1db278",
+      "refusal": {
+        "rule": "substrate-profile-mismatch",
+        "detail": "",
+        "stage": "relying-party"
+      },
+      "result_status": null,
+      "timings": {
+        "spawn": 96.61573550000321,
+        "ready": 95.8255404579977,
+        "boot_key": 0.5238413750048494,
+        "evidence": 2.531511084001977,
+        "verification": 0.11555291699187364,
+        "execution": null,
+        "destroy": 17.65977770900645
+      },
+      "total_s": 117.44641858500836,
+      "cleanup_mode": "gce_confirmed_finalizer_cleanup",
+      "indeterminate": null,
+      "pass": true
+    }
+  }
+}

@@ -1,0 +1,4 @@
+deployed_at=20261016T103913Z freeze=20261016T100620Z verifier=dcap
+services_image=europe-west1-docker.pkg.dev/project-example/thesis/booking-services@sha256:077cb3ee73fe484037e06b07b8f1ee3a4efce8b0292eb37e3580c2a3743a189d
+runner_image=europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:7efef13effa607b9e9d513d3288de5f56a42e41e0b6d2afba39e1191db3871a0
+controller_context=v5-controller controller_gsa=v5-controller@project-example.iam.gserviceaccount.com

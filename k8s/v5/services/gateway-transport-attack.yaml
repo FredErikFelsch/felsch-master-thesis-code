@@ -1,0 +1,88 @@
+# V5: the gateway pod with a transport on the path, for the live transport attack.
+# Applied only by 35_transport_attack_v5.sh, which restores the gateway Deployment of
+# services.yaml afterwards.
+#
+# What changes against services.yaml:
+#   * the real gateway binds its execute surface to the pod's loopback (127.0.0.1:18443)
+#     instead of 0.0.0.0:8443. Its observation surface stays on 0.0.0.0:8444, so the
+#     Authority's effect-ledger check runs as in the honest deployment.
+#   * a second container holds 0.0.0.0:8443, the address the controller hands the machine
+#     in the clear, and relays to the loopback. It rewrites one field of one confirmed
+#     effect result on the way back.
+#
+# No NetworkPolicy changes. runner-egress still allows the runner to reach pod app=gateway
+# on 8443 and gateway-policy still admits that, because the attacker occupies the address
+# the honest gateway used to hold rather than opening a new one. The substrate profile is
+# therefore untouched, in its pinned names and in its contents.
+#
+# What the attacker holds: the pod's network position, and no gateway database, no token
+# verification key, no world store, no counterparty credential and no volume at all.
+# A harness hook inside the gateway would have built the very capability the observation
+# check exists to catch, and the result would not count.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway
+  namespace: agent-system
+spec:
+  replicas: 1
+  strategy: {type: Recreate}
+  selector: {matchLabels: {app: gateway}}
+  template:
+    metadata:
+      labels: {app: gateway, role: gateway}
+      annotations: {thesis/transport-attack: "${ATTACK_FIELD}"}
+    spec:
+      serviceAccountName: gateway-sa
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        fsGroup: 65532
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: gateway
+          image: ${SERVICES_IMAGE}
+          args: ["serve", "--role", "gateway", "--db", "/data/gateway.db",
+                 "--bind", "127.0.0.1:18443", "--observe", "0.0.0.0:8444",
+                 "--world-db", "/data/world.db", "--idempotent"]
+          ports:
+            - {name: observe, containerPort: 8444}
+          readinessProbe:
+            tcpSocket: {port: 8444}
+            initialDelaySeconds: 1
+            periodSeconds: 1
+            timeoutSeconds: 1
+            failureThreshold: 60
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities: {drop: ["ALL"]}
+          volumeMounts:
+            - {name: db, mountPath: /data}
+          resources:
+            limits: {memory: 512Mi}
+            requests: {memory: 256Mi, cpu: 100m}
+        - name: transport-proxy
+          image: ${SERVICES_IMAGE}
+          command: ["python3", "-m", "attack.transport_proxy"]
+          args: ["--listen", "0.0.0.0:8443", "--upstream", "127.0.0.1:18443",
+                 "${ATTACK_INSERT_FLAG}", "--field", "${ATTACK_FIELD}", "--value", "${ATTACK_VALUE}"]
+          ports:
+            - {name: execute, containerPort: 8443}
+          readinessProbe:
+            tcpSocket: {port: 8443}
+            initialDelaySeconds: 1
+            periodSeconds: 1
+            timeoutSeconds: 1
+            failureThreshold: 60
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities: {drop: ["ALL"]}
+          # No volumeMounts on purpose: the attacker reaches no database and no key.
+          resources:
+            limits: {memory: 128Mi}
+            requests: {memory: 64Mi, cpu: 50m}
+      volumes:
+        - {name: db, persistentVolumeClaim: {claimName: gateway-db}}

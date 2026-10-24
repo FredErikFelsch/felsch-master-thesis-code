@@ -1,0 +1,220 @@
+{
+  "stamp": "20260912T061132Z",
+  "steps_per_run": 1,
+  "pool_size": 0,
+  "manifest": {
+    "manifest_version": 1,
+    "recorded_at": "2026-09-12T06:29:53Z",
+    "git": {
+      "commit": "65b111edb22a7525a2b3f6bdb54638b23dd2b5e6",
+      "dirty": true,
+      "branch": "main"
+    },
+    "policies": {
+      "P2": "66c97606690fe0cd7d442928cf4db514157e682d8f8b6ee53fb13cfdb458e655",
+      "P2.1": "254054d2ab7db1d1f5c7ab2244ceefbb5e536c469481b4ec895650859ea260d4",
+      "P3": "de054d83d565c2c882770ab165c4a935ba02dafb61e67d1877a7470892e19a52",
+      "P3+pay-approval": "28df9debbcff93a11c20ec4ce11f1014e0322e7eece59116fb968017ce52fef8"
+    },
+    "registry": {
+      "policy_schema": "ps-3",
+      "constraint": "cr-1",
+      "fact": "fr-2",
+      "fact_extension": "fr-2.1"
+    },
+    "ttl": {
+      "token_s": 120,
+      "intervention_s": 300
+    },
+    "clock_mode": "system",
+    "verifier": "TdxVerifier",
+    "images": {
+      "CONTROLLER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:d87570b5ba274d4b9cf355341bec29985e10a117389839324ab6e358fd36ba83",
+      "RUNNER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:d87570b5ba274d4b9cf355341bec29985e10a117389839324ab6e358fd36ba83",
+      "RUNNER_PROCESS_SHA256": "ee153e2790a7a5481d60d04e750a7770c13a99866448bbc9756041d5c54464db",
+      "RUNNER_PYTHON": "/usr/local/bin/python3",
+      "SERVICES_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking-services@sha256:4fa78efa7c3772b990c9fc375409d9c15146f01c653354130fb44ca60587b1ad"
+    },
+    "freeze": {
+      "stamp": "20260911T203655Z",
+      "sha256": "571923965a56d55dcb8d69725a78bf9aac7f137009924d334e3d4f799b0b241f"
+    },
+    "python": "3.13.3",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O"
+  },
+  "runs": [
+    {
+      "run_id": "run-20260912T061132Z",
+      "accepted": true
+    },
+    {
+      "run_id": "run-20260912T061132Z-r1",
+      "accepted": true
+    },
+    {
+      "run_id": "run-20260912T061132Z-r2",
+      "accepted": true
+    },
+    {
+      "run_id": "run-20260912T061132Z-r3",
+      "accepted": true
+    },
+    {
+      "run_id": "run-20260912T061132Z-r4",
+      "accepted": true
+    },
+    {
+      "run_id": "run-20260912T061132Z-r5",
+      "accepted": true
+    },
+    {
+      "run_id": "run-20260912T061132Z-r6",
+      "accepted": true
+    },
+    {
+      "run_id": "run-20260912T061132Z-r7",
+      "accepted": true
+    },
+    {
+      "run_id": "run-20260912T061132Z-r8",
+      "accepted": true
+    },
+    {
+      "run_id": "run-20260912T061132Z-r9",
+      "accepted": true
+    }
+  ],
+  "summary": {
+    "repetitions": 10,
+    "accepted_runs": 10,
+    "refused_runs": 0,
+    "accepted_steps": 10,
+    "phases": {
+      "spawn": {
+        "n": 10,
+        "mean": 88.59272036239854,
+        "stdev": 2.370961217254481,
+        "min": 86.3904402499902,
+        "max": 93.01017475000117,
+        "median": 87.6455670625146,
+        "q1": 86.77028768724995,
+        "q3": 89.56290101076593,
+        "iqr": 2.7926133235159796,
+        "p95": 92.58585418717993
+      },
+      "ready": {
+        "n": 10,
+        "mean": 87.10338722100133,
+        "stdev": 2.291081723639273,
+        "min": 84.47787941701245,
+        "max": 91.06218725000508,
+        "median": 86.69291539551341,
+        "q1": 85.34475917725649,
+        "q3": 88.54116459398938,
+        "iqr": 3.196405416732887,
+        "p95": 90.62884803154739
+      },
+      "boot_key": {
+        "n": 10,
+        "mean": 0.5423097543010954,
+        "stdev": 0.017973236862976597,
+        "min": 0.5225651250220835,
+        "max": 0.585546999995131,
+        "median": 0.5366890830046032,
+        "q1": 0.5318475422682241,
+        "q3": 0.5453821152332239,
+        "iqr": 0.013534572964999825,
+        "p95": 0.5729733249900164
+      },
+      "evidence": {
+        "n": 10,
+        "mean": 1.2831486503011547,
+        "stdev": 1.1711246210832587,
+        "min": 0.3565407919813879,
+        "max": 2.8731852089986205,
+        "median": 0.41302214650204405,
+        "q1": 0.36302238529606257,
+        "q3": 2.553872436983511,
+        "iqr": 2.1908500516874483,
+        "p95": 2.741807652742136
+      },
+      "verification": {
+        "n": 10,
+        "mean": 0.2324801960028708,
+        "stdev": 0.051150378176450746,
+        "min": 0.17129687499254942,
+        "max": 0.3654801669763401,
+        "median": 0.22245783352991566,
+        "q1": 0.20942454150645062,
+        "q3": 0.23551113600842655,
+        "iqr": 0.026086594501975924,
+        "p95": 0.3122684171306899
+      },
+      "execution": {
+        "n": 10,
+        "mean": 0.42610810410114935,
+        "stdev": 0.06355781592036408,
+        "min": 0.3814572080154903,
+        "max": 0.5527247919817455,
+        "median": 0.3940198745112866,
+        "q1": 0.38980505251674913,
+        "q3": 0.42807396850548685,
+        "iqr": 0.03826891598873772,
+        "p95": 0.5438353979174281
+      },
+      "destroy": {
+        "n": 10,
+        "mean": 18.317939450009725,
+        "stdev": 0.9634003400438709,
+        "min": 17.127374584029894,
+        "max": 20.44587129203137,
+        "median": 18.342132145509822,
+        "q1": 17.556034948007436,
+        "q3": 18.67635071875702,
+        "iqr": 1.1203157707495848,
+        "p95": 19.70284895407967
+      }
+    },
+    "total_s": {
+      "n": 10,
+      "mean": 109.39470651711454,
+      "stdev": 2.2948332714170405,
+      "min": 105.23725850094343,
+      "max": 112.68300516705494,
+      "median": 109.258611271478,
+      "q1": 108.65813348005759,
+      "q3": 110.84016842630808,
+      "iqr": 2.1820349462504964,
+      "p95": 112.50508174874412
+    },
+    "handoff_counts": {
+      "warm": 0,
+      "cold": 10
+    },
+    "total_s_warm": null,
+    "total_s_cold": {
+      "n": 10,
+      "mean": 109.39470651711454,
+      "stdev": 2.2948332714170405,
+      "min": 105.23725850094343,
+      "max": 112.68300516705494,
+      "median": 109.258611271478,
+      "q1": 108.65813348005759,
+      "q3": 110.84016842630808,
+      "iqr": 2.1820349462504964,
+      "p95": 112.50508174874412
+    },
+    "phases_warm": {
+      "spawn": null,
+      "ready": null,
+      "boot_key": null,
+      "evidence": null,
+      "verification": null,
+      "execution": null,
+      "destroy": null
+    },
+    "cleanup_mode_counts": {
+      "gce_confirmed_finalizer_cleanup": 10
+    }
+  }
+}

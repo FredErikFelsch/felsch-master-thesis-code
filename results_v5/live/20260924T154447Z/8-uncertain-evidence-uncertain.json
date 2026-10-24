@@ -1,0 +1,66 @@
+{
+ "claim": "uncertain",
+ "run": "20260924T160807Z-v5-clean-scripted-duffel",
+ "verdict": "PASS",
+ "checks": [
+  {
+   "check": "the payment's outcome is UNCERTAIN",
+   "pass": true,
+   "detail": "EFFECT_UNCERTAIN"
+  },
+  {
+   "check": "the loss is declared as an injected fault",
+   "pass": true,
+   "detail": "pay_order outcome not established: response lost (injected fault lose-payment-response)"
+  },
+  {
+   "check": "the run is parked, not ACTIVE and not COMPLETED",
+   "pass": true,
+   "detail": "EFFECT_UNCERTAIN"
+  },
+  {
+   "check": "no payment is recorded as confirmed",
+   "pass": true,
+   "detail": []
+  },
+  {
+   "check": "exactly one dispatch row for the payment step",
+   "pass": true,
+   "detail": 1
+  },
+  {
+   "check": "the retry was refused before any grant",
+   "pass": true,
+   "detail": [
+    "ATTESTATION_REFUSED: REFUSED(step-already-has-session)"
+   ]
+  },
+  {
+   "check": "Duffel: the payment really happened (the effect crossed)",
+   "pass": true,
+   "detail": {
+    "id": "ord_0000BAjsrw3LEHN6n9dQYa",
+    "awaiting_payment": false,
+    "paid_at": "2026-09-24T16:13:11Z",
+    "total": "246.16 EUR"
+   }
+  },
+  {
+   "check": "gateway deployed with WORLD_FAULT=lose-payment-response",
+   "pass": true,
+   "detail": {
+    "WORLD_FAULT": "lose-payment-response"
+   }
+  }
+ ],
+ "provider": {
+  "id": "ord_0000BAjsrw3LEHN6n9dQYa",
+  "awaiting_payment": false,
+  "paid_at": "2026-09-24T16:13:11Z",
+  "total": "246.16 EUR"
+ },
+ "gateway_env": {
+  "WORLD_FAULT": "lose-payment-response"
+ },
+ "retries": 1
+}

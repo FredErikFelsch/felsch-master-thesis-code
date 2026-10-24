@@ -1,0 +1,334 @@
+{
+  "stamp": "20261003T162810Z",
+  "steps_per_run": 1,
+  "pool_size": 5,
+  "manifest": {
+    "manifest_version": 1,
+    "recorded_at": "2026-10-03T16:35:40Z",
+    "git": {
+      "commit": "f1ca1cba474ed6757887ba6de16c093d8f112c85",
+      "dirty": false,
+      "branch": "main"
+    },
+    "policies": {
+      "P2": "66c97606690fe0cd7d442928cf4db514157e682d8f8b6ee53fb13cfdb458e655",
+      "P2.1": "254054d2ab7db1d1f5c7ab2244ceefbb5e536c469481b4ec895650859ea260d4",
+      "P3": "de054d83d565c2c882770ab165c4a935ba02dafb61e67d1877a7470892e19a52",
+      "P3+pay-approval": "28df9debbcff93a11c20ec4ce11f1014e0322e7eece59116fb968017ce52fef8"
+    },
+    "registry": {
+      "policy_schema": "ps-3",
+      "constraint": "cr-1",
+      "fact": "fr-2",
+      "fact_extension": "fr-2.1"
+    },
+    "ttl": {
+      "token_s": 120,
+      "intervention_s": 300
+    },
+    "clock_mode": "system",
+    "verifier": "TdxVerifier",
+    "images": {
+      "CONTROLLER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:3cd6b17a404739a4701333b21acdd007c74851b453eba4a0d8f995440f3089da",
+      "RUNNER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:3cd6b17a404739a4701333b21acdd007c74851b453eba4a0d8f995440f3089da",
+      "RUNNER_PROCESS_SHA256": "ee153e2790a7a5481d60d04e750a7770c13a99866448bbc9756041d5c54464db",
+      "RUNNER_SOURCE_SHA256": "63297a9b599d1dd1830f5a5189ced40ddf9b3f7df6c49e4d7c9902d33f2b5f03",
+      "RUNNER_PYTHON": "/usr/local/bin/python3",
+      "SERVICES_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking-services@sha256:55dcff9a6807f02ed2fa765702d42680c0ab6b845030fcee028c4fcaacc153c7"
+    },
+    "freeze": {
+      "stamp": "20261003T073223Z",
+      "sha256": "9ecbd16622c87f16bebc621c661d14f1cf110d387b8c2e97c97edf2f066f6aed"
+    },
+    "python": "3.13.3",
+    "platform": "macOS-27.0-arm64-arm-64bit-Mach-O",
+    "observation_check": "bound"
+  },
+  "tolerate_substrate_variance": true,
+  "runs": [
+    {
+      "run_id": "run-20261003T162805Z",
+      "accepted": true,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20261003T162805Z-r1",
+      "accepted": true,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20261003T162805Z-r2",
+      "accepted": true,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20261003T162805Z-r3",
+      "accepted": false,
+      "substrate_variance": true
+    },
+    {
+      "run_id": "run-20261003T162805Z-r4",
+      "accepted": true,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20261003T162805Z-r5",
+      "accepted": true,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20261003T162805Z-r6",
+      "accepted": true,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20261003T162805Z-r7",
+      "accepted": true,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20261003T162805Z-r8",
+      "accepted": true,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20261003T162805Z-r9",
+      "accepted": true,
+      "substrate_variance": false
+    }
+  ],
+  "summary": {
+    "repetitions": 10,
+    "accepted_runs": 9,
+    "refused_runs": 1,
+    "substrate_variance_runs": 1,
+    "substrate_variance": [
+      {
+        "kind": "substrate-rtmr0-variance",
+        "observed_rtmr0": "5eeb1d573d3aad53a115ac7ccce2d773ced06ff7175038843d98b2bddf786123ff54094e27878243688bae4e5bd920ce",
+        "expected_rtmr0": "c49d22aff6edb37cb6178defb05e0e2b512c26960e6ee73b1ea303365a31def807ab2ad71e5874236feca2ca552c6307",
+        "pck_leaf_serial": "0xaa329827b98bc8e15e1bdc13e65ea85760fa84a5",
+        "fmspc": "00806f050000",
+        "freeze_stamp": "20261003T073223Z",
+        "evidence_path": "/home/user/Documents/Master/Thesis/mocks/results_v5/e2e/20261003T162810Z/evidence-runner-td-wjdzk.bin",
+        "note": "the refusal stands: this TD executed no fragment and produced no effect. Only the latency series counts it separately instead of aborting, because RTMR0 is the provider's field, not ours."
+      }
+    ],
+    "accepted_steps": 9,
+    "phases": {
+      "spawn": {
+        "n": 9,
+        "mean": 10.343226462887186,
+        "stdev": 28.08465074423521,
+        "min": 0.9152347919298336,
+        "max": 85.23554266698193,
+        "median": 1.000373457907699,
+        "q1": 0.9441011250019073,
+        "q3": 1.0202839580597356,
+        "iqr": 0.07618283305782825,
+        "p95": 51.55639993336514
+      },
+      "ready": {
+        "n": 9,
+        "mean": 9.305597166660139,
+        "stdev": 27.916791499980416,
+        "min": 0.0,
+        "max": 83.75037449994124,
+        "median": 0.0,
+        "q1": 0.0,
+        "q3": 0.0,
+        "iqr": 0.0,
+        "p95": 50.25022469996472
+      },
+      "boot_key": {
+        "n": 9,
+        "mean": 0.5121125695683683,
+        "stdev": 0.008164909212829825,
+        "min": 0.5032118749804795,
+        "max": 0.5263956250855699,
+        "median": 0.5138788750628009,
+        "q1": 0.5049094579881057,
+        "q3": 0.5171000419650227,
+        "iqr": 0.012190583976916969,
+        "p95": 0.5228817750466987
+      },
+      "evidence": {
+        "n": 9,
+        "mean": 0.37309747692456263,
+        "stdev": 0.08104538778835724,
+        "min": 0.33404666709247977,
+        "max": 0.5775129579706118,
+        "median": 0.3405571250477806,
+        "q1": 0.3356797080487013,
+        "q3": 0.34090279205702245,
+        "iqr": 0.005223084008321166,
+        "p95": 0.5132399915950372
+      },
+      "verification": {
+        "n": 9,
+        "mean": 0.16512365743983537,
+        "stdev": 0.03669553182474349,
+        "min": 0.12848312500864267,
+        "max": 0.22639408404938877,
+        "median": 0.16080037492793053,
+        "q1": 0.13507454108912498,
+        "q3": 0.1922960840165615,
+        "iqr": 0.05722154292743653,
+        "p95": 0.22020168360322714
+      },
+      "execution": {
+        "n": 9,
+        "mean": 0.38088537024385816,
+        "stdev": 0.042719460948985565,
+        "min": 0.32731933309696615,
+        "max": 0.4268599580973387,
+        "median": 0.4050682910019532,
+        "q1": 0.3308402500115335,
+        "q3": 0.41126216598786414,
+        "iqr": 0.08042191597633064,
+        "p95": 0.4252258584368974
+      },
+      "destroy": {
+        "n": 9,
+        "mean": 18.31569254622122,
+        "stdev": 1.6628423512843196,
+        "min": 16.705074458033778,
+        "max": 20.32310179201886,
+        "median": 17.172262332984246,
+        "q1": 16.90257241704967,
+        "q3": 20.052741833031178,
+        "iqr": 3.150169415981509,
+        "p95": 20.307414075173437
+      }
+    },
+    "total_s": {
+      "n": 9,
+      "mean": 30.09013808328503,
+      "stdev": 27.717120746127645,
+      "min": 19.05634254217148,
+      "max": 103.87831600010395,
+      "median": 21.868703083135188,
+      "q1": 19.28867200098466,
+      "q3": 22.645980332046747,
+      "iqr": 3.357308331062086,
+      "p95": 71.40706728319634
+    },
+    "handoff_counts": {
+      "warm": 8,
+      "cold": 1
+    },
+    "total_s_warm": {
+      "n": 8,
+      "mean": 20.866615843682666,
+      "stdev": 1.7166478681978437,
+      "min": 19.05634254217148,
+      "max": 22.70019420783501,
+      "median": 20.716335874574725,
+      "q1": 19.273222782241646,
+      "q3": 22.598138176457724,
+      "iqr": 3.3249153942160774,
+      "p95": 22.681219351309117
+    },
+    "total_s_cold": {
+      "n": 1,
+      "mean": 103.87831600010395,
+      "stdev": 0.0,
+      "min": 103.87831600010395,
+      "max": 103.87831600010395,
+      "median": 103.87831600010395,
+      "q1": 103.87831600010395,
+      "q3": 103.87831600010395,
+      "iqr": 0.0,
+      "p95": 103.87831600010395
+    },
+    "phases_warm": {
+      "spawn": {
+        "n": 8,
+        "mean": 0.9816869373753434,
+        "stdev": 0.04544178299755495,
+        "min": 0.9152347919298336,
+        "max": 1.037685832940042,
+        "median": 0.9998665829771198,
+        "q1": 0.9404881042719353,
+        "q3": 1.0101766767911613,
+        "iqr": 0.069688572519226,
+        "p95": 1.0315951767319347
+      },
+      "ready": {
+        "n": 8,
+        "mean": 0.0,
+        "stdev": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "median": 0.0,
+        "q1": 0.0,
+        "q3": 0.0,
+        "iqr": 0.0,
+        "p95": 0.0
+      },
+      "boot_key": {
+        "n": 8,
+        "mean": 0.5103271876287181,
+        "stdev": 0.006588079661231554,
+        "min": 0.5032118749804795,
+        "max": 0.517610999988392,
+        "median": 0.509587854554411,
+        "q1": 0.5046094580029603,
+        "q3": 0.5169499797048047,
+        "iqr": 0.012340521701844409,
+        "p95": 0.5174321646802127
+      },
+      "evidence": {
+        "n": 8,
+        "mean": 0.3771650209091604,
+        "stdev": 0.0856534589755418,
+        "min": 0.33404666709247977,
+        "max": 0.5775129579706118,
+        "median": 0.33842677099164575,
+        "q1": 0.33563327055890113,
+        "q3": 0.35988472955068573,
+        "iqr": 0.024251458991784602,
+        "p95": 0.521274112391984
+      },
+      "verification": {
+        "n": 8,
+        "mean": 0.1617271041177446,
+        "stdev": 0.0376864187082601,
+        "min": 0.12848312500864267,
+        "max": 0.22639408404938877,
+        "median": 0.15067735395859927,
+        "q1": 0.13353994756471366,
+        "q3": 0.17472411444759928,
+        "iqr": 0.04118416688288562,
+        "p95": 0.22097573365899734
+      },
+      "execution": {
+        "n": 8,
+        "mean": 0.3770882707758574,
+        "stdev": 0.04401546045838087,
+        "min": 0.32731933309696615,
+        "max": 0.4268599580973387,
+        "median": 0.38498277054168284,
+        "q1": 0.3302916457760148,
+        "q3": 0.4134190836630296,
+        "iqr": 0.08312743788701482,
+        "p95": 0.42543012089445253
+      },
+      "destroy": {
+        "n": 8,
+        "mean": 18.458621322875842,
+        "stdev": 1.7175354331003758,
+        "min": 16.705074458033778,
+        "max": 20.32310179201886,
+        "median": 18.332786353945266,
+        "q1": 16.860935531556606,
+        "q3": 20.11052699974971,
+        "iqr": 3.2495914681931026,
+        "p95": 20.309375039779116
+      }
+    },
+    "cleanup_mode_counts": {
+      "gce_confirmed_finalizer_cleanup": 9
+    }
+  }
+}

@@ -1,0 +1,46 @@
+# The services image of V5: one artefact for two runtime roles (Authority and gateway) and the
+# trusted init. It builds on Ubuntu 24.04 because the Authority appraises TDX quotes with Intel's
+# DCAP Quote Verification Library (x86_64, apt packages from Intel's repository, as in
+# docker/dcap-verify). The gateway and the init run the same image with another command and do
+# not load the library. The runner keeps Dockerfile.k8s (python:3.11-slim), because a peer pod
+# pulls it inside the guest and its digest is part of the measured policy. This image is not.
+FROM --platform=linux/amd64 ubuntu:24.04
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl gnupg \
+      python3 python3-pip python3-cryptography python3-pyasn1 python3-requests python3-yaml && \
+    install -d /etc/apt/keyrings && \
+    curl -fsSL https://download.01.org/intel-sgx/sgx_repo/ubuntu/intel-sgx-deb.key | gpg --dearmor -o /etc/apt/keyrings/intel-sgx.gpg && \
+    echo "deb [signed-by=/etc/apt/keyrings/intel-sgx.gpg] https://download.01.org/intel-sgx/sgx_repo/ubuntu noble main" > /etc/apt/sources.list.d/intel-sgx.list && \
+    apt-get update && apt-get install -y --no-install-recommends libsgx-dcap-quote-verify libsgx-dcap-default-qpl && \
+    pip3 install --no-cache-dir --break-system-packages "kubernetes==31.0.0" && \
+    rm -rf /var/lib/apt/lists/*
+RUN dpkg -l | awk '/libsgx-dcap-quote-verify|libsgx-dcap-default-qpl/ {print $2" "$3}' > /etc/dcap-versions.txt
+COPY booking_v0 /app/booking_v0
+COPY booking_v1 /app/booking_v1
+COPY booking_v2 /app/booking_v2
+COPY booking_v3 /app/booking_v3
+COPY booking_v4 /app/booking_v4
+COPY booking_v5 /app/booking_v5
+# The live counterparties. The trusted init reads booking_live.startup.WORLDS to seed the
+# configured world, and the gateway reads it again at start-up to refuse a world it does not
+# know, so a services image without this package cannot seed at all. Dockerfile.k8s does not
+# copy it, because the live executor runs in the gateway and not in the guest. The measured
+# image and RUNNER_SOURCE_SHA256 therefore stay unchanged.
+COPY booking_live /app/booking_live
+# The transport attack of Chapter 7 runs beside the gateway and not inside the guest.
+# Dockerfile.k8s does not copy this package, so the attacker is outside the measured image and
+# outside RUNNER_SOURCE_SHA256.
+COPY attack /app/attack
+# The approval gate: WebAuthn verification, the gate on the Authority's RPC surface and the
+# approval page. It runs in the Authority and not in the guest. Dockerfile.k8s does not copy it,
+# so RUNNER_SOURCE_SHA256 and the frozen measurement stay unchanged.
+COPY booking_approval /app/booking_approval
+# The init computes the deployment's init-data digest from the same templates the controller
+# renders (aa.toml, cdh.toml, policy.rego). They must be the ones that
+# scripts/gke-v5/13_genpolicy.sh produced.
+COPY k8s/v5/init-data /app/k8s/v5/init-data
+RUN chown -R root:root /app && chmod -R u=rwX,go=rX /app
+WORKDIR /app
+ENV PYTHONPATH=/app PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1
+USER 65532:65532
+ENTRYPOINT ["python3", "-m", "booking_v5.service_v5"]

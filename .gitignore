@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.verify-state.json
+.DS_Store
+.venv/
+
+# Output of local runs. The recorded live run that the tests read stays tracked.
+results_v5/live/*
+!results_v5/live/20260924T154447Z/
+
+# Written by run.py, run_v1.py and run_v2.py
+/results/
+/results_v1_2/
+/results_v2/
+
+# The OPA binary that scripts/gke-v5/41_probe_a19.sh caches for the local machine
+results_v5/opa/

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Agent</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root { --line:#2a2f37; --card:#171a20; --ink:#e7e9ec; --muted:#9aa3ad; --accent:#f59e0b; }
+  @media (prefers-color-scheme: light) { :root { --line:#e5e7eb; --card:#fff; --ink:#15171a; --muted:#6b7280; } }
+  html, body { height:100%; margin:0; background:var(--card); color:var(--ink);
+               font:14px system-ui, -apple-system, Segoe UI, sans-serif; overflow:hidden; }
+  body { display:flex; }
+  #chat { flex:1; height:100%; border:0; min-width:0; }
+  /* The approval drawer loads its page from another origin or path and only shares the screen
+     with the chat. It sits beside the chat rather than on top, so the chat stays readable
+     while a request is shown. */
+  #drawer { flex:0 0 0px; width:0; overflow:hidden; height:100%; background:var(--card);
+            border-left:0 solid var(--line); transition:flex-basis .25s ease, width .25s ease;
+            display:flex; flex-direction:column; }
+  #drawer.open { flex-basis:460px; width:460px; border-left-width:1px; }
+  @media (max-width: 900px) { #drawer.open { flex-basis:100%; width:100%; } }
+  #drawer header { display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid var(--line); }
+  #drawer header b { flex:1; }
+  #panel { flex:1; border:0; width:100%; min-width:460px; }
+  #controls { border-top:1px solid var(--line); }
+  #controls summary { padding:9px 14px; cursor:pointer; color:var(--muted); font-size:13px; }
+  #controls iframe { border:0; width:100%; height:330px; }
+  #pill { position:absolute; top:6px; right:72px; z-index:2; padding:8px 14px; border-radius:999px;
+          border:1px solid var(--line); background:var(--card); color:var(--ink); cursor:pointer; font-weight:600; }
+  #pill.pending { background:var(--accent); border-color:var(--accent); color:#1b1f24; animation:pulse 1.2s infinite; }
+  @keyframes pulse { 50% { box-shadow:0 0 0 8px rgba(245,158,11,.25); } }
+  button.x { background:none; border:0; color:var(--muted); font-size:18px; cursor:pointer; }
+  /* With the drawer open the floating pill would cover the drawer's header, so the count moves
+     into the header and the pill hides. */
+  body.drawer-open #pill { display:none; }
+  #badge { padding:3px 10px; border-radius:999px; background:var(--accent); color:#1b1f24; font-weight:600;
+           font-size:12px; }
+  #badge[hidden] { display:none; }
+</style>
+</head>
+<body>
+<iframe id="chat" title="Chat"></iframe>
+<button id="pill" title="Approvals">Approvals</button>
+<aside id="drawer">
+  <header><b>Approval</b><span id="badge" hidden></span><span id="who" style="color:var(--muted)"></span><button class="x" id="close">×</button></header>
+  <iframe id="panel" title="Approvals"></iframe>
+  <details id="controls"><summary>Demo controls</summary><iframe id="ctl" title="Demo controls"></iframe></details>
+</aside>
+<script>
+/* One browser view with three frames. Only a count of pending approvals passes, from the
+   Authority's frame to this shell.
+   chat    Open WebUI, with its own origin and backend, reaching only the agent facade.
+   panel   the Authority's approval page (/api/shell-config, http://localhost:8450 on the
+           cluster path). Only this frame talks to the Authority, and a decision there is a
+           passkey assertion. The shell cannot read or change it, because it has another
+           origin. The shell accepts from it a count of pending approvals, only from that
+           frame and that origin, to open the drawer.
+   ctl     the demo controls (external input, node attacker), served by this origin.
+   Without an Authority URL (a deployment without the gate) the panel is the local panel,
+   and the drawer follows its API. */
+const params = new URLSearchParams(location.search);
+document.getElementById("chat").src = params.get("chat") || "http://localhost:3000/";
+const drawer = document.getElementById("drawer"), pill = document.getElementById("pill");
+const panel = document.getElementById("panel");
+const badge = document.getElementById("badge");
+let manual = null;                     // the user's last explicit open/close, wins over auto
+function setOpen(open) {
+  drawer.classList.toggle("open", open);
+  document.body.classList.toggle("drawer-open", open);
+}
+pill.onclick = () => { manual = !drawer.classList.contains("open"); setOpen(manual); };
+document.getElementById("close").onclick = () => { manual = false; setOpen(false); };
+
+let wasPending = false;
+function show(count) {
+  const pending = count > 0;
+  pill.textContent = pending ? `${count} approval${count > 1 ? "s" : ""} pending` : "Approvals";
+  pill.classList.toggle("pending", pending);
+  badge.textContent = `${count} pending`;
+  badge.hidden = !pending;
+  if (pending && !wasPending) { manual = null; setOpen(true); }                   // a new request opens it
+  if (!pending && wasPending && manual !== true) setOpen(false);                  // answered: tuck it away
+  wasPending = pending;
+}
+
+async function start() {
+  let cfg = {};
+  try { cfg = await (await fetch("/api/shell-config", { cache: "no-store" })).json(); } catch (e) { /* local panel */ }
+  document.getElementById("ctl").src = "/panel?controls=1";
+  if (cfg.authority_url) {
+    const authority = new URL(cfg.authority_url).origin;
+    panel.setAttribute("allow", "publickey-credentials-get " + authority);
+    panel.src = cfg.authority_url;
+    document.getElementById("who").textContent = new URL(authority).host;
+    window.addEventListener("message", ev => {
+      if (ev.origin !== authority || ev.source !== panel.contentWindow) return;
+      if (ev.data && ev.data.type === "authority-approvals" && Number.isInteger(ev.data.pending)) show(ev.data.pending);
+    });
+    return;
+  }
+  panel.src = "/panel" + location.hash;                                            // #token=... passes through
+  document.getElementById("controls").remove();                                    // the local panel carries them itself
+  const poll = async () => {
+    try { show((await (await fetch("/api/approvals/pending", { cache: "no-store" })).json()).length); }
+    catch (e) { /* the API restarts, the next poll sees it */ }
+  };
+  poll(); setInterval(poll, 1000);
+}
+start();
+</script>
+</body>
+</html>

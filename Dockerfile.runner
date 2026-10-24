@@ -1,0 +1,19 @@
+# Local runner image for the container backend of V3 and V4 (booking_v4.container_backend),
+# one clean container per fragment. It needs a base image `thesis/base:local` with Python 3.11
+# and cryptography, which this repository does not build. Dockerfile.k8s is the self-contained
+# build.
+FROM thesis/base:local
+# Only the packages the EphemeralRunner path needs go into the image.
+COPY booking_v0 /app/booking_v0
+COPY booking_v1 /app/booking_v1
+COPY booking_v2 /app/booking_v2
+COPY booking_v3 /app/booking_v3
+COPY booking_v4 /app/booking_v4
+# V5 adds the in-TD sequence (boot key, AAEL events, evidence) and the probe entry point.
+COPY booking_v5 /app/booking_v5
+WORKDIR /app
+ENV PYTHONPATH=/app
+# Non-root, because the image sets USER 65532. The runtime adds --read-only, --cap-drop ALL
+# and --network none.
+USER 65532:65532
+ENTRYPOINT ["/usr/bin/python3", "-m", "booking_v4.runner_process"]

@@ -1,0 +1,26 @@
+# V5: measure the init-data digest into RTMR3, after process-user-data has written it and
+# before the Attestation Agent can serve any evidence over it.
+#
+# No Requires= on any agent: a missing measurement fails closed IN THE AUTHORITY (the replay
+# of [init-data, boot-key, bind] does not match, the evidence is refused;
+# relying_party._check_rtmr3, require_rtmr3), never in the guest's unit graph.
+#
+# How the unit gets started (ov7), three independent anchors, because ov5/ov6 showed that a
+# unit which is present but never pulled in is invisible: no log line, no failure, RTMR3 zero,
+# and P2 still green.
+#   1. usr/lib/systemd/system-preset/20-v5.preset      survives the build's preset-all
+#   2. multi-user.target.wants/initdata-measure.service shipped symlink (redundant with 1)
+#   3. attestation-agent.service.d + kata-agent.service.d  Wants=/After= drop-ins
+[Unit]
+Description=V5 measure init-data digest into TDX RTMR3
+Requires=process-user-data.service
+After=process-user-data.service
+Before=attestation-agent.service kata-agent.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/bin/initdata-measure
+
+[Install]
+WantedBy=multi-user.target

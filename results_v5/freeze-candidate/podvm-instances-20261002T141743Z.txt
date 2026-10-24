@@ -1,0 +1,2 @@
+NAME                       MACHINE_TYPE   CONFIDENTIAL_INSTANCE_CONFIG                                            ITEMS
+podvm-nginx-peer-6133cba3  c3-standard-4  {'enableConfidentialCompute': True, 'confidentialInstanceType': 'TDX'}

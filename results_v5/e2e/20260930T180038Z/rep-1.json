@@ -1,0 +1,91 @@
+{
+  "stamp": "20260930T180038Z",
+  "run_id": "run-20260930T180037Z-r1",
+  "manifest": {
+    "manifest_version": 1,
+    "recorded_at": "2026-09-30T18:19:02Z",
+    "git": {
+      "commit": "b8d84f343d6eeb517792b964965a4264c291c1be",
+      "dirty": true,
+      "branch": "main"
+    },
+    "policies": {
+      "P2": "66c97606690fe0cd7d442928cf4db514157e682d8f8b6ee53fb13cfdb458e655",
+      "P2.1": "254054d2ab7db1d1f5c7ab2244ceefbb5e536c469481b4ec895650859ea260d4",
+      "P3": "de054d83d565c2c882770ab165c4a935ba02dafb61e67d1877a7470892e19a52",
+      "P3+pay-approval": "28df9debbcff93a11c20ec4ce11f1014e0322e7eece59116fb968017ce52fef8"
+    },
+    "registry": {
+      "policy_schema": "ps-3",
+      "constraint": "cr-1",
+      "fact": "fr-2",
+      "fact_extension": "fr-2.1"
+    },
+    "ttl": {
+      "token_s": 120,
+      "intervention_s": 300
+    },
+    "clock_mode": "system",
+    "verifier": "TdxVerifier",
+    "images": {
+      "CONTROLLER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:8864e0692a5fbe73135bc255d26a61d638aced26950210338a4bb581b3986a34",
+      "RUNNER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:8864e0692a5fbe73135bc255d26a61d638aced26950210338a4bb581b3986a34",
+      "RUNNER_PROCESS_SHA256": "ee153e2790a7a5481d60d04e750a7770c13a99866448bbc9756041d5c54464db",
+      "RUNNER_SOURCE_SHA256": "3ff91890cc2891f0d639e1291faed0bfadd1deea8d6f16843e35f8c2951c8835",
+      "RUNNER_PYTHON": "/usr/local/bin/python3",
+      "SERVICES_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking-services@sha256:86da80d3d05966efed7e2234cfb6576d1e487423137ea3e6a756c835cf072bb3"
+    },
+    "freeze": {
+      "stamp": "20260930T155610Z",
+      "sha256": "26d123d1ad8921da2f86dd63eff9192b01bf332174bf2ce77ef4925feca347d5"
+    },
+    "python": "3.13.3",
+    "platform": "macOS-27.0-arm64-arm-64bit-Mach-O",
+    "observation_check": "bound"
+  },
+  "steps": [
+    {
+      "run_id": "run-20260930T180037Z-r1",
+      "step": 0,
+      "td": "runner-td-rjkdx",
+      "outcome": "ACCEPTED",
+      "accepted": true,
+      "effects": 1,
+      "pending_effects": 0,
+      "foreign_effects": 0,
+      "fragment_hash": "30c5672bdc56dd42cb65488af2325859679ec3aa362bcf86c6e93df4e45ef9a7",
+      "state_hash": "5b017f97c5d67f511499cf3dd55d4e914f65d2a8650a08cd69cdc1fd3fe5539c",
+      "refusal": null,
+      "result_status": "STEP_COMPLETED",
+      "result_reason": "step 0 confirmed and validated",
+      "has_successor": true,
+      "appraisal": {
+        "advisory_ids": [],
+        "binding_version": "v5.1",
+        "collateral_earliest_expiration": "2026-10-30T16:25:17Z",
+        "fmspc": "00806f050000",
+        "qv_result": "OK",
+        "tcb_eval_ref_num": 20,
+        "tcb_level_date_tag": "2025-08-13T00:00:00Z",
+        "verdicts_attested": true,
+        "verifier": "TdxVerifier"
+      },
+      "timings": {
+        "spawn": 86.89163512503728,
+        "ready": 85.8455275829183,
+        "boot_key": 0.5940086250193417,
+        "evidence": 0.3411849580006674,
+        "verification": 0.21965900005307049,
+        "execution": 0.4218885829905048,
+        "destroy": 17.612419708049856
+      },
+      "total_s": 106.08079599915072,
+      "handoff": "cold",
+      "cleanup_mode": "gce_confirmed_finalizer_cleanup",
+      "indeterminate": null,
+      "ledger_measured": true,
+      "ledger_error": null,
+      "cleanup_error": null
+    }
+  ]
+}

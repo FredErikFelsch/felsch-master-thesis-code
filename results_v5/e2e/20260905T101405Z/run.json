@@ -1,0 +1,33 @@
+{
+  "stamp": "20260905T101405Z",
+  "run_id": "run-20260905T101405Z",
+  "steps": [
+    {
+      "run_id": "run-20260905T101405Z",
+      "step": 0,
+      "td": "runner-td-jpsxd",
+      "outcome": "ACCEPTED",
+      "accepted": true,
+      "effects": 1,
+      "pending_effects": 0,
+      "foreign_effects": 0,
+      "fragment_hash": "3eb438af2ca27f4d45a16f833c6efc99a7b25d0c8a1b55e7c1a678b8a71c9404",
+      "state_hash": "b0e63be0fadcdc634978c7954f823018b9fca01be195ecaadee442972f4ca13d",
+      "refusal": null,
+      "result_status": "STEP_COMPLETED",
+      "timings": {
+        "spawn": 89.40419941699656,
+        "ready": 87.74633912499121,
+        "boot_key": 0.6231099170108791,
+        "evidence": 2.5402019169996493,
+        "verification": 1.9898566250049043,
+        "session": null,
+        "execution": 0.4467747079906985,
+        "destroy": 32.46457954199286
+      },
+      "total_s": 127.46872212599555,
+      "recovery_path": true,
+      "indeterminate": null
+    }
+  ]
+}

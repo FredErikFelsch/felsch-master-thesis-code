@@ -1,0 +1,593 @@
+{
+  "system_model": "V3",
+  "experiment": "lying-world",
+  "policies": {
+    "P2.1": "de054d83d565c2c882770ab165c4a935ba02dafb61e67d1877a7470892e19a52",
+    "P2": "ec509c6b0e6d0df1a60c1a331b56401e48fb0d1802196b1ecd056af5d4a21b68"
+  },
+  "manifest": {
+    "manifest_version": 1,
+    "recorded_at": "2026-10-02T12:32:51Z",
+    "git": {
+      "commit": "f1ca1cba474ed6757887ba6de16c093d8f112c85",
+      "dirty": true,
+      "branch": "main"
+    },
+    "policies": {
+      "P2": "66c97606690fe0cd7d442928cf4db514157e682d8f8b6ee53fb13cfdb458e655",
+      "P2.1": "254054d2ab7db1d1f5c7ab2244ceefbb5e536c469481b4ec895650859ea260d4",
+      "P3": "de054d83d565c2c882770ab165c4a935ba02dafb61e67d1877a7470892e19a52",
+      "P3+pay-approval": "28df9debbcff93a11c20ec4ce11f1014e0322e7eece59116fb968017ce52fef8"
+    },
+    "registry": {
+      "policy_schema": "ps-3",
+      "constraint": "cr-1",
+      "fact": "fr-2",
+      "fact_extension": "fr-2.1"
+    },
+    "ttl": {
+      "token_s": 120,
+      "intervention_s": 300
+    },
+    "clock_mode": "fixed:1700000010",
+    "verifier": null,
+    "images": {
+      "CONTROLLER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:048ca8db8819678dccf79330483db1008bbe3ec56e78182e4e5e910631391a24",
+      "RUNNER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:048ca8db8819678dccf79330483db1008bbe3ec56e78182e4e5e910631391a24",
+      "RUNNER_PROCESS_SHA256": "ee153e2790a7a5481d60d04e750a7770c13a99866448bbc9756041d5c54464db",
+      "RUNNER_SOURCE_SHA256": "dd062c91f0d97a14fa272b637b817b21f925f611afa3daa17352fac22220b1e4",
+      "RUNNER_PYTHON": "/usr/local/bin/python3",
+      "SERVICES_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking-services@sha256:11aea57adb3d17c5d11208c5d997ce796602dba055090835f66ce55d92c97645"
+    },
+    "freeze": {
+      "stamp": "20260930T155610Z",
+      "sha256": "26d123d1ad8921da2f86dd63eff9192b01bf332174bf2ce77ef4925feca347d5"
+    },
+    "python": "3.10.12",
+    "platform": "Linux-6.8.0-138-generic-aarch64-with-glibc2.35"
+  },
+  "all_as_predicted": true,
+  "backends_agree": true,
+  "leaks": {
+    "P2.1": [
+      "world-attacker-recipient"
+    ],
+    "P2": [
+      "world-attacker-recipient",
+      "world-negative-price",
+      "world-paid-false",
+      "world-price-drift",
+      "world-select-swap"
+    ]
+  },
+  "results": [
+    {
+      "name": "world-price-drift",
+      "policy": "P2.1",
+      "backend": "in-process",
+      "expected": "EFFECT_UNRECONCILED",
+      "verdict": "EFFECT_UNRECONCILED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "EFFECT_UNCERTAIN"
+      ],
+      "final_status": "EFFECT_UNCERTAIN",
+      "executed_ops": [
+        "search",
+        "select",
+        "book"
+      ],
+      "leak_effect": "pay",
+      "last_reason": "post-effect integrity check failed (fail-closed)"
+    },
+    {
+      "name": "world-price-drift",
+      "policy": "P2",
+      "backend": "in-process",
+      "expected": "CALL_LEAKED",
+      "verdict": "LEAK_AS_PREDICTED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED"
+      ],
+      "final_status": "COMPLETED",
+      "executed_ops": [
+        "search",
+        "select",
+        "book",
+        "pay"
+      ],
+      "leak_effect": "pay",
+      "last_reason": "step 3 confirmed and validated"
+    },
+    {
+      "name": "world-currency-drift",
+      "policy": "P2.1",
+      "backend": "in-process",
+      "expected": "EFFECT_UNRECONCILED",
+      "verdict": "EFFECT_UNRECONCILED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "EFFECT_UNCERTAIN"
+      ],
+      "final_status": "EFFECT_UNCERTAIN",
+      "executed_ops": [
+        "search",
+        "select",
+        "book"
+      ],
+      "leak_effect": "pay",
+      "last_reason": "post-effect integrity check failed (fail-closed)"
+    },
+    {
+      "name": "world-currency-drift",
+      "policy": "P2",
+      "backend": "in-process",
+      "expected": "DENIED_BY_MONITOR",
+      "verdict": "CALL_BLOCKED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "DENIED"
+      ],
+      "final_status": "TERMINATED",
+      "executed_ops": [
+        "search",
+        "select",
+        "book"
+      ],
+      "leak_effect": "pay",
+      "last_reason": "parameter constraint violated at step 3: amount_minor in [0, 40000] EUR"
+    },
+    {
+      "name": "world-select-swap",
+      "policy": "P2.1",
+      "backend": "in-process",
+      "expected": "DENIED_BY_MONITOR",
+      "verdict": "CALL_BLOCKED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "DENIED"
+      ],
+      "final_status": "TERMINATED",
+      "executed_ops": [
+        "search",
+        "select"
+      ],
+      "leak_effect": "book",
+      "last_reason": "cross-step binding violated at step 2: flight must equal fact selected_flight_id"
+    },
+    {
+      "name": "world-select-swap",
+      "policy": "P2",
+      "backend": "in-process",
+      "expected": "CALL_LEAKED",
+      "verdict": "LEAK_AS_PREDICTED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED"
+      ],
+      "final_status": "COMPLETED",
+      "executed_ops": [
+        "search",
+        "select",
+        "book",
+        "pay"
+      ],
+      "leak_effect": "book",
+      "last_reason": "step 3 confirmed and validated"
+    },
+    {
+      "name": "world-negative-price",
+      "policy": "P2.1",
+      "backend": "in-process",
+      "expected": "DENIED_BY_MONITOR",
+      "verdict": "CALL_BLOCKED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "DENIED"
+      ],
+      "final_status": "TERMINATED",
+      "executed_ops": [
+        "search",
+        "select"
+      ],
+      "leak_effect": "book",
+      "last_reason": "cross-step binding violated at step 2: observed price of flight must be within 0..40000"
+    },
+    {
+      "name": "world-negative-price",
+      "policy": "P2",
+      "backend": "in-process",
+      "expected": "CALL_LEAKED",
+      "verdict": "LEAK_AS_PREDICTED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "DENIED"
+      ],
+      "final_status": "TERMINATED",
+      "executed_ops": [
+        "search",
+        "select",
+        "book"
+      ],
+      "leak_effect": "book",
+      "last_reason": "parameter constraint violated at step 3: amount_minor in [0, 40000] EUR"
+    },
+    {
+      "name": "world-paid-false",
+      "policy": "P2.1",
+      "backend": "in-process",
+      "expected": "EFFECT_UNRECONCILED",
+      "verdict": "EFFECT_UNRECONCILED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "EFFECT_UNCERTAIN"
+      ],
+      "final_status": "EFFECT_UNCERTAIN",
+      "executed_ops": [
+        "search",
+        "select",
+        "book",
+        "pay"
+      ],
+      "leak_effect": null,
+      "last_reason": "post-effect integrity check failed (fail-closed)"
+    },
+    {
+      "name": "world-paid-false",
+      "policy": "P2",
+      "backend": "in-process",
+      "expected": "CALL_LEAKED",
+      "verdict": "LEAK_AS_PREDICTED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED"
+      ],
+      "final_status": "COMPLETED",
+      "executed_ops": [
+        "search",
+        "select",
+        "book",
+        "pay"
+      ],
+      "leak_effect": null,
+      "last_reason": "step 3 confirmed and validated"
+    },
+    {
+      "name": "world-attacker-recipient",
+      "policy": "P2.1",
+      "backend": "in-process",
+      "expected": "CALL_LEAKED",
+      "verdict": "LEAK_AS_PREDICTED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED"
+      ],
+      "final_status": "COMPLETED",
+      "executed_ops": [
+        "search",
+        "select",
+        "book",
+        "pay"
+      ],
+      "leak_effect": "pay",
+      "last_reason": "step 3 confirmed and validated"
+    },
+    {
+      "name": "world-attacker-recipient",
+      "policy": "P2",
+      "backend": "in-process",
+      "expected": "CALL_LEAKED",
+      "verdict": "LEAK_AS_PREDICTED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED"
+      ],
+      "final_status": "COMPLETED",
+      "executed_ops": [
+        "search",
+        "select",
+        "book",
+        "pay"
+      ],
+      "leak_effect": "pay",
+      "last_reason": "step 3 confirmed and validated"
+    },
+    {
+      "name": "world-price-drift",
+      "policy": "P2.1",
+      "backend": "durable",
+      "expected": "EFFECT_UNRECONCILED",
+      "verdict": "EFFECT_UNRECONCILED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "EFFECT_UNCERTAIN"
+      ],
+      "final_status": "EFFECT_UNCERTAIN",
+      "executed_ops": [
+        "search",
+        "select",
+        "book"
+      ],
+      "leak_effect": "pay",
+      "last_reason": "post-effect integrity check failed (fail-closed)"
+    },
+    {
+      "name": "world-price-drift",
+      "policy": "P2",
+      "backend": "durable",
+      "expected": "CALL_LEAKED",
+      "verdict": "LEAK_AS_PREDICTED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED"
+      ],
+      "final_status": "COMPLETED",
+      "executed_ops": [
+        "search",
+        "select",
+        "book",
+        "pay"
+      ],
+      "leak_effect": "pay",
+      "last_reason": "step 3 confirmed and validated"
+    },
+    {
+      "name": "world-currency-drift",
+      "policy": "P2.1",
+      "backend": "durable",
+      "expected": "EFFECT_UNRECONCILED",
+      "verdict": "EFFECT_UNRECONCILED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "EFFECT_UNCERTAIN"
+      ],
+      "final_status": "EFFECT_UNCERTAIN",
+      "executed_ops": [
+        "search",
+        "select",
+        "book"
+      ],
+      "leak_effect": "pay",
+      "last_reason": "post-effect integrity check failed (fail-closed)"
+    },
+    {
+      "name": "world-currency-drift",
+      "policy": "P2",
+      "backend": "durable",
+      "expected": "DENIED_BY_MONITOR",
+      "verdict": "CALL_BLOCKED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "DENIED"
+      ],
+      "final_status": "TERMINATED",
+      "executed_ops": [
+        "search",
+        "select",
+        "book"
+      ],
+      "leak_effect": "pay",
+      "last_reason": "parameter constraint violated at step 3: amount_minor in [0, 40000] EUR"
+    },
+    {
+      "name": "world-select-swap",
+      "policy": "P2.1",
+      "backend": "durable",
+      "expected": "DENIED_BY_MONITOR",
+      "verdict": "CALL_BLOCKED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "DENIED"
+      ],
+      "final_status": "TERMINATED",
+      "executed_ops": [
+        "search",
+        "select"
+      ],
+      "leak_effect": "book",
+      "last_reason": "cross-step binding violated at step 2: flight must equal fact selected_flight_id"
+    },
+    {
+      "name": "world-select-swap",
+      "policy": "P2",
+      "backend": "durable",
+      "expected": "CALL_LEAKED",
+      "verdict": "LEAK_AS_PREDICTED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED"
+      ],
+      "final_status": "COMPLETED",
+      "executed_ops": [
+        "search",
+        "select",
+        "book",
+        "pay"
+      ],
+      "leak_effect": "book",
+      "last_reason": "step 3 confirmed and validated"
+    },
+    {
+      "name": "world-negative-price",
+      "policy": "P2.1",
+      "backend": "durable",
+      "expected": "DENIED_BY_MONITOR",
+      "verdict": "CALL_BLOCKED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "DENIED"
+      ],
+      "final_status": "TERMINATED",
+      "executed_ops": [
+        "search",
+        "select"
+      ],
+      "leak_effect": "book",
+      "last_reason": "cross-step binding violated at step 2: observed price of flight must be within 0..40000"
+    },
+    {
+      "name": "world-negative-price",
+      "policy": "P2",
+      "backend": "durable",
+      "expected": "CALL_LEAKED",
+      "verdict": "LEAK_AS_PREDICTED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "DENIED"
+      ],
+      "final_status": "TERMINATED",
+      "executed_ops": [
+        "search",
+        "select",
+        "book"
+      ],
+      "leak_effect": "book",
+      "last_reason": "parameter constraint violated at step 3: amount_minor in [0, 40000] EUR"
+    },
+    {
+      "name": "world-paid-false",
+      "policy": "P2.1",
+      "backend": "durable",
+      "expected": "EFFECT_UNRECONCILED",
+      "verdict": "EFFECT_UNRECONCILED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "EFFECT_UNCERTAIN"
+      ],
+      "final_status": "EFFECT_UNCERTAIN",
+      "executed_ops": [
+        "search",
+        "select",
+        "book",
+        "pay"
+      ],
+      "leak_effect": null,
+      "last_reason": "post-effect integrity check failed (fail-closed)"
+    },
+    {
+      "name": "world-paid-false",
+      "policy": "P2",
+      "backend": "durable",
+      "expected": "CALL_LEAKED",
+      "verdict": "LEAK_AS_PREDICTED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED"
+      ],
+      "final_status": "COMPLETED",
+      "executed_ops": [
+        "search",
+        "select",
+        "book",
+        "pay"
+      ],
+      "leak_effect": null,
+      "last_reason": "step 3 confirmed and validated"
+    },
+    {
+      "name": "world-attacker-recipient",
+      "policy": "P2.1",
+      "backend": "durable",
+      "expected": "CALL_LEAKED",
+      "verdict": "LEAK_AS_PREDICTED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED"
+      ],
+      "final_status": "COMPLETED",
+      "executed_ops": [
+        "search",
+        "select",
+        "book",
+        "pay"
+      ],
+      "leak_effect": "pay",
+      "last_reason": "step 3 confirmed and validated"
+    },
+    {
+      "name": "world-attacker-recipient",
+      "policy": "P2",
+      "backend": "durable",
+      "expected": "CALL_LEAKED",
+      "verdict": "LEAK_AS_PREDICTED",
+      "matches_prediction": true,
+      "statuses": [
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED",
+        "STEP_COMPLETED"
+      ],
+      "final_status": "COMPLETED",
+      "executed_ops": [
+        "search",
+        "select",
+        "book",
+        "pay"
+      ],
+      "leak_effect": "pay",
+      "last_reason": "step 3 confirmed and validated"
+    }
+  ]
+}

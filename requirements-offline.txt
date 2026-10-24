@@ -1,0 +1,32 @@
+# Offline and audit environment of booking_v0 to booking_v5.
+#
+# This file records the environment in which the offline test inventory
+# (scripts/gke-v5/40_verify_v5.sh --offline) and the offline regeneration
+# (scripts/gke-v5/97_offline_regenerate.sh) ran green: Python 3.13.3 on macOS. The Linux
+# reference run used Python 3.10.12 with cryptography 50.0.1 and pyasn1 0.4.8 and gave the
+# same verdicts. It is a record, not a general lock file, and nothing here is needed to read
+# the code.
+#
+# Python: 3.10 or newer (the code uses `X | Y` type unions).
+# The V0 to V2 monitors and their tests use the standard library only. run_v2.py and
+# run_v2_1.py also record a run manifest through booking_v4.manifest, which needs the packages
+# booking_v3 and booking_v4 and with them `cryptography`. Everything from V3 on needs the
+# packages below (signatures, WebAuthn, DCAP verification, collateral fetching, the test
+# fixtures).
+#
+# Not listed: the clients of the live path (Kubernetes, Google Cloud, the model providers). They
+# are imported only when a cluster or a model is used and no offline suite needs them.
+#
+#   python3 -m pip install -r requirements-offline.txt
+#
+cryptography==50.0.2
+PyYAML==6.0.3
+requests==2.34.2
+pyasn1==0.6.4
+# transitive, pinned for the same record
+certifi==2026.7.22
+cffi==2.1.1
+charset-normalizer==3.5.2
+idna==3.20
+pycparser==3.0
+urllib3==2.8.0

@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "Trustworthy LLM Judges. Detecting Embedded Judgment Manipulation and Anchoring Verdicts with Confidential Computing"
+abstract: >-
+  Reference implementation of the master thesis. A research prototype of an architecture in
+  which a language model only proposes actions. A human approves the compiled plan, an
+  independent reference monitor checks every step, an Authority issues single-use
+  capabilities, and a gateway holds the credentials. Each step can run in its own attested
+  Intel TDX virtual machine on Confidential Containers.
+authors:
+  - family-names: Felsch
+    given-names: Jan-Frederik
+license: MIT
+keywords:
+  - LLM agents
+  - prompt injection
+  - reference monitor
+  - capability tokens
+  - confidential computing
+  - remote attestation

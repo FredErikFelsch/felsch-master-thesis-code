@@ -1,0 +1,4 @@
+nginx-peer (no init-data) NOT_READY after 180 s, pod VM seen: 1
+Pending
+Scheduled: Successfully assigned v5-probe/nginx-peer to gke-thesis-v5-v5-pool-ad88cf00-hlvd
+runner-peer READY 102 s

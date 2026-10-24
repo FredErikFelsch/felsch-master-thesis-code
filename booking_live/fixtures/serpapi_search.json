@@ -1,0 +1,1920 @@
+{
+  "search_metadata": {
+    "id": "6ab29cd073d175ecb826a552",
+    "status": "Success",
+    "json_endpoint": "https://serpapi.com/searches/sHubrfqwRR4t9Hf9xEaNeLYLedD97WRE0hO4GIqhChU/6ab29cd073d175ecb826a552.json",
+    "markdown_endpoint": "https://serpapi.com/searches/sHubrfqwRR4t9Hf9xEaNeLYLedD97WRE0hO4GIqhChU/6ab29cd073d175ecb826a552.md",
+    "created_at": "2026-09-22 15:20:48 UTC",
+    "processed_at": "2026-09-22 15:20:48 UTC",
+    "google_flights_url": "https://www.google.com/travel/flights?hl=en&gl=de&curr=EUR&tfs=CBwQAhoeEgoyMDI2LTEwLTIyagcIARIDTVVDcgcIARIDTEhSQAFIAXABmAEC&tfu=EgIIAQ",
+    "raw_html_file": "https://serpapi.com/searches/sHubrfqwRR4t9Hf9xEaNeLYLedD97WRE0hO4GIqhChU/6ab29cd073d175ecb826a552.html",
+    "prettify_html_file": "https://serpapi.com/searches/sHubrfqwRR4t9Hf9xEaNeLYLedD97WRE0hO4GIqhChU/6ab29cd073d175ecb826a552.prettify",
+    "total_time_taken": 2.63
+  },
+  "search_parameters": {
+    "engine": "google_flights",
+    "hl": "en",
+    "gl": "de",
+    "type": "2",
+    "departure_id": "MUC",
+    "arrival_id": "LHR",
+    "outbound_date": "2026-10-22",
+    "currency": "EUR"
+  },
+  "best_flights": [
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 11:00"
+          },
+          "arrival_airport": {
+            "name": "Frankfurt Airport",
+            "id": "FRA",
+            "time": "2026-10-22 12:00"
+          },
+          "duration": 60,
+          "airplane": "Airbus A321",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 99",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "Wi-Fi for a fee",
+            "Carbon emissions estimate: 54 kg"
+          ]
+        },
+        {
+          "departure_airport": {
+            "name": "Frankfurt Airport",
+            "id": "FRA",
+            "time": "2026-10-22 14:00"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 14:40"
+          },
+          "duration": 100,
+          "airplane": "Airbus A320neo",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 908",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 66 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 120,
+          "name": "Frankfurt Airport",
+          "id": "FRA"
+        }
+      ],
+      "total_duration": 280,
+      "carbon_emissions": {
+        "this_flight": 121000,
+        "typical_for_this_route": 88000,
+        "difference_percent": 38
+      },
+      "price": 120,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ3BNU0RrNWZFeElPVEE0R2dvSWoxMFFBaG9EUlZWU09CeHd3V289IixbWyJNVUMiLCIyMDI2LTEwLTIyIiwiRlJBIixudWxsLCJMSCIsIjk5Il0sWyJGUkEiLCIyMDI2LTEwLTIyIiwiTEhSIixudWxsLCJMSCIsIjkwOCJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 09:00"
+          },
+          "arrival_airport": {
+            "name": "Zurich Airport",
+            "id": "ZRH",
+            "time": "2026-10-22 10:00"
+          },
+          "duration": 60,
+          "airplane": "Airbus A220-300 Passenger",
+          "airline": "SWISS",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LX.png",
+          "travel_class": "Economy",
+          "flight_number": "LX 1101",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "Carbon emissions estimate: 46 kg"
+          ],
+          "plane_and_crew_by": "Air Baltic"
+        },
+        {
+          "departure_airport": {
+            "name": "Zurich Airport",
+            "id": "ZRH",
+            "time": "2026-10-22 12:05"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 13:00"
+          },
+          "duration": 115,
+          "airplane": "Airbus A220-300 Passenger",
+          "airline": "SWISS",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LX.png",
+          "travel_class": "Economy",
+          "flight_number": "LX 332",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "Carbon emissions estimate: 91 kg"
+          ],
+          "plane_and_crew_by": "Air Baltic"
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 125,
+          "name": "Zurich Airport",
+          "id": "ZRH"
+        }
+      ],
+      "total_duration": 300,
+      "carbon_emissions": {
+        "this_flight": 139000,
+        "typical_for_this_route": 88000,
+        "difference_percent": 58
+      },
+      "price": 146,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LX.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ3hNV0RFeE1ERjhURmd6TXpJYUNnajBjUkFDR2dORlZWSTRISENsZ2dFPSIsW1siTVVDIiwiMjAyNi0xMC0yMiIsIlpSSCIsbnVsbCwiTFgiLCIxMTAxIl0sWyJaUkgiLCIyMDI2LTEwLTIyIiwiTEhSIixudWxsLCJMWCIsIjMzMiJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 21:00"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 21:55"
+          },
+          "duration": 115,
+          "airplane": "Airbus A320neo",
+          "airline": "British Airways",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/BA.png",
+          "travel_class": "Economy",
+          "flight_number": "BA 939",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "Wi-Fi for a fee",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 81 kg"
+          ],
+          "often_delayed_by_over_30_min": true
+        }
+      ],
+      "total_duration": 115,
+      "carbon_emissions": {
+        "this_flight": 81000,
+        "typical_for_this_route": 88000,
+        "difference_percent": -8
+      },
+      "price": 263,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/BA.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ1ZDUVRrek9Sb0xDSXJOQVJBQ0dnTkZWVkk0SEhESzZnRT0iLFtbIk1VQyIsIjIwMjYtMTAtMjIiLCJMSFIiLG51bGwsIkJBIiwiOTM5Il1dXQ=="
+    }
+  ],
+  "other_flights": [
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 15:00"
+          },
+          "arrival_airport": {
+            "name": "Nuremberg Airport",
+            "id": "NUE",
+            "time": "2026-10-22 17:15"
+          },
+          "duration": 135,
+          "airplane": "Bus",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 3806",
+          "plane_and_crew_by": "Dlh Bus Services"
+        },
+        {
+          "departure_airport": {
+            "name": "Nuremberg Airport",
+            "id": "NUE",
+            "time": "2026-10-22 18:45"
+          },
+          "arrival_airport": {
+            "name": "Frankfurt Airport",
+            "id": "FRA",
+            "time": "2026-10-22 19:35"
+          },
+          "duration": 50,
+          "airplane": "Airbus A319",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 147",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "Wi-Fi for a fee",
+            "Carbon emissions estimate: 47 kg"
+          ]
+        },
+        {
+          "departure_airport": {
+            "name": "Frankfurt Airport",
+            "id": "FRA",
+            "time": "2026-10-22 21:30"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 22:10"
+          },
+          "duration": 100,
+          "airplane": "Airbus A320neo",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 922",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 66 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 90,
+          "name": "Nuremberg Airport",
+          "id": "NUE"
+        },
+        {
+          "duration": 115,
+          "name": "Frankfurt Airport",
+          "id": "FRA"
+        }
+      ],
+      "total_duration": 490,
+      "carbon_emissions": {
+        "typical_for_this_route": 88000
+      },
+      "price": 96,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFaEpNU0RNNE1EWjhURWd4TkRkOFRFZzVNaklhQ2dqQlNoQUNHZ05GVlZJNEhIQ2RWUT09IixbWyJNVUMiLCIyMDI2LTEwLTIyIiwiTlVFIixudWxsLCJMSCIsIjM4MDYiXSxbIk5VRSIsIjIwMjYtMTAtMjIiLCJGUkEiLG51bGwsIkxIIiwiMTQ3Il0sWyJGUkEiLCIyMDI2LTEwLTIyIiwiTEhSIixudWxsLCJMSCIsIjkyMiJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 11:15"
+          },
+          "arrival_airport": {
+            "name": "Zurich Airport",
+            "id": "ZRH",
+            "time": "2026-10-22 12:15"
+          },
+          "duration": 60,
+          "airplane": "Embraer 190",
+          "airline": "SWISS",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LX.png",
+          "travel_class": "Economy",
+          "flight_number": "LX 1103",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "Carbon emissions estimate: 56 kg"
+          ],
+          "plane_and_crew_by": "Helvetic"
+        },
+        {
+          "departure_airport": {
+            "name": "Zurich Airport",
+            "id": "ZRH",
+            "time": "2026-10-22 17:00"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 17:50"
+          },
+          "duration": 110,
+          "airplane": "Airbus A321neo",
+          "airline": "SWISS",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LX.png",
+          "travel_class": "Economy",
+          "flight_number": "LX 326",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 70 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 285,
+          "name": "Zurich Airport",
+          "id": "ZRH"
+        }
+      ],
+      "total_duration": 455,
+      "carbon_emissions": {
+        "this_flight": 126000,
+        "typical_for_this_route": 88000,
+        "difference_percent": 43
+      },
+      "price": 106,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LX.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ3hNV0RFeE1ETjhURmd6TWpZYUNnalVVaEFDR2dORlZWSTRISERHWGc9PSIsW1siTVVDIiwiMjAyNi0xMC0yMiIsIlpSSCIsbnVsbCwiTFgiLCIxMTAzIl0sWyJaUkgiLCIyMDI2LTEwLTIyIiwiTEhSIixudWxsLCJMWCIsIjMyNiJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 11:50"
+          },
+          "arrival_airport": {
+            "name": "Brussels Airport",
+            "id": "BRU",
+            "time": "2026-10-22 13:10"
+          },
+          "duration": 80,
+          "airplane": "Airbus A319",
+          "airline": "Brussels Airlines",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/SN.png",
+          "travel_class": "Economy",
+          "flight_number": "SN 2644",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "Carbon emissions estimate: 85 kg"
+          ]
+        },
+        {
+          "departure_airport": {
+            "name": "Brussels Airport",
+            "id": "BRU",
+            "time": "2026-10-22 16:55"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 17:05"
+          },
+          "duration": 70,
+          "airplane": "Airbus A320neo",
+          "airline": "Brussels Airlines",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/SN.png",
+          "travel_class": "Economy",
+          "flight_number": "SN 2095",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "Carbon emissions estimate: 48 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 225,
+          "name": "Brussels Airport",
+          "id": "BRU"
+        }
+      ],
+      "total_duration": 375,
+      "carbon_emissions": {
+        "this_flight": 133000,
+        "typical_for_this_route": 88000,
+        "difference_percent": 51
+      },
+      "price": 115,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/SN.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZzFUVGpJMk5EUjhVMDR5TURrMUdnb0lxMWtRQWhvRFJWVlNPQnh3bUdZPSIsW1siTVVDIiwiMjAyNi0xMC0yMiIsIkJSVSIsbnVsbCwiU04iLCIyNjQ0Il0sWyJCUlUiLCIyMDI2LTEwLTIyIiwiTEhSIixudWxsLCJTTiIsIjIwOTUiXV1d"
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 15:55"
+          },
+          "arrival_airport": {
+            "name": "Brussels Airport",
+            "id": "BRU",
+            "time": "2026-10-22 17:15"
+          },
+          "duration": 80,
+          "airplane": "Airbus A319",
+          "airline": "Brussels Airlines",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/SN.png",
+          "travel_class": "Economy",
+          "flight_number": "SN 2648",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "Carbon emissions estimate: 85 kg"
+          ]
+        },
+        {
+          "departure_airport": {
+            "name": "Brussels Airport",
+            "id": "BRU",
+            "time": "2026-10-22 21:20"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 21:35"
+          },
+          "duration": 75,
+          "airplane": "Airbus A320neo",
+          "airline": "Brussels Airlines",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/SN.png",
+          "travel_class": "Economy",
+          "flight_number": "SN 2103",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "Carbon emissions estimate: 48 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 245,
+          "name": "Brussels Airport",
+          "id": "BRU"
+        }
+      ],
+      "total_duration": 400,
+      "carbon_emissions": {
+        "this_flight": 133000,
+        "typical_for_this_route": 88000,
+        "difference_percent": 51
+      },
+      "price": 115,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/SN.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZzFUVGpJMk5EaDhVMDR5TVRBekdnb0lxMWtRQWhvRFJWVlNPQnh3bUdZPSIsW1siTVVDIiwiMjAyNi0xMC0yMiIsIkJSVSIsbnVsbCwiU04iLCIyNjQ4Il0sWyJCUlUiLCIyMDI2LTEwLTIyIiwiTEhSIixudWxsLCJTTiIsIjIxMDMiXV1d"
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 08:30"
+          },
+          "arrival_airport": {
+            "name": "Frankfurt Airport",
+            "id": "FRA",
+            "time": "2026-10-22 09:30"
+          },
+          "duration": 60,
+          "airplane": "Airbus A320",
+          "airline": "Discover Airlines",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/4Y.png",
+          "travel_class": "Economy",
+          "flight_number": "4Y 1001",
+          "ticket_also_sold_by": [
+            "Lufthansa"
+          ],
+          "legroom": "28 in",
+          "extensions": [
+            "Below average legroom (28 in)",
+            "Stream media to your device",
+            "Carbon emissions estimate: 48 kg"
+          ]
+        },
+        {
+          "departure_airport": {
+            "name": "Frankfurt Airport",
+            "id": "FRA",
+            "time": "2026-10-22 12:00"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 12:40"
+          },
+          "duration": 100,
+          "airplane": "Airbus A320neo",
+          "airline": "Lufthansa City Airlines",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/VL.png",
+          "travel_class": "Economy",
+          "flight_number": "VL 906",
+          "ticket_also_sold_by": [
+            "Lufthansa"
+          ],
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 65 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 150,
+          "name": "Frankfurt Airport",
+          "id": "FRA"
+        }
+      ],
+      "total_duration": 310,
+      "carbon_emissions": {
+        "this_flight": 114000,
+        "typical_for_this_route": 88000,
+        "difference_percent": 30
+      },
+      "price": 120,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/multi.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ3cwV1RFd01ERjhWa3c1TURZYUNnaVBYUkFDR2dORlZWSTRISERCYWc9PSIsW1siTVVDIiwiMjAyNi0xMC0yMiIsIkZSQSIsbnVsbCwiNFkiLCIxMDAxIl0sWyJGUkEiLCIyMDI2LTEwLTIyIiwiTEhSIixudWxsLCJWTCIsIjkwNiJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 09:00"
+          },
+          "arrival_airport": {
+            "name": "Frankfurt Airport",
+            "id": "FRA",
+            "time": "2026-10-22 10:00"
+          },
+          "duration": 60,
+          "airplane": "Airbus A321",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 95",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "Wi-Fi for a fee",
+            "Carbon emissions estimate: 54 kg"
+          ]
+        },
+        {
+          "departure_airport": {
+            "name": "Frankfurt Airport",
+            "id": "FRA",
+            "time": "2026-10-22 12:00"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 12:40"
+          },
+          "duration": 100,
+          "airplane": "Airbus A320neo",
+          "airline": "Lufthansa City Airlines",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/VL.png",
+          "travel_class": "Economy",
+          "flight_number": "VL 906",
+          "ticket_also_sold_by": [
+            "Lufthansa"
+          ],
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 65 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 120,
+          "name": "Frankfurt Airport",
+          "id": "FRA"
+        }
+      ],
+      "total_duration": 280,
+      "carbon_emissions": {
+        "this_flight": 120000,
+        "typical_for_this_route": 88000,
+        "difference_percent": 36
+      },
+      "price": 120,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/multi.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ3BNU0RrMWZGWk1PVEEyR2dvSWoxMFFBaG9EUlZWU09CeHd3V289IixbWyJNVUMiLCIyMDI2LTEwLTIyIiwiRlJBIixudWxsLCJMSCIsIjk1Il0sWyJGUkEiLCIyMDI2LTEwLTIyIiwiTEhSIixudWxsLCJWTCIsIjkwNiJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 12:00"
+          },
+          "arrival_airport": {
+            "name": "Frankfurt Airport",
+            "id": "FRA",
+            "time": "2026-10-22 13:00"
+          },
+          "duration": 60,
+          "airplane": "Airbus A321",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 103",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "Wi-Fi for a fee",
+            "Carbon emissions estimate: 54 kg"
+          ]
+        },
+        {
+          "departure_airport": {
+            "name": "Frankfurt Airport",
+            "id": "FRA",
+            "time": "2026-10-22 16:00"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 16:40"
+          },
+          "duration": 100,
+          "airplane": "Airbus A320neo",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 914",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 66 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 180,
+          "name": "Frankfurt Airport",
+          "id": "FRA"
+        }
+      ],
+      "total_duration": 340,
+      "carbon_emissions": {
+        "this_flight": 121000,
+        "typical_for_this_route": 88000,
+        "difference_percent": 38
+      },
+      "price": 120,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ3RNU0RFd00zeE1TRGt4TkJvS0NJOWRFQUlhQTBWVlVqZ2NjTUZxIixbWyJNVUMiLCIyMDI2LTEwLTIyIiwiRlJBIixudWxsLCJMSCIsIjEwMyJdLFsiRlJBIiwiMjAyNi0xMC0yMiIsIkxIUiIsbnVsbCwiTEgiLCI5MTQiXV1d"
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 14:00"
+          },
+          "arrival_airport": {
+            "name": "Frankfurt Airport",
+            "id": "FRA",
+            "time": "2026-10-22 15:00"
+          },
+          "duration": 60,
+          "airplane": "Boeing 787",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 107",
+          "legroom": "31 in",
+          "extensions": [
+            "Average legroom (31 in)",
+            "Wi-Fi for a fee",
+            "In-seat power & USB outlets",
+            "On-demand video",
+            "Carbon emissions estimate: 61 kg"
+          ]
+        },
+        {
+          "departure_airport": {
+            "name": "Frankfurt Airport",
+            "id": "FRA",
+            "time": "2026-10-22 17:00"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 17:40"
+          },
+          "duration": 100,
+          "airplane": "Airbus A320neo",
+          "airline": "Lufthansa City Airlines",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/VL.png",
+          "travel_class": "Economy",
+          "flight_number": "VL 916",
+          "ticket_also_sold_by": [
+            "Lufthansa"
+          ],
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 65 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 120,
+          "name": "Frankfurt Airport",
+          "id": "FRA"
+        }
+      ],
+      "total_duration": 280,
+      "carbon_emissions": {
+        "this_flight": 128000,
+        "typical_for_this_route": 88000,
+        "difference_percent": 45
+      },
+      "price": 120,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/multi.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ3RNU0RFd04zeFdURGt4TmhvS0NJOWRFQUlhQTBWVlVqZ2NjTUZxIixbWyJNVUMiLCIyMDI2LTEwLTIyIiwiRlJBIixudWxsLCJMSCIsIjEwNyJdLFsiRlJBIiwiMjAyNi0xMC0yMiIsIkxIUiIsbnVsbCwiVkwiLCI5MTYiXV1d"
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 15:00"
+          },
+          "arrival_airport": {
+            "name": "Frankfurt Airport",
+            "id": "FRA",
+            "time": "2026-10-22 16:00"
+          },
+          "duration": 60,
+          "airplane": "Airbus A320",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 109",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "Carbon emissions estimate: 51 kg"
+          ]
+        },
+        {
+          "departure_airport": {
+            "name": "Frankfurt Airport",
+            "id": "FRA",
+            "time": "2026-10-22 18:00"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 18:40"
+          },
+          "duration": 100,
+          "airplane": "Airbus A320neo",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 918",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 66 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 120,
+          "name": "Frankfurt Airport",
+          "id": "FRA"
+        }
+      ],
+      "total_duration": 280,
+      "carbon_emissions": {
+        "this_flight": 118000,
+        "typical_for_this_route": 88000,
+        "difference_percent": 34
+      },
+      "price": 120,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ3RNU0RFd09YeE1TRGt4T0JvS0NJOWRFQUlhQTBWVlVqZ2NjTUZxIixbWyJNVUMiLCIyMDI2LTEwLTIyIiwiRlJBIixudWxsLCJMSCIsIjEwOSJdLFsiRlJBIiwiMjAyNi0xMC0yMiIsIkxIUiIsbnVsbCwiTEgiLCI5MTgiXV1d"
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 18:00"
+          },
+          "arrival_airport": {
+            "name": "Frankfurt Airport",
+            "id": "FRA",
+            "time": "2026-10-22 19:00"
+          },
+          "duration": 60,
+          "airplane": "Boeing 787",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 115",
+          "legroom": "31 in",
+          "extensions": [
+            "Average legroom (31 in)",
+            "Wi-Fi for a fee",
+            "In-seat power & USB outlets",
+            "On-demand video",
+            "Carbon emissions estimate: 61 kg"
+          ]
+        },
+        {
+          "departure_airport": {
+            "name": "Frankfurt Airport",
+            "id": "FRA",
+            "time": "2026-10-22 21:30"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 22:10"
+          },
+          "duration": 100,
+          "airplane": "Airbus A320neo",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 922",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 66 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 150,
+          "name": "Frankfurt Airport",
+          "id": "FRA"
+        }
+      ],
+      "total_duration": 310,
+      "carbon_emissions": {
+        "this_flight": 128000,
+        "typical_for_this_route": 88000,
+        "difference_percent": 45
+      },
+      "price": 120,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ3RNU0RFeE5YeE1TRGt5TWhvS0NJOWRFQUlhQTBWVlVqZ2NjTUZxIixbWyJNVUMiLCIyMDI2LTEwLTIyIiwiRlJBIixudWxsLCJMSCIsIjExNSJdLFsiRlJBIiwiMjAyNi0xMC0yMiIsIkxIUiIsbnVsbCwiTEgiLCI5MjIiXV1d"
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 11:15"
+          },
+          "arrival_airport": {
+            "name": "Zurich Airport",
+            "id": "ZRH",
+            "time": "2026-10-22 12:15"
+          },
+          "duration": 60,
+          "airplane": "Embraer 190",
+          "airline": "SWISS",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LX.png",
+          "travel_class": "Economy",
+          "flight_number": "LX 1103",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "Carbon emissions estimate: 56 kg"
+          ],
+          "plane_and_crew_by": "Helvetic"
+        },
+        {
+          "departure_airport": {
+            "name": "Zurich Airport",
+            "id": "ZRH",
+            "time": "2026-10-22 15:35"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 16:25"
+          },
+          "duration": 110,
+          "airplane": "Airbus A320neo",
+          "airline": "SWISS",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LX.png",
+          "travel_class": "Economy",
+          "flight_number": "LX 324",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 71 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 200,
+          "name": "Zurich Airport",
+          "id": "ZRH"
+        }
+      ],
+      "total_duration": 370,
+      "carbon_emissions": {
+        "this_flight": 128000,
+        "typical_for_this_route": 88000,
+        "difference_percent": 45
+      },
+      "price": 124,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LX.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ3hNV0RFeE1ETjhURmd6TWpRYUNnamNZQkFDR2dORlZWSTRISERSYmc9PSIsW1siTVVDIiwiMjAyNi0xMC0yMiIsIlpSSCIsbnVsbCwiTFgiLCIxMTAzIl0sWyJaUkgiLCIyMDI2LTEwLTIyIiwiTEhSIixudWxsLCJMWCIsIjMyNCJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 17:45"
+          },
+          "arrival_airport": {
+            "name": "Amsterdam Airport Schiphol",
+            "id": "AMS",
+            "time": "2026-10-22 19:15"
+          },
+          "duration": 90,
+          "airplane": "Embraer 195 E2",
+          "airline": "KLM",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/KL.png",
+          "travel_class": "Economy",
+          "flight_number": "KL 1856",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 74 kg"
+          ],
+          "often_delayed_by_over_30_min": true,
+          "plane_and_crew_by": "KLM Cityhopper"
+        },
+        {
+          "departure_airport": {
+            "name": "Amsterdam Airport Schiphol",
+            "id": "AMS",
+            "time": "2026-10-22 20:40"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 20:55"
+          },
+          "duration": 75,
+          "airplane": "Airbus A321neo",
+          "airline": "KLM",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/KL.png",
+          "travel_class": "Economy",
+          "flight_number": "KL 1017",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "Free Wi-Fi",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 38 kg"
+          ],
+          "often_delayed_by_over_30_min": true
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 85,
+          "name": "Amsterdam Airport Schiphol",
+          "id": "AMS"
+        }
+      ],
+      "total_duration": 250,
+      "carbon_emissions": {
+        "this_flight": 113000,
+        "typical_for_this_route": 88000,
+        "difference_percent": 28
+      },
+      "price": 174,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/KL.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZzFMVERFNE5UWjhTMHd4TURFM0dnc0l4b2NCRUFJYUEwVlZVamdjY0lhYkFRPT0iLFtbIk1VQyIsIjIwMjYtMTAtMjIiLCJBTVMiLG51bGwsIktMIiwiMTg1NiJdLFsiQU1TIiwiMjAyNi0xMC0yMiIsIkxIUiIsbnVsbCwiS0wiLCIxMDE3Il1dXQ=="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 16:30"
+          },
+          "arrival_airport": {
+            "name": "Duesseldorf Airport",
+            "id": "DUS",
+            "time": "2026-10-22 17:40"
+          },
+          "duration": 70,
+          "airplane": "Airbus A321",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 2020",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "Wi-Fi for a fee",
+            "Carbon emissions estimate: 69 kg"
+          ]
+        },
+        {
+          "departure_airport": {
+            "name": "Duesseldorf Airport",
+            "id": "DUS",
+            "time": "2026-10-22 18:25"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 18:50"
+          },
+          "duration": 85,
+          "airplane": "Airbus A320neo",
+          "airline": "Eurowings",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/EW.png",
+          "travel_class": "Economy",
+          "flight_number": "EW 9468",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "Carbon emissions estimate: 54 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 45,
+          "name": "Duesseldorf Airport",
+          "id": "DUS"
+        }
+      ],
+      "total_duration": 200,
+      "carbon_emissions": {
+        "this_flight": 124000,
+        "typical_for_this_route": 88000,
+        "difference_percent": 41
+      },
+      "price": 286,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/multi.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZzFNU0RJd01qQjhSVmM1TkRZNEdnc0lrOThCRUFJYUEwVlZVamdjY0ovL0FRPT0iLFtbIk1VQyIsIjIwMjYtMTAtMjIiLCJEVVMiLG51bGwsIkxIIiwiMjAyMCJdLFsiRFVTIiwiMjAyNi0xMC0yMiIsIkxIUiIsbnVsbCwiRVciLCI5NDY4Il1dXQ=="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 19:40"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 20:45"
+          },
+          "duration": 125,
+          "airplane": "Airbus A320neo",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 2482",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 83 kg"
+          ]
+        }
+      ],
+      "total_duration": 125,
+      "carbon_emissions": {
+        "this_flight": 84000,
+        "typical_for_this_route": 88000,
+        "difference_percent": -5
+      },
+      "price": 313,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ1pNU0RJME9ESWFDd2lTOUFFUUFob0RSVlZTT0J4d29aY0MiLFtbIk1VQyIsIjIwMjYtMTAtMjIiLCJMSFIiLG51bGwsIkxIIiwiMjQ4MiJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 21:35"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 22:40"
+          },
+          "duration": 125,
+          "airplane": "Airbus A320neo",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 2484",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 83 kg"
+          ]
+        }
+      ],
+      "total_duration": 125,
+      "carbon_emissions": {
+        "this_flight": 84000,
+        "typical_for_this_route": 88000,
+        "difference_percent": -5
+      },
+      "price": 321,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ1pNU0RJME9EUWFDd2l5K2dFUUFob0RSVlZTT0J4d3RKNEMiLFtbIk1VQyIsIjIwMjYtMTAtMjIiLCJMSFIiLG51bGwsIkxIIiwiMjQ4NCJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 18:35"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 19:40"
+          },
+          "duration": 125,
+          "airplane": "Airbus A320neo",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 2480",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 83 kg"
+          ]
+        }
+      ],
+      "total_duration": 125,
+      "carbon_emissions": {
+        "this_flight": 84000,
+        "typical_for_this_route": 88000,
+        "difference_percent": -5
+      },
+      "price": 331,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ1pNU0RJME9EQWFDd2lhZ2dJUUFob0RSVlZTT0J4d3JLY0MiLFtbIk1VQyIsIjIwMjYtMTAtMjIiLCJMSFIiLG51bGwsIkxIIiwiMjQ4MCJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 17:20"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 18:25"
+          },
+          "duration": 125,
+          "airplane": "Airbus A320neo",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 2486",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 83 kg"
+          ]
+        }
+      ],
+      "total_duration": 125,
+      "carbon_emissions": {
+        "this_flight": 84000,
+        "typical_for_this_route": 88000,
+        "difference_percent": -5
+      },
+      "price": 334,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ1pNU0RJME9EWWFDd2pHaEFJUUFob0RSVlZTT0J4d2c2b0MiLFtbIk1VQyIsIjIwMjYtMTAtMjIiLCJMSFIiLG51bGwsIkxIIiwiMjQ4NiJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 16:00"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 17:05"
+          },
+          "duration": 125,
+          "airplane": "Airbus A320neo",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 2478",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 83 kg"
+          ]
+        }
+      ],
+      "total_duration": 125,
+      "carbon_emissions": {
+        "this_flight": 84000,
+        "typical_for_this_route": 88000,
+        "difference_percent": -5
+      },
+      "price": 342,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ1pNU0RJME56Z2FDd2ptaWdJUUFob0RSVlZTT0J4d2xyRUMiLFtbIk1VQyIsIjIwMjYtMTAtMjIiLCJMSFIiLG51bGwsIkxIIiwiMjQ3OCJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 18:55"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 19:55"
+          },
+          "duration": 120,
+          "airplane": "Airbus A319",
+          "airline": "British Airways",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/BA.png",
+          "travel_class": "Economy",
+          "flight_number": "BA 937",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 107 kg"
+          ],
+          "often_delayed_by_over_30_min": true
+        }
+      ],
+      "total_duration": 120,
+      "carbon_emissions": {
+        "this_flight": 108000,
+        "typical_for_this_route": 88000,
+        "difference_percent": 23
+      },
+      "price": 351,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/BA.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ1ZDUVRrek54b0xDT3FSQWhBQ0dnTkZWVkk0SEhDYnVRST0iLFtbIk1VQyIsIjIwMjYtMTAtMjIiLCJMSFIiLG51bGwsIkJBIiwiOTM3Il1dXQ=="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 07:25"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 08:35"
+          },
+          "duration": 130,
+          "airplane": "Airbus A319",
+          "airline": "British Airways",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/BA.png",
+          "travel_class": "Economy",
+          "flight_number": "BA 941",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 108 kg"
+          ]
+        }
+      ],
+      "total_duration": 130,
+      "carbon_emissions": {
+        "this_flight": 109000,
+        "typical_for_this_route": 88000,
+        "difference_percent": 24
+      },
+      "price": 423,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/BA.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ1ZDUVRrME1Sb0xDSXJLQWhBQ0dnTkZWVkk0SEhESCtRST0iLFtbIk1VQyIsIjIwMjYtMTAtMjIiLCJMSFIiLG51bGwsIkJBIiwiOTQxIl1dXQ=="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 07:05"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 08:15"
+          },
+          "duration": 130,
+          "airplane": "Airbus A320neo",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 2470",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 83 kg"
+          ]
+        }
+      ],
+      "total_duration": 130,
+      "carbon_emissions": {
+        "this_flight": 84000,
+        "typical_for_this_route": 88000,
+        "difference_percent": -5
+      },
+      "price": 583,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ1pNU0RJME56QWFDd2lLeHdNUUFob0RSVlZTT0J4d3hJZ0UiLFtbIk1VQyIsIjIwMjYtMTAtMjIiLCJMSFIiLG51bGwsIkxIIiwiMjQ3MCJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 14:35"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 15:40"
+          },
+          "duration": 125,
+          "airplane": "Airbus A320neo",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 2476",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 83 kg"
+          ]
+        }
+      ],
+      "total_duration": 125,
+      "carbon_emissions": {
+        "this_flight": 84000,
+        "typical_for_this_route": 88000,
+        "difference_percent": -5
+      },
+      "price": 635,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ1pNU0RJME56WWFDd2phN3dNUUFob0RSVlZTT0J4d2dMY0UiLFtbIk1VQyIsIjIwMjYtMTAtMjIiLCJMSFIiLG51bGwsIkxIIiwiMjQ3NiJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 08:50"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 09:55"
+          },
+          "duration": 125,
+          "airplane": "Airbus A320neo",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 2472",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 83 kg"
+          ]
+        }
+      ],
+      "total_duration": 125,
+      "carbon_emissions": {
+        "this_flight": 84000,
+        "typical_for_this_route": 88000,
+        "difference_percent": -5
+      },
+      "price": 779,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ1pNU0RJME56SWFDd2lhNEFRUUFob0RSVlZTT0J4dzJMY0YiLFtbIk1VQyIsIjIwMjYtMTAtMjIiLCJMSFIiLG51bGwsIkxIIiwiMjQ3MiJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 11:45"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 12:50"
+          },
+          "duration": 125,
+          "airplane": "Airbus A320neo",
+          "airline": "Lufthansa",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+          "travel_class": "Economy",
+          "flight_number": "LH 2474",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 83 kg"
+          ]
+        }
+      ],
+      "total_duration": 125,
+      "carbon_emissions": {
+        "this_flight": 84000,
+        "typical_for_this_route": 88000,
+        "difference_percent": -5
+      },
+      "price": 779,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/LH.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ1pNU0RJME56UWFDd2lhNEFRUUFob0RSVlZTT0J4dzJMY0YiLFtbIk1VQyIsIjIwMjYtMTAtMjIiLCJMSFIiLG51bGwsIkxIIiwiMjQ3NCJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 16:40"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 17:40"
+          },
+          "duration": 120,
+          "airplane": "Airbus A320neo",
+          "airline": "British Airways",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/BA.png",
+          "travel_class": "Economy",
+          "flight_number": "BA 935",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "Wi-Fi for a fee",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 81 kg"
+          ]
+        }
+      ],
+      "total_duration": 120,
+      "carbon_emissions": {
+        "this_flight": 81000,
+        "typical_for_this_route": 88000,
+        "difference_percent": -8
+      },
+      "price": 800,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/BA.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ1ZDUVRrek5Sb0xDTTd3QkJBQ0dnTkZWVkk0SEhDNnlnVT0iLFtbIk1VQyIsIjIwMjYtMTAtMjIiLCJMSFIiLG51bGwsIkJBIiwiOTM1Il1dXQ=="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Munich International Airport",
+            "id": "MUC",
+            "time": "2026-10-22 10:55"
+          },
+          "arrival_airport": {
+            "name": "Heathrow Airport",
+            "id": "LHR",
+            "time": "2026-10-22 12:05"
+          },
+          "duration": 130,
+          "airplane": "Airbus A320neo",
+          "airline": "British Airways",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/BA.png",
+          "travel_class": "Business Class",
+          "flight_number": "BA 927",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "Wi-Fi for a fee",
+            "In-seat power & USB outlets",
+            "Carbon emissions estimate: 121 kg"
+          ]
+        }
+      ],
+      "total_duration": 130,
+      "carbon_emissions": {
+        "this_flight": 122000,
+        "typical_for_this_route": 88000,
+        "difference_percent": 39
+      },
+      "price": 1271,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/BA.png",
+      "booking_token": "WyJDalJJUjNsVGNsWnNPV0pRZGxsQlNHdEdMV2RDUnkwdExTMHRMUzB0YjJ0aVltOHhORUZCUVVGQlIzRjViazVGUm1kbkxWZEJFZ1ZDUVRreU54b0xDUHpnQnhBQ0dnTkZWVkk0SEhEbDd3Zz0iLFtbIk1VQyIsIjIwMjYtMTAtMjIiLCJMSFIiLG51bGwsIkJBIiwiOTI3Il1dXQ=="
+    }
+  ],
+  "price_insights": {
+    "lowest_price": 96,
+    "price_level": "typical",
+    "typical_price_range": [
+      85,
+      140
+    ],
+    "price_history": [
+      [
+        1784844000,
+        88
+      ],
+      [
+        1784930400,
+        88
+      ],
+      [
+        1785016800,
+        102
+      ],
+      [
+        1785103200,
+        102
+      ],
+      [
+        1785189600,
+        102
+      ],
+      [
+        1785276000,
+        102
+      ],
+      [
+        1785362400,
+        102
+      ],
+      [
+        1785448800,
+        102
+      ],
+      [
+        1785535200,
+        102
+      ],
+      [
+        1785621600,
+        102
+      ],
+      [
+        1785708000,
+        102
+      ],
+      [
+        1785794400,
+        102
+      ],
+      [
+        1785880800,
+        102
+      ],
+      [
+        1785967200,
+        102
+      ],
+      [
+        1786053600,
+        102
+      ],
+      [
+        1786140000,
+        102
+      ],
+      [
+        1786226400,
+        102
+      ],
+      [
+        1786312800,
+        102
+      ],
+      [
+        1786399200,
+        102
+      ],
+      [
+        1786485600,
+        102
+      ],
+      [
+        1786572000,
+        102
+      ],
+      [
+        1786658400,
+        102
+      ],
+      [
+        1786744800,
+        102
+      ],
+      [
+        1786831200,
+        96
+      ],
+      [
+        1786917600,
+        102
+      ],
+      [
+        1787004000,
+        102
+      ],
+      [
+        1787090400,
+        102
+      ],
+      [
+        1787176800,
+        102
+      ],
+      [
+        1787263200,
+        102
+      ],
+      [
+        1787349600,
+        102
+      ],
+      [
+        1787436000,
+        102
+      ],
+      [
+        1787522400,
+        102
+      ],
+      [
+        1787608800,
+        102
+      ],
+      [
+        1787695200,
+        102
+      ],
+      [
+        1787781600,
+        102
+      ],
+      [
+        1787868000,
+        102
+      ],
+      [
+        1787954400,
+        102
+      ],
+      [
+        1788040800,
+        127
+      ],
+      [
+        1788127200,
+        115
+      ],
+      [
+        1788213600,
+        114
+      ],
+      [
+        1788300000,
+        114
+      ],
+      [
+        1788386400,
+        114
+      ],
+      [
+        1788472800,
+        114
+      ],
+      [
+        1788559200,
+        114
+      ],
+      [
+        1788645600,
+        114
+      ],
+      [
+        1788732000,
+        114
+      ],
+      [
+        1788818400,
+        114
+      ],
+      [
+        1788904800,
+        114
+      ],
+      [
+        1788991200,
+        114
+      ],
+      [
+        1789077600,
+        114
+      ],
+      [
+        1789164000,
+        114
+      ],
+      [
+        1789250400,
+        114
+      ],
+      [
+        1789336800,
+        114
+      ],
+      [
+        1789423200,
+        114
+      ],
+      [
+        1789509600,
+        96
+      ],
+      [
+        1789596000,
+        96
+      ],
+      [
+        1789682400,
+        96
+      ],
+      [
+        1789768800,
+        96
+      ],
+      [
+        1789855200,
+        96
+      ],
+      [
+        1789941600,
+        96
+      ],
+      [
+        1790028000,
+        96
+      ]
+    ]
+  },
+  "airports": [
+    {
+      "departure": [
+        {
+          "airport": {
+            "id": "MUC",
+            "name": "Munich International Airport"
+          },
+          "city": "Munich",
+          "country": "Germany",
+          "country_code": "DE",
+          "image": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcScUfpZZ88ASyCVtBpdQ0iGyCky9wd0yzmrrLqseG_jjfV4bLti0pnBGVdlHQAqKdsJ1N_ckz3BT2ZsyA",
+          "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSmyu128XY69CmkxXWLN30kZIXt_igqHXXrISZvesFbLyebUoW5YamdDfnM9UJHOYcYOR4MXfclej8aS3Y7CQ9v4rQeWEXhZzJiZgUsk50"
+        }
+      ],
+      "arrival": [
+        {
+          "airport": {
+            "id": "LHR",
+            "name": "Heathrow Airport"
+          },
+          "city": "London",
+          "country": "United Kingdom",
+          "country_code": "GB",
+          "image": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRpN9RbtOSTDqKIPxWc_D6rdSysaWVh6d-NW7yz7yFXKRwh5RN5BpNIoXEwH1XVcFdLWqn6Sm8_Y_zmeg",
+          "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQYH83YXny8hR4M7k5BMFq4vUT6LNtVABQzgs2pg-hcpSZq3oMBOQK3xh591AAJv2Qx4uvFZUGqOVt4kuoCUOklISunmndJleOoSef_7QE"
+        }
+      ]
+    }
+  ]
+}

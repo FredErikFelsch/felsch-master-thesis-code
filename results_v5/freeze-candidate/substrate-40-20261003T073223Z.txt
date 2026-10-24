@@ -1,0 +1,93 @@
+CHECK V0 baseline:                   PASS  All 11 tests passed. 
+CHECK V1 lifecycle and constraints:  PASS  All 36 tests passed. 
+CHECK V2 effect ledger:              PASS  All 38 tests passed. 
+CHECK V3 monitor, Authority, gateway: PASS  Ran 73 tests in 0.301s OK 
+CHECK V3 negative cases: forged, replayed, misdirected tokens and records: PASS  Ran 13 tests in 0.073s OK 
+CHECK V3 failure ledger: what the Authority records after a failed or uncertain effect: PASS  Ran 10 tests in 0.011s OK 
+CHECK F-042 gateway: a spent then expired token is a past dispatch, each binding refuses alone: PASS  Ran 11 tests in 0.014s OK 
+CHECK V4 durable store, restart, crash windows: PASS  Ran 26 tests in 14.307s OK 
+CHECK V4 controller (container-dependent cases may skip): PASS  Ran 18 tests in 0.002s OK (skipped=16) 
+CHECK V4 container profile (skips without a container runtime): PASS  Ran 18 tests in 0.000s OK (skipped=18) 
+CHECK V4 container environment:      PASS  Ran 13 tests in 0.035s OK 
+CHECK V4 Kubernetes profile (skips without a cluster): PASS  Ran 8 tests in 0.000s OK (skipped=8) 
+CHECK V4 Kubernetes manifests, offline: PASS  Ran 21 tests in 1.214s OK 
+CHECK V4 service endpoint surface:   PASS  Ran 14 tests in 3.387s OK 
+CHECK offline tests:                 PASS  Ran 40 tests in 0.589s OK 
+CHECK fixture tests:                 PASS  Ran 34 tests in 0.154s OK 
+CHECK rtmr replay tests:             PASS  Ran 8 tests in 0.001s OK 
+CHECK substrate variance tests:      PASS  Ran 22 tests in 0.082s OK (skipped=1) 
+CHECK runner phase-order tests:      PASS  Ran 9 tests in 0.006s OK 
+CHECK peer-pod cleanup tests:        PASS  Ran 5 tests in 0.010s OK 
+CHECK probe analysis dry run:        PASS  Ran 5 tests in 0.489s OK 
+CHECK cluster script (12):           PASS  Ran 14 tests in 22.403s OK 
+CHECK probe scripts (18/19):         PASS  Ran 22 tests in 0.383s OK 
+CHECK pod-VM overlay hardening:      PASS  Ran 34 tests in 1.364s OK 
+CHECK attach protocol end to end:    PASS  Ran 10 tests in 0.014s OK 
+CHECK effect ledger over the durable gateway, role surfaces: PASS  Ran 17 tests in 9.241s OK 
+CHECK V5 end to end over the real services (offline): PASS  Ran 24 tests in 28.562s OK 
+CHECK DCAP collateral cache: validity-bounded, no network per verdict: PASS  Ran 8 tests in 0.204s OK 
+CHECK continuation gate: second session only for a pending intervention: PASS  Ran 8 tests in 10.232s OK 
+CHECK 27/27 semantic equivalence of the attested path (Option A): PASS  Ran 6 tests in 48.372s OK 
+CHECK demo acts (scripted agent, V0 baseline and V3 monitor): PASS  Ran 52 tests in 47.527s OK 
+CHECK agent-run analysis: provider, malicious, utility, fail-closed classes (F-073): PASS  Ran 73 tests in 4.610s OK 
+CHECK F-056: the test double of the removed effectful recovery still recovers (control): PASS  Ran 1 test in 0.530s OK 
+CHECK V4.2 durable semantics (regression): PASS  Ran 44 tests in 32.602s OK 
+CHECK day-B deployment artefacts (manifests, identity, scripts): PASS  Ran 26 tests in 1.241s OK 
+CHECK live world: spec, effect map, context, admission, scenario/fault knobs: PASS  Ran 30 tests in 0.006s OK 
+CHECK live adapter: provider deviations, payment status/order/amount/currency, form accepted / meaning refused: PASS  55 cases: 15 form deviations accepted, 40 meaning deviations refused by name, 0 mismatches 
+CHECK live credential sources (env, OpenBao): PASS  Ran 21 tests in 0.017s OK 
+CHECK live payment through the durable two-phase dispatch (UNCERTAIN survives): PASS  Ran 10 tests in 8.631s OK 
+CHECK live profile wiring (no credential on the controller in v5): PASS  Ran 19 tests in 0.006s OK 
+CHECK V5 x Duffel composition: PL1 activated, isolated policy attacks, uncertain payment, a16 alone: PASS  Ran 37 tests in 43.889s OK 
+CHECK seeded world: fail-closed gateway and Authority admission: PASS  Ran 13 tests in 0.429s OK 
+CHECK OpenBao deployment artefacts:  PASS  Ran 18 tests in 0.046s OK 
+CHECK one fail-closed world wiring for every entry point: PASS  Ran 12 tests in 0.019s OK 
+CHECK C1: the downstream idempotency key is gateway-derived, never the controller's: PASS  Ran 6 tests in 0.573s OK 
+CHECK B1: the uncertain-outcome evidence names its injected fault: PASS  Ran 7 tests in 0.014s OK 
+CHECK chat continuation: one input, a waiting run is resumed, never replanned, never approved: PASS  Ran 16 tests in 0.078s OK 
+CHECK conversation is not authority: the approval facade and the chat facade apart: PASS  Ran 36 tests in 6.278s OK 
+CHECK UI and session edges: pause ends the turn, cross-conversation, pending approval, CSRF, orphan: PASS  Ran 9 tests in 0.105s OK 
+CHECK chat continuation: each tool result once, the human's reply after them: PASS  Ran 2 tests in 0.008s OK 
+CHECK A5c: the freeze names the measured image and reads its hardening, 19 judges the metadata path: PASS  Ran 8 tests in 0.107s OK 
+CHECK approval gate: a forged, replayed or misdirected WebAuthn assertion is refused: PASS  Ran 21 tests in 0.006s OK 
+CHECK approval gate: only a pinned passkey creates a run or approves a step, never the controller: PASS  Ran 25 tests in 15.369s OK 
+CHECK approval gate: the page the Authority serves, request hygiene, pinned approvers: PASS  Ran 14 tests in 11.433s OK 
+CHECK approval gate: whole runs decided at the Authority (person, harness), no bypass: PASS  Ran 7 tests in 22.137s OK 
+CHECK F-053: one serve lock, no interleaved mutation and persistence: PASS  Ran 2 tests in 2.093s OK 
+CHECK approval gate: signature counter never goes back: PASS  Ran 4 tests in 2.259s OK 
+CHECK F-049: enrollment needs a one-time code and the operator's confirmation of the key: PASS  Ran 8 tests in 0.063s OK 
+CHECK F-051: closed methods are refused from the first request: PASS  Ran 3 tests in 1.742s OK 
+CHECK F-046 binding version guard, F-063 AA reply is parsed: PASS  Ran 6 tests in 0.001s OK 
+CHECK every call site goes through the guarded entry point: PASS  Ran 3 tests in 0.423s OK 
+CHECK F-058 exact types in normalize, F-079 intervention report needs step and approval: PASS  Ran 162 tests in 26.027s OK 
+CHECK F-054: collateral is fetched only from the pinned root CRL URL: PASS  Ran 5 tests in 3.524s OK 
+CHECK F-061: probe and run init-data digests, the deployment reproduces the run digest: PASS  Ran 22 tests in 0.286s OK 
+CHECK probe recovery path is closed: PASS  Ran 5 tests in 0.518s OK 
+CHECK F-062 session package: what a missing sender authentication does and does not reach: PASS  Ran 3 tests in 0.010s OK 
+CHECK F-040 characterisation: the Authority signs a changed fact of a bound runner (accepted limit, not a defence): PASS  Ran 4 tests in 0.023s OK 
+CHECK attested decision path:        PASS  Ran 9 tests in 0.035s OK 
+CHECK equivalence evaluation of the attested path: PASS  Ran 8 tests in 0.008s OK 
+CHECK init-data digest is deterministic: PASS  Ran 4 tests in 0.032s OK 
+CHECK observation surface and its trust assumption (F-045): PASS  Ran 21 tests in 11.844s OK 
+CHECK attested transport proxy:      PASS  Ran 14 tests in 1.744s OK 
+CHECK OPA 0.68.0:                    PASS  /home/user/Documents/Master/Thesis/mocks/results_v5/opa/opa
+CHECK Kata agent policy: pinned image, one guest pull, annotation (OPA 0.68.0): PASS  Ran 23 tests in 2.158s OK (skipped=1) 
+CHECK test inventory: 40_verify_v5.sh and verify.py cover every test module: PASS  Ran 5 tests in 0.021s OK 
+CHECK cluster network:               PASS  default
+CHECK caa daemonset:                 PASS  ready 1/1
+CHECK runtimeclass:                  PASS  kata-remote handler=kata-remote
+CHECK caa image pin:                 PASS  quay.io/confidential-containers/cloud-api-adaptor:v0.21.1-amd64
+CHECK containerd gke-thesis-v5-v5-pool-b-3beeb1d5-4fnn: PASS  discard_unpacked_layers=false
+CHECK fw v5-allow-peerpod-tunnel:    PASS  VPC firewall rule
+CHECK fw v5-allow-peerpod-tunnel-return: PASS  VPC firewall rule
+CHECK fw policy rule 65000:          PASS  v5-runner-td-policy
+CHECK fw policy rule 1000:           PASS  v5-runner-td-policy
+CHECK fw policy rule 1001:           PASS  v5-runner-td-policy
+CHECK podvm subnet:                  PASS  v5-podvm=192.168.200.0/24, private-google-access=true
+CHECK fw policy association:         PASS  v5-runner-td-policy-default -> default
+CHECK annotations gke-thesis-v5-v5-pool-b-3beeb1d5-4fnn: PASS  both remote configs = ["cc_init_data"]
+CHECK substrate profile hash:        PASS  e6bc76a16b57fe4946abd3c0872bc1539d6571acaf7929c552050b5b948e3ae3 (pin in Authority reference values)
+CHECK v5 services:                   SKIP  not deployed (30_deploy_v5.sh)
+
+VERDICT: live GKE/CoCo substrate verification PASS
+NEXT: 18_probe_peer_pod.sh -> evidence verification -> 19_probe_network.sh

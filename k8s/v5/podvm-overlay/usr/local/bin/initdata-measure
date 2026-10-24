@@ -1,0 +1,117 @@
+#!/usr/bin/env bash
+# V5 pod-VM: measure the init-data digest into RTMR3 BEFORE any agent starts.
+#
+# Why: on GCE peer pods MRCONFIGID cannot be set (it is zero), so the init-data (genpolicy
+# policy, aa.toml, cdh.toml) that the kata-agent enforces is invisible to a verifier.
+# process-user-data writes the files and /run/peerpod/initdata.digest exactly once; this
+# unit reads that digest and extends RTMR3 with it, encoded exactly like an Attestation
+# Agent AAEL event so the relying party replays ONE format for the whole RTMR3 history:
+#     line          = "v5 init-data <digest-hex>"
+#     tagged_event  = LE32(0x4141454c "AAEL") || LE32(len(line)) || line
+#     event_digest  = SHA-384(tagged_event)
+#     RTMR3'        = SHA-384(RTMR3 || event_digest)          (done by the kernel on write)
+# Fail closed: any error exits non-zero and, through Requires= in the agent drop-ins,
+# keeps attestation-agent, confidential-data-hub, api-server-rest and kata-agent down.
+set -euo pipefail
+
+DIGEST_FILE="/run/peerpod/initdata.digest"
+RTMR3_SYSFS="/sys/devices/virtual/misc/tdx_guest/measurements/rtmr3:sha384"
+RECORD="/run/peerpod/initdata-measure.event"
+RAW="/run/peerpod/initdata-measure.raw"   # the 48 bytes, assembled before the write
+AAEL_ID_LE='\x4c\x45\x41\x41'   # 0x4141454c little-endian
+
+# ov11: also to the kernel ring buffer. The unit's stderr goes to the journal, and the journal
+# of a pod VM cannot be reached from anywhere: exec is denied by the measured policy, a hostPath
+# on a peer pod is the worker's filesystem, and kata passes no kernel_params to a peer pod, so
+# the journal cannot be mirrored to the console from the host either. /dev/kmsg lands on the
+# serial console, which 18_probe_peer_pod.sh records for every boot. The <3> prefix is KERN_ERR,
+# so the message survives the default console loglevel. Without this a refusal has no reason.
+kmsg() { echo "<3>initdata-measure: $*" > /dev/kmsg 2>/dev/null || true; }
+die() { echo "initdata-measure: $*" >&2; kmsg "$*"; exit 1; }
+
+# ov11: the wait covers BOTH preconditions, and the RTMR3 attribute is the one that failed.
+# After ov10 repaired the producer, `Finished process-user-data.service` MEANS the digest is on
+# disk, because the producer now verifies it before reporting success. The very first ov10 boot
+# still failed here, so the only precondition left was the measurement interface itself, and the
+# attestation agent writes that same attribute successfully later in the same boot.
+#
+# The digest half is defense in depth and NOT the fix for the 23.09.2026 defect. That one is
+# repaired in the producer (k8s/v5/podvm-patches/0001-bounded-provider-retry.patch), which used
+# to discard a transient metadata-provider failure, skip the cloud config and still report
+# success for a run that wrote nothing.
+#
+# Bounded either way, and a timeout still refuses: an unmeasured TD stays unusable, it never
+# boots on.
+WAIT_SECONDS="${INITDATA_MEASURE_WAIT:-30}"
+ready() { [ -w "${RTMR3_SYSFS}" ] && [ -s "${DIGEST_FILE}" ]; }
+state() { printf 'sysfs=%s digest=%s' \
+  "$([ -w "${RTMR3_SYSFS}" ] && echo ready || echo missing)" \
+  "$([ -s "${DIGEST_FILE}" ] && echo ready || echo missing)"; }
+waited=0
+while ! ready && [ "${waited}" -lt "${WAIT_SECONDS}" ]; do
+  sleep 1
+  waited=$((waited + 1))
+done
+if [ "${waited}" -gt 0 ]; then
+  kmsg "waited ${waited}s for the preconditions ($(state))"
+fi
+
+[ -w "${RTMR3_SYSFS}" ] || die "no writable TDX runtime-measurement interface at ${RTMR3_SYSFS} after ${WAIT_SECONDS}s (not a TDX guest, kernel too old, or the attribute was not registered in time)"
+[ -s "${DIGEST_FILE}" ] || die "no init-data digest at ${DIGEST_FILE} after ${WAIT_SECONDS}s (since ov10 the producer fails when it wrote nothing, so this should not be reachable)"
+
+digest="$(tr -d '[:space:]' < "${DIGEST_FILE}")"
+[[ "${digest}" =~ ^[0-9a-f]{64}$|^[0-9a-f]{96}$|^[0-9a-f]{128}$ ]] || die "digest is not a sha256/384/512 hex string"
+[ ! -e "${RECORD}" ] || die "already measured once in this boot (${RECORD} exists); refusing a second extend"
+
+line="v5 init-data ${digest}"
+len=${#line}
+le32="$(printf '\\x%02x\\x%02x\\x%02x\\x%02x' $((len & 255)) $(((len >> 8) & 255)) $(((len >> 16) & 255)) $(((len >> 24) & 255)))"
+
+event_digest_hex="$( { printf "${AAEL_ID_LE}"; printf "${le32}"; printf '%s' "${line}"; } | sha384sum | cut -d' ' -f1 )"
+[ ${#event_digest_hex} -eq 96 ] || die "sha384sum produced an unexpected digest"
+
+# 48 raw bytes to the kernel, in ONE write.
+#
+# ov13, and this is the defect that produced every intermittent failure since ov7. bash writes
+# its builtin printf through line-buffered stdio, so a 0x0a byte inside the digest flushes the
+# buffer and the single logical write becomes TWO write() syscalls. The RTMR3 attribute accepts
+# exactly 48 bytes at offset 0, so the first short write is refused with EINVAL and the second
+# never gets a chance. Proven on 23.09.2026 over 31 recorded boots, which separate without a
+# single exception by "the event digest contains a 0x0a before its last byte" — including the
+# one boot whose newline sat on byte 47, where the flush coincided with the full 48 bytes and
+# the extend succeeded. strace on the failing digest of 20260923T182217Z (newline at 17):
+# write(1, ..., 18) then write(1, ..., 30). The byte COUNT was right all along, which is why
+# counting bytes never found it; the number of syscalls was wrong.
+#
+# So the bytes are assembled in a file on tmpfs, their size is asserted, and dd performs one
+# read and one write of exactly 48 bytes. No shell buffering is involved in the write itself.
+printf "$(sed 's/../\\x&/g' <<< "${event_digest_hex}")" > "${RAW}"
+raw_size="$(wc -c < "${RAW}" 2>/dev/null | tr -d ' ' || echo 0)"
+[ "${raw_size}" -eq 48 ] || die "the encoder produced ${raw_size} bytes, not 48 (event digest ${event_digest_hex:0:16})"
+
+EXTEND_ATTEMPTS="${INITDATA_MEASURE_EXTEND_ATTEMPTS:-20}"
+EXTEND_DELAY="${INITDATA_MEASURE_EXTEND_DELAY:-0.2}"
+
+extend_rtmr3() {   # 0 on success, 1 when every attempt failed
+  # The retry stays: TDG.MR.RTMR.EXTEND is serialised by the TDX module, so a concurrent RTMR
+  # operation can still return BUSY. It is no longer load-bearing for the 23.09.2026 defect,
+  # which was deterministic per digest and is fixed above.
+  local attempt=0 err=""
+  while [ "${attempt}" -lt "${EXTEND_ATTEMPTS}" ]; do
+    attempt=$((attempt + 1))
+    if err="$(dd if="${RAW}" of="${RTMR3_SYSFS}" bs=48 count=1 status=none 2>&1)"; then
+      [ "${attempt}" -eq 1 ] || kmsg "RTMR3 extend succeeded on attempt ${attempt}"
+      return 0
+    fi
+    kmsg "RTMR3 extend attempt ${attempt}/${EXTEND_ATTEMPTS} rejected: ${err:-no message from the kernel}"
+    sleep "${EXTEND_DELAY}"
+  done
+  return 1
+}
+
+extend_rtmr3 || die "RTMR3 extend rejected by the kernel on all ${EXTEND_ATTEMPTS} attempts"
+rm -f "${RAW}"
+
+printf '%s\n%s\n' "${line}" "${event_digest_hex}" > "${RECORD}"
+echo "initdata-measure: RTMR3 extended with AAEL event '${line}' (event digest ${event_digest_hex:0:16}…)"
+kmsg "RTMR3 extended (event digest ${event_digest_hex:0:16})"

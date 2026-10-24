@@ -1,0 +1,5 @@
+# Resolved image digests + runner hash written by 20_build_push_images.sh.
+# Describes a specific ephemeral cluster/build; never commit it.
+.digests
+# Port-forward logs.
+*.log

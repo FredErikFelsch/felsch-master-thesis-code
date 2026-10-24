@@ -1,0 +1,75 @@
+{
+  "artefacts": {
+    "attach-20260905T150529Z.txt": "559e9efe9f5ba442d2756b8e798af11a9b420c94c4fa545d9d6dedecb0382378",
+    "binding-20260905T145032Z.json": "52c6ea63f7e60bf6851823e31f38b53dafa3259d669d80d81bc43f80eed7ef7e",
+    "boot-times-20260905T145032Z.txt": "3e49b7307fe40c624dacaab4003b8320497157ba4f121649b3b58fb94bc32271",
+    "dcap-20260905T145032Z.txt": "4d1087e4daaea7d408dd299478e6960c9fd5d3b4e96f7882f2aa5ec0bc7bb8d7",
+    "evidence-20260905T145032Z.log": "bac59f05665062087015294b296593413a85d8d6bde3429839d8d37973a89076",
+    "network-20260905T145808Z.txt": "059802bbc171449329e4e9212a2db497140040e15fb9cd54dae628be4bc015f8",
+    "podvm-fedora-tdx-caa-0-21-1-ov9.provenance.txt": "6b23db242c4c9c1f17e56b93fbd6ca82e8aa7ed8855d2f67c6bc2f5664b859ce",
+    "podvm-instances-20260905T145032Z.txt": "bf6b7d33b4be90ea1fbe5b3c659104a3b19167af891962981521fea5d11d3c98",
+    "reference-values-20260905T145032Z.json": "5515b79e67dde057c7a7ac3e112ea5c757900238e41d82d5eb4fe09f53925b9d",
+    "runner-attach-20260905T150529Z.plain.yaml": "e0a802678f26a2af69701535faf7fc7b504ecce03c7d4661192b1acd8c57be4f",
+    "runner-attach-20260905T150529Z.policy.rego": "5f6a89591961a76558a641bd535cf1ae0a6d1dc8dd087f7ac03b7599f13b5ab8",
+    "runner-attach-20260905T150529Z.yaml": "d33f1ba9f3e0326cc175bcca1c1019c58339a8caa2f632e20eca0234ec1a6e50",
+    "runner-peer-20260905T145032Z.plain.yaml": "ef5ff109c4365c46d89b6bddb63064cacf48f8272bee48bc377f09e93117c1d3",
+    "runner-peer-20260905T145032Z.policy.rego": "f711dd1a15d6748b149c7bc4acc7fa31696e02ba221492381583c23accf41885",
+    "runner-peer-20260905T145032Z.yaml": "3d7008b19a843cf523fae47eb6fd4b9b1f83c87ecd293e269b5865dae2384aa4",
+    "runtime-data-20260905T145032Z.txt": "2d5bdbd5f8b0b3328196f2b6c8d65f5984033a974ef10ec2f03b2c11c6f34b5c",
+    "serial-runner-peer-20260905T145032Z.txt": "fad4eeb25e0a3a46a323b44d81ad83ce4932542061d4a4a5377bdc174c6b9e78",
+    "substrate-40-20260905T145032Z.txt": "2b1fec2b98b38a172e215806cf61aee2f2c3e8f0c8614224d066b6879f388e73",
+    "verdict-20260905T145032Z.txt": "b4b1eff7bbe5e61cb40707d81de0ce62217a6b2de1e15487b34361b57e736772"
+  },
+  "dcap": {
+    "fmspc": "00806f050000",
+    "library": "libsgx-dcap-default-qpl 1.27.101.1-noble1, libsgx-dcap-quote-verify 1.27.101.1-noble1",
+    "qv_result": "OK"
+  },
+  "freeze_stamp": "20260905T145032Z",
+  "image": {
+    "caa": "0.21.1",
+    "caa_commit": "ea3ea1f063b10073a551d97e11d31169ca4648f5",
+    "file": "podvm-fedora-tdx-caa-0-21-1-ov9.provenance.txt",
+    "kata": "3.31.0",
+    "name": "podvm-fedora-tdx-caa-0-21-1-ov9",
+    "overlay_rev": 9,
+    "overlay_sha256": "e1c7e53d9a21e29a46caa940e668f9cbb85c40fd61b8f06fcb83dcf67adb5eab",
+    "system_raw_sha256": "a8fbe025268fa06089f6c36fa2bfec1c9c7fc1540d1f0adcea1604f94cac5674"
+  },
+  "init_data": {
+    "algorithm": "sha256",
+    "digest": "4345f94b1060650f4d5a9a0019c6a3c8d12f0713eac165666cf544151a0ec771"
+  },
+  "measurement": {
+    "mrseam": "ab62561a173acbd18ee50ff37750db44184c6cf5e886df74247cc575e163b04c34b9e18374757c235affa614d4127f6b",
+    "mrtd": "c1ee9c16e3afc506cfe042c5b846a368528f3b37618eafb27469bc114cf914e9222c91618470e7f2b28ac360968270a5",
+    "rtmr0": "c49d22aff6edb37cb6178defb05e0e2b512c26960e6ee73b1ea303365a31def807ab2ad71e5874236feca2ca552c6307",
+    "rtmr1": "4a8a71e039b967575469d40c7ef7d09205fb10310eb054a429d12c2aef6c0158d99fe5cc11f81e99e82bdb0422d4c129",
+    "rtmr2": "7a8a675c78d9c3bf0ec81286f7926bf25e18b0eec233239c138325ded7e5c5d897687d7aaf742f725ee5913071555843",
+    "tdattributes": "0000001000000000",
+    "tee_tcb_svn": "0f010a00000000000000000000000000",
+    "xfam": "e702060000000000"
+  },
+  "platform": "tdx",
+  "probe": {
+    "a5c": "HARDENED (V5_HARDEN_A5C=1)",
+    "attach": {
+      "rounds": 5,
+      "rtt_ms": [
+        403,
+        236,
+        236,
+        238,
+        239
+      ],
+      "stamp": "20260905T150529Z",
+      "verdict": "ATTACH_OK"
+    },
+    "network_stamp": "20260905T145808Z",
+    "p1": "READY_UNMEASURED_OK",
+    "p2": "EVIDENCE_OK",
+    "p3": "RTMR_OK"
+  },
+  "schema_version": 1,
+  "substrate_profile_hash": "e6bc76a16b57fe4946abd3c0872bc1539d6571acaf7929c552050b5b948e3ae3"
+}

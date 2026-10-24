@@ -1,0 +1,74 @@
+== regular pod (baseline: A5 as in V4.4c) ==
+-- pod: ns=v5-netprobe phase=Succeeded after 15 s; last event: Started: Container started
+BLOCKED canary:9000
+BLOCKED 34.118.233.10:9000
+BLOCKED 1.1.1.1:443
+OPEN    kube-dns.kube-system.svc.cluster.local:53
+OPEN    10.32.1.3:53
+BLOCKED 169.254.169.254:80
+-- routes --
+default via 169.254.4.6 dev eth0 
+169.254.4.6 dev eth0 scope link 
+-- addrs --
+    inet 10.32.1.254/32 scope global eth0
+    inet 127.0.0.1/8 scope host lo
+== peer pod, tunnelled networking (A5) ==
+-- pod: ns=v5-netprobe phase=Succeeded after 124 s; last event: Started: Container started
+BLOCKED canary:9000
+nc: bad address 'canary'
+BLOCKED 34.118.233.10:9000
+BLOCKED 1.1.1.1:443
+BLOCKED kube-dns.kube-system.svc.cluster.local:53
+nc: bad address 'kube-dns.kube-system.svc.cluster.local'
+BLOCKED 10.32.1.3:53
+OPEN    169.254.169.254:80
+-- routes --
+default via 169.254.4.6 dev eth0 
+169.254.4.6 dev eth0 scope link 
+169.254.169.254 dev veth2 scope link 
+-- addrs --
+    inet 127.0.0.1/8 scope host lo
+    inet 10.32.1.4/32 scope global eth0
+== CONTROL regular pod, NO policy (plumbing baseline) ==
+-- pod: ns=v5-netprobe-open phase=Succeeded after 7 s; last event: Started: Container started
+nc: bad address 'canary'
+BLOCKED canary:9000
+BLOCKED 34.118.233.10:9000
+OPEN    1.1.1.1:443
+OPEN    kube-dns.kube-system.svc.cluster.local:53
+OPEN    10.32.1.3:53
+OPEN    169.254.169.254:80
+-- routes --
+default via 169.254.4.6 dev eth0 
+169.254.4.6 dev eth0 scope link 
+-- addrs --
+    inet 127.0.0.1/8 scope host lo
+    inet 10.32.1.11/32 scope global eth0
+== CONTROL peer pod, NO policy (tunnel + ClusterIP translation without policy) ==
+-- pod: ns=v5-netprobe-open phase=Succeeded after 115 s; last event: Started: Container started
+nc: bad address 'canary'
+BLOCKED canary:9000
+BLOCKED 34.118.233.10:9000
+BLOCKED 1.1.1.1:443
+BLOCKED kube-dns.kube-system.svc.cluster.local:53
+nc: bad address 'kube-dns.kube-system.svc.cluster.local'
+BLOCKED 10.32.1.3:53
+OPEN    169.254.169.254:80
+-- routes --
+default via 169.254.4.6 dev eth0 
+169.254.4.6 dev eth0 scope link 
+169.254.169.254 dev veth2 scope link 
+-- addrs --
+    inet 127.0.0.1/8 scope host lo
+    inet 10.32.1.15/32 scope global eth0
+== pod VM service account (metadata-server exposure: the container has a route to 169.254.169.254) ==
+NAME                       EMAIL  SCOPES
+podvm-nginx-peer-1802841a
+== pod VM subnet check (A5b precondition): NIC must be in 192.168.200.0/24 ==
+NAME                       SUBNETWORK  NETWORK_IP
+podvm-nginx-peer-1802841a  v5-podvm    192.168.200.29
+== direct external networking enabled? (A5b precondition; CAA config) ==
+no external-networking setting found -> A5b NOT_APPLICABLE (tunnelled mode)
+== A5b firewall policy as deployed (deny all direct TD egress, allow only the Google API VIP) ==
+policy v5-runner-td-policy not found
+SUBNET_OK v5-podvm

@@ -1,0 +1,75 @@
+# V4.4c: the trusted Runner Controller. One replica (the rh-... handle map is
+# in-memory, so spawn and execute must hit the same pod), reachable by the
+# orchestrator only through its ClusterIP RPC service. Trusted initialisation: its
+# fixed launch configuration comes from a mounted Secret file and Deployment args set
+# by the trusted deploy step, not from the orchestrator.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: controller
+  namespace: agent-system
+spec:
+  replicas: 1                     # single controller: in-memory handle map
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels: {app: controller}
+  template:
+    metadata:
+      labels: {app: controller}
+    spec:
+      serviceAccountName: controller-sa   # the ONLY SA with Job verbs
+      automountServiceAccountToken: true
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: controller
+          image: ${CONTROLLER_IMAGE}      # digest-pinned, trusted
+          command: ["python3", "-m", "booking_v4.controller_k8s_process"]
+          args:
+            - "--tcp"
+            - "0.0.0.0:9443"
+            - "--namespace"
+            - "agent-system"
+            - "--runner-image"
+            - "${RUNNER_IMAGE}"           # expected digest, the controller pins it
+            - "--authority-endpoint"
+            - "authority.agent-system.svc.cluster.local:8443"
+            - "--config-file"
+            - "/secrets/controller-config.json"
+          ports:
+            - {name: rpc, containerPort: 9443}
+          # Ready only once cleanup_orphans() has finished and the RPC listener is
+          # bound, so `rollout status deploy/controller` (used by the crash test)
+          # means the controller is reachable, not merely scheduled.
+          readinessProbe:
+            tcpSocket: {port: 9443}
+            initialDelaySeconds: 1
+            periodSeconds: 1
+            timeoutSeconds: 1
+            failureThreshold: 30
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities: {drop: ["ALL"]}
+          volumeMounts:
+            - {name: bootstrap, mountPath: /secrets, readOnly: true}
+          resources:
+            limits: {memory: 512Mi}
+            requests: {memory: 256Mi, cpu: 100m}
+      volumes:
+        - name: bootstrap
+          secret: {secretName: deployment-bootstrap}   # file mount, controller-sa needs no secrets/get
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: controller
+  namespace: agent-system
+spec:
+  type: ClusterIP
+  selector: {app: controller}
+  ports:
+    - {name: rpc, port: 9443, targetPort: 9443}

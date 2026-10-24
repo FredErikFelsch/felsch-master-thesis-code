@@ -1,0 +1,37 @@
+# V5: what the gateway needs in order to read its credentials from OpenBao.
+#
+# A strategic-merge patch rather than an edited services.yaml, so the mock deployment
+# stays as it was and the live deployment is this file plus that one. Applying it twice
+# changes nothing.
+#
+# `automountServiceAccountToken: false` is not touched. The gateway still receives no
+# general-purpose Kubernetes API credential. What it receives is one projected token, bound
+# to the audience `openbao` and valid for an hour, which the kubelet rotates. A token issued
+# for one audience cannot be replayed against the Kubernetes API, so this grants less than
+# switching automounting back on.
+#
+# The runner, by contrast, has no projected token, no ServiceAccount token at all, and no
+# egress to OpenBao. It cannot present anything to OpenBao, so there is nothing for OpenBao
+# to refuse. 38_negative_live_v5.sh records this as negative evidence. It follows from the
+# runner's manifest, not from a rule someone has to maintain.
+spec:
+  template:
+    spec:
+      containers:
+        - name: gateway
+          env:
+            - {name: BAO_ADDR, value: "http://openbao.agent-system.svc:8200"}
+            - {name: BAO_ROLE, value: "gateway"}
+            - {name: BAO_MOUNT, value: "secret"}
+            - {name: BAO_PATH, value: "agent"}
+            - {name: BAO_SA_TOKEN_PATH, value: "/var/run/secrets/openbao/token"}
+          volumeMounts:
+            - {name: bao-token, mountPath: /var/run/secrets/openbao, readOnly: true}
+      volumes:
+        - name: bao-token
+          projected:
+            sources:
+              - serviceAccountToken:
+                  path: token
+                  audience: openbao
+                  expirationSeconds: 3600

@@ -1,0 +1,67 @@
+== regular pod (baseline: A5 as in V4.4c) ==
+-- pod: ns=v5-netprobe phase=Succeeded after 63 s, last event: Started: Container started
+BLOCKED canary.v5-netprobe.svc.cluster.local:9000
+BLOCKED 34.118.235.40:9000
+BLOCKED 1.1.1.1:443
+OPEN    kube-dns.kube-system.svc.cluster.local:53
+OPEN    10.36.1.12:53
+BLOCKED 169.254.169.254:80
+-- routes --
+default via 169.254.4.6 dev eth0 
+169.254.4.6 dev eth0 scope link 
+-- addrs --
+    inet 127.0.0.1/8 scope host lo
+    inet 10.36.1.22/32 scope global eth0
+== peer pod, tunnelled networking (A5) ==
+-- pod VM (captured while alive): podvm-np-8190c262	v5-podvm	192.168.200.6	
+-- pod: ns=v5-netprobe phase=Succeeded after 140 s, last event: Started: Container started
+BLOCKED canary.v5-netprobe.svc.cluster.local:9000
+BLOCKED 34.118.235.40:9000
+BLOCKED 1.1.1.1:443
+OPEN    kube-dns.kube-system.svc.cluster.local:53
+OPEN    10.36.1.12:53
+BLOCKED 169.254.169.254:80
+-- routes --
+default via 169.254.4.6 dev eth0 
+169.254.4.6 dev eth0 scope link 
+-- addrs --
+    inet 127.0.0.1/8 scope host lo
+    inet 10.36.1.23/32 scope global eth0
+== CONTROL regular pod, no policy (plumbing baseline) ==
+-- pod: ns=v5-netprobe-open phase=Succeeded after 7 s, last event: Started: Container started
+OPEN    canary.v5-netprobe-open.svc.cluster.local:9000
+OPEN    34.118.238.120:9000
+OPEN    1.1.1.1:443
+OPEN    kube-dns.kube-system.svc.cluster.local:53
+OPEN    10.36.1.12:53
+OPEN    169.254.169.254:80
+-- routes --
+default via 169.254.4.6 dev eth0 
+169.254.4.6 dev eth0 scope link 
+-- addrs --
+    inet 127.0.0.1/8 scope host lo
+    inet 10.36.1.24/32 scope global eth0
+== CONTROL peer pod, no policy (tunnel + ClusterIP translation without policy) ==
+-- pod VM (captured while alive): podvm-np-853e00c5	v5-podvm	192.168.200.7	
+-- pod: ns=v5-netprobe-open phase=Succeeded after 119 s, last event: Started: Container started
+OPEN    canary.v5-netprobe-open.svc.cluster.local:9000
+OPEN    34.118.238.120:9000
+OPEN    1.1.1.1:443
+OPEN    kube-dns.kube-system.svc.cluster.local:53
+OPEN    10.36.1.12:53
+OPEN    169.254.169.254:80
+-- routes --
+default via 169.254.4.6 dev eth0 
+169.254.4.6 dev eth0 scope link 
+-- addrs --
+    inet 127.0.0.1/8 scope host lo
+    inet 10.36.1.25/32 scope global eth0
+== pod VM NIC / service account (A5b precondition: NIC in 192.168.200.0/24, metadata exposure: SA on the VM) ==
+   see the '-- pod VM (captured while alive)' lines above. The CAA deletes each pod VM as soon as its pod finishes
+== direct external networking enabled? (A5b precondition, CAA config) ==
+no external-networking setting found -> A5b NOT_APPLICABLE (tunnelled mode)
+== A5b firewall policy as deployed (deny all direct TD egress, allow only the Google API VIP) ==
+PRIORITY                                                             DIRECTION                                                                 ACTION                                                                          SRC_IP_RANGES                                                                                    DEST_IP_RANGES                                                                        LAYER4_CONFIGS
+[1000, 1001, 65000, 2147483644, 2147483645, 2147483646, 2147483647]  ['EGRESS', 'EGRESS', 'EGRESS', 'EGRESS', 'INGRESS', 'EGRESS', 'INGRESS']  ['allow', 'allow', 'deny', 'goto_next', 'goto_next', 'goto_next', 'goto_next']  ['192.168.200.0/24'],['192.168.200.0/24'],['192.168.200.0/24'],None,['::/0'],None,['0.0.0.0/0']  ['199.36.153.8/30'],['10.164.0.0/20'],['0.0.0.0/0'],['::/0'],None,['0.0.0.0/0'],None  [{'ipProtocol': 'tcp', 'ports': ['443']}],[{'ipProtocol': 'udp', 'ports': ['4789']}],[{'ipProtocol': 'all'}],[{'ipProtocol': 'all'}],[{'ipProtocol': 'all'}],[{'ipProtocol': 'all'}],[{'ipProtocol': 'all'}]
+SUBNET_OK v5-podvm
+A5C_CLOSED (peer pod under policy: BLOCKED 169.254.169.254:80)

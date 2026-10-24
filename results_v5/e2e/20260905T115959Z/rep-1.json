@@ -1,0 +1,32 @@
+{
+  "stamp": "20260905T115959Z",
+  "run_id": "run-20260905T115957Z-r1",
+  "steps": [
+    {
+      "run_id": "run-20260905T115957Z-r1",
+      "step": 0,
+      "td": "runner-td-dktvx",
+      "outcome": "ACCEPTED",
+      "accepted": true,
+      "effects": 1,
+      "pending_effects": 0,
+      "foreign_effects": 0,
+      "fragment_hash": "87cf9c7c69625a55935a6a4a9c4cdf794318b09811e394f91e86591ebda738f0",
+      "state_hash": "548127278d936e48271f3c880617e3d1a571d249bb8169c1aaa0a3dad94d498c",
+      "refusal": null,
+      "result_status": "STEP_COMPLETED",
+      "timings": {
+        "spawn": 1.1106235000042943,
+        "ready": 0.0,
+        "boot_key": 0.5165206250094343,
+        "evidence": 2.539349750004476,
+        "verification": 1.6700524589978158,
+        "execution": 0.316922166995937,
+        "destroy": 17.508074332989054
+      },
+      "total_s": 23.66154283400101,
+      "cleanup_mode": "gce_confirmed_finalizer_cleanup",
+      "indeterminate": null
+    }
+  ]
+}

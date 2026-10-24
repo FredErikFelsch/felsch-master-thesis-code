@@ -1,0 +1,66 @@
+{
+  "scenario": "A20-intervention-expiry",
+  "clock_mode": "live",
+  "chain": "v5",
+  "ttl_s": 60,
+  "waited_s": 70,
+  "wall_s": 116.4,
+  "approval": {
+    "issued_at": 1792148410,
+    "expires_at": 1792148470
+  },
+  "late": {
+    "status": "GRANT_REFUSED",
+    "reason": "manual intervention required: intervention approval outside its validity window"
+  },
+  "control": {
+    "status": "STEP_COMPLETED",
+    "reason": "step 3 confirmed and validated"
+  },
+  "pay_effects_after_late": 0,
+  "pay_effects_after_control": 1,
+  "pending_after_control": 0,
+  "run_status": "COMPLETED",
+  "manifest": {
+    "manifest_version": 1,
+    "recorded_at": "2026-10-16T11:02:07Z",
+    "git": {
+      "commit": "f4042c8c456a93a3f00137705fb97ddd671c6138",
+      "dirty": true,
+      "branch": "main"
+    },
+    "policies": {
+      "P2": "66c97606690fe0cd7d442928cf4db514157e682d8f8b6ee53fb13cfdb458e655",
+      "P2.1": "254054d2ab7db1d1f5c7ab2244ceefbb5e536c469481b4ec895650859ea260d4",
+      "P3": "de054d83d565c2c882770ab165c4a935ba02dafb61e67d1877a7470892e19a52",
+      "P3+pay-approval": "28df9debbcff93a11c20ec4ce11f1014e0322e7eece59116fb968017ce52fef8"
+    },
+    "registry": {
+      "policy_schema": "ps-3",
+      "constraint": "cr-1",
+      "fact": "fr-2",
+      "fact_extension": "fr-2.1"
+    },
+    "ttl": {
+      "token_s": 120,
+      "intervention_s": 300
+    },
+    "clock_mode": "live",
+    "verifier": null,
+    "images": {
+      "CONTROLLER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:7efef13effa607b9e9d513d3288de5f56a42e41e0b6d2afba39e1191db3871a0",
+      "RUNNER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:7efef13effa607b9e9d513d3288de5f56a42e41e0b6d2afba39e1191db3871a0",
+      "RUNNER_PROCESS_SHA256": "93eb0e7a3ba74f82963547fbf389ac24e1f22f89d8a0add4c77a67a1e54a1a3c",
+      "RUNNER_SOURCE_SHA256": "4496b223c75904772bde049c05756202232e82123562f036641f3339d8baa4cb",
+      "RUNNER_PYTHON": "/usr/local/bin/python3",
+      "SERVICES_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking-services@sha256:077cb3ee73fe484037e06b07b8f1ee3a4efce8b0292eb37e3580c2a3743a189d"
+    },
+    "freeze": {
+      "stamp": "20261016T100620Z",
+      "sha256": "c3b7040f8621f0c3b44b43e0eac18570079f05bbce8926bce817639794a52c80"
+    },
+    "python": "3.13.3",
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O"
+  },
+  "pass": true
+}

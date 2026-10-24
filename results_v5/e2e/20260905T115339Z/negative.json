@@ -1,0 +1,77 @@
+{
+  "stamp": "20260905T115339Z",
+  "run_id": "run-20260905T115339Z",
+  "results": {
+    "A14": {
+      "refusal": "evidence-missing",
+      "legacy_establish": "METHOD_NOT_FOUND",
+      "pass": true
+    },
+    "A10": {
+      "run_id": "run-20260905T115339Z",
+      "step": 0,
+      "td": "runner-td-qwv6q",
+      "outcome": "REFUSED(binding-mismatch)",
+      "accepted": false,
+      "effects": 0,
+      "pending_effects": 0,
+      "foreign_effects": 0,
+      "fragment_hash": "8166e095f7cb8db9c601bc1911f1a72d82732ba5ccc6f1486a44f1e7ff7f1dab",
+      "state_hash": "84872815447862dd21b07faefa2e0140a0f04855252c097a402cc43769d65778",
+      "refusal": {
+        "rule": "binding-mismatch",
+        "detail": "",
+        "stage": "relying-party"
+      },
+      "result_status": null,
+      "timings": {
+        "spawn": 84.98631691699848,
+        "ready": 83.22627545899013,
+        "boot_key": 0.6589349170099013,
+        "evidence": 2.593285957991611,
+        "verification": 1.762359166998067,
+        "execution": null,
+        "destroy": 17.204683791002026
+      },
+      "total_s": 107.20558075000008,
+      "cleanup_mode": "gce_confirmed_finalizer_cleanup",
+      "indeterminate": null,
+      "pass": true
+    },
+    "A16": {
+      "run_id": "run-20260905T115339Z",
+      "step": 0,
+      "td": "runner-td-f6qpz",
+      "outcome": "ANOMALOUS",
+      "accepted": false,
+      "effects": 0,
+      "pending_effects": 0,
+      "foreign_effects": 0,
+      "fragment_hash": "8166e095f7cb8db9c601bc1911f1a72d82732ba5ccc6f1486a44f1e7ff7f1dab",
+      "state_hash": "84872815447862dd21b07faefa2e0140a0f04855252c097a402cc43769d65778",
+      "refusal": null,
+      "result_status": "RUNNER_ERROR",
+      "timings": {
+        "spawn": 92.50620820900076,
+        "ready": 91.74023266699805,
+        "boot_key": 0.5264097920007771,
+        "evidence": 0.3584145409986377,
+        "verification": 1.8088353329949314,
+        "execution": 0.24613695898733567,
+        "destroy": 16.486328624989255
+      },
+      "total_s": 111.9323334589717,
+      "cleanup_mode": "gce_confirmed_finalizer_cleanup",
+      "indeterminate": null,
+      "pass": true,
+      "note": "the TD refused the swapped fragment (RUNNER_ERROR, ledger 0)"
+    },
+    "A11": {
+      "pass": true,
+      "refused_in_td": true,
+      "ledger_rows": 0,
+      "detail": "ProtocolError: expected 'v5-evidence', got 'runner-result'",
+      "note": "the runner bound once; a second challenge was refused in the TD (ledger 0)"
+    }
+  }
+}

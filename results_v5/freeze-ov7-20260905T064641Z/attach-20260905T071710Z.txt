@@ -1,0 +1,8 @@
+attach opened in 0.18 s
+round 0: ok  rtt=409 ms got='echo:ping 0 eb44f5589e736e5d'
+round 1: ok  rtt=240 ms got='echo:ping 1 6fc00f0e42723d24'
+round 2: ok  rtt=242 ms got='echo:ping 2 974f2843102ad54f'
+round 3: ok  rtt=239 ms got='echo:ping 3 7b7ad015850c0ec2'
+round 4: ok  rtt=237 ms got='echo:ping 4 945b1026bc7c7beb'
+{"verdict": "ATTACH_OK", "rounds": 5, "rtt_ms": [409, 240, 242, 239, 237]}
+banner: MISSING (echo loop did not start, or logs are not readable)

@@ -1,0 +1,79 @@
+{
+  "stamp": "20260910T133231Z",
+  "run_id": "run-20260910T133228Z-r6",
+  "manifest": {
+    "manifest_version": 1,
+    "recorded_at": "2026-09-10T13:42:35Z",
+    "git": {
+      "commit": "a20bb23764432b5075170543cc26984d3b7470f9",
+      "dirty": true,
+      "branch": "main"
+    },
+    "policies": {
+      "P2": "66c97606690fe0cd7d442928cf4db514157e682d8f8b6ee53fb13cfdb458e655",
+      "P2.1": "254054d2ab7db1d1f5c7ab2244ceefbb5e536c469481b4ec895650859ea260d4",
+      "P3": "de054d83d565c2c882770ab165c4a935ba02dafb61e67d1877a7470892e19a52",
+      "P3+pay-approval": "28df9debbcff93a11c20ec4ce11f1014e0322e7eece59116fb968017ce52fef8"
+    },
+    "registry": {
+      "policy_schema": "ps-3",
+      "constraint": "cr-1",
+      "fact": "fr-2",
+      "fact_extension": "fr-2.1"
+    },
+    "ttl": {
+      "token_s": 120,
+      "intervention_s": 300
+    },
+    "clock_mode": "system",
+    "verifier": "TdxVerifier",
+    "images": {
+      "CONTROLLER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:b4eef4fe17589f15fc0f0817395ee10245c4f902c549c79626ee2a8df6b26e66",
+      "RUNNER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:b4eef4fe17589f15fc0f0817395ee10245c4f902c549c79626ee2a8df6b26e66",
+      "RUNNER_PROCESS_SHA256": "46213bc3cc0a8e14c24c9bfb9a4a813f0b7df2c14ab8bc6ce7568333800bd925",
+      "RUNNER_PYTHON": "/usr/local/bin/python3",
+      "SERVICES_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking-services@sha256:26afa9606e46650a8cfc93dc8b8d2baaf2116cdb0e99500b828a76a1b7957868"
+    },
+    "freeze": {
+      "stamp": "20260905T145032Z",
+      "sha256": "bd31080bd1cfb2f2c513f22a1a21ad008047a22426c835d429bfc90a2a4e6ba1"
+    },
+    "python": "3.13.3",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O"
+  },
+  "steps": [
+    {
+      "run_id": "run-20260910T133228Z-r6",
+      "step": 0,
+      "td": "runner-td-pkn94",
+      "outcome": "REFUSED(boot-measurement-mismatch)",
+      "accepted": false,
+      "effects": 0,
+      "pending_effects": 0,
+      "foreign_effects": 0,
+      "fragment_hash": "be5eb4a52f1335605d9d1eeecaae75a5fabea64af7fa0ee7d28856bf3290ecd2",
+      "state_hash": "a934411182b050c9b3ae2a0e446e7cb47b555d01dca228c28bc0dc909076ecf1",
+      "refusal": {
+        "rule": "boot-measurement-mismatch",
+        "detail": "rtmr0 got=5eeb1d573d3aad53a115ac7ccce2d773ced06ff7175038843d98b2bddf786123ff54094e27878243688bae4e5bd920ce want=c49d22aff6edb37cb6178defb05e0e2b512c26960e6ee73b1ea303365a31def807ab2ad71e5874236feca2ca552c6307",
+        "stage": "relying-party"
+      },
+      "result_status": null,
+      "appraisal": {},
+      "timings": {
+        "spawn": 95.10917983396212,
+        "ready": 91.08192833402427,
+        "boot_key": 0.6016234589624219,
+        "evidence": 0.3600395829998888,
+        "verification": 0.2704890000168234,
+        "execution": null,
+        "destroy": 18.128506500041112
+      },
+      "total_s": 114.46983837598236,
+      "handoff": "cold",
+      "cleanup_mode": "gce_confirmed_finalizer_cleanup",
+      "indeterminate": null,
+      "evidence_bin": "/home/user/Documents/Master/Thesis/mocks/results_v5/e2e/20260910T133231Z/evidence-runner-td-pkn94.bin"
+    }
+  ]
+}

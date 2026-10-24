@@ -1,0 +1,102 @@
+{
+ "claim": "uncertain",
+ "run": "20261016T135630Z-v5-clean-scripted-duffel",
+ "verdict": "PASS",
+ "checks": [
+  {
+   "check": "the payment's outcome is UNCERTAIN",
+   "pass": true,
+   "detail": "EFFECT_UNCERTAIN"
+  },
+  {
+   "check": "the loss is declared as an injected fault",
+   "pass": true,
+   "detail": "pay_order outcome not established: response lost (injected fault lose-payment-response)"
+  },
+  {
+   "check": "the run is parked, not ACTIVE and not COMPLETED",
+   "pass": true,
+   "detail": "EFFECT_UNCERTAIN"
+  },
+  {
+   "check": "no payment is recorded as confirmed",
+   "pass": true,
+   "detail": []
+  },
+  {
+   "check": "exactly one dispatch row for the payment step",
+   "pass": true,
+   "detail": 1
+  },
+  {
+   "check": "the retry was refused before any grant",
+   "pass": true,
+   "detail": [
+    "ATTESTATION_REFUSED: REFUSED(run-not-at-step)"
+   ]
+  },
+  {
+   "check": "Duffel: the payment really happened (the effect crossed)",
+   "pass": true,
+   "detail": {
+    "id": "ord_0000BBTIOpeWqKc0BlWZKj",
+    "awaiting_payment": false,
+    "paid_at": "2026-10-16T14:01:07Z",
+    "total": "238.58 EUR"
+   }
+  },
+  {
+   "check": "gateway deployed with WORLD_FAULT=lose-payment-response",
+   "pass": true,
+   "detail": {
+    "WORLD_FAULT": "lose-payment-response"
+   }
+  },
+  {
+   "check": "gateway log: the provider confirmed this order, the response was withheld",
+   "pass": true,
+   "detail": [
+    "[gateway] FAULT lose-payment-response: pay_order action_id=pay_order-demo-20261016T135630Z-5 effect_identity=pay_order:demo-20261016T135630Z:3:eb971bc6a5be45a6318a22434c1a4f0afce5da0370b6bcb9184ae879b4daae0b counterparty CONFIRMED order_id=ord_0000BBTIOpeWqKc0BlWZKj payment_id=pay_0000BBTIaiXx6Vf5hqkN1s; response withheld from the run"
+   ]
+  },
+  {
+   "check": "fault record: injected, dispatch observed, response suppressed, UNCERTAIN",
+   "pass": true,
+   "detail": {
+    "fault_injection": true,
+    "fault_knob": "lose-payment-response",
+    "fault_type": "drop_provider_response_after_dispatch",
+    "provider_dispatch": "observed",
+    "gateway_response_to_controller": "suppressed",
+    "result": "UNCERTAIN"
+   }
+  }
+ ],
+ "fault": {
+  "fault_injection": true,
+  "fault_knob": "lose-payment-response",
+  "fault_type": "drop_provider_response_after_dispatch",
+  "provider_dispatch": "observed",
+  "provider_dispatch_evidence": {
+   "gateway_log": [
+    "[gateway] FAULT lose-payment-response: pay_order action_id=pay_order-demo-20261016T135630Z-5 effect_identity=pay_order:demo-20261016T135630Z:3:eb971bc6a5be45a6318a22434c1a4f0afce5da0370b6bcb9184ae879b4daae0b counterparty CONFIRMED order_id=ord_0000BBTIOpeWqKc0BlWZKj payment_id=pay_0000BBTIaiXx6Vf5hqkN1s; response withheld from the run"
+   ],
+   "duffel_paid_at": "2026-10-16T14:01:07Z",
+   "withheld_payment_ids": [
+    "pay_0000BBTIaiXx6Vf5hqkN1s"
+   ]
+  },
+  "gateway_response_to_controller": "suppressed",
+  "result": "UNCERTAIN"
+ },
+ "provider": {
+  "id": "ord_0000BBTIOpeWqKc0BlWZKj",
+  "awaiting_payment": false,
+  "paid_at": "2026-10-16T14:01:07Z",
+  "total": "238.58 EUR"
+ },
+ "gateway_env": {
+  "WORLD_FAULT": "lose-payment-response"
+ },
+ "retries": 1
+}

@@ -1,0 +1,91 @@
+{
+  "stamp": "20260929T135055Z",
+  "run_id": "run-20260929T135054Z-r5",
+  "manifest": {
+    "manifest_version": 1,
+    "recorded_at": "2026-09-29T14:08:47Z",
+    "git": {
+      "commit": "8f179738774b4a1ffc2acdc9ae2d65079a11f31e",
+      "dirty": true,
+      "branch": "main"
+    },
+    "policies": {
+      "P2": "66c97606690fe0cd7d442928cf4db514157e682d8f8b6ee53fb13cfdb458e655",
+      "P2.1": "254054d2ab7db1d1f5c7ab2244ceefbb5e536c469481b4ec895650859ea260d4",
+      "P3": "de054d83d565c2c882770ab165c4a935ba02dafb61e67d1877a7470892e19a52",
+      "P3+pay-approval": "28df9debbcff93a11c20ec4ce11f1014e0322e7eece59116fb968017ce52fef8"
+    },
+    "registry": {
+      "policy_schema": "ps-3",
+      "constraint": "cr-1",
+      "fact": "fr-2",
+      "fact_extension": "fr-2.1"
+    },
+    "ttl": {
+      "token_s": 120,
+      "intervention_s": 300
+    },
+    "clock_mode": "system",
+    "verifier": "TdxVerifier",
+    "images": {
+      "CONTROLLER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:468b0ca06f6c07064b5bae91a6fdd788df4330be60e5d58bbe3f47fc6aec7681",
+      "RUNNER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:468b0ca06f6c07064b5bae91a6fdd788df4330be60e5d58bbe3f47fc6aec7681",
+      "RUNNER_PROCESS_SHA256": "ee153e2790a7a5481d60d04e750a7770c13a99866448bbc9756041d5c54464db",
+      "RUNNER_SOURCE_SHA256": "07c694c24e5fc956ee5bfff46b1211c0e6e6a3cda0c23c0b39ccfaa3ee21eac0",
+      "RUNNER_PYTHON": "/usr/local/bin/python3",
+      "SERVICES_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking-services@sha256:7d82c2ecac33201793a9c854b0ad8bb0a0ecdc14b99163be1ef4fc186085c9a7"
+    },
+    "freeze": {
+      "stamp": "20260929T111343Z",
+      "sha256": "7b58d5271ee10ae51fe14823f372904be914e024799dc7ee00dba3e3f1382ffa"
+    },
+    "python": "3.13.3",
+    "platform": "macOS-27.0-arm64-arm-64bit-Mach-O",
+    "observation_check": "bound"
+  },
+  "steps": [
+    {
+      "run_id": "run-20260929T135054Z-r5",
+      "step": 0,
+      "td": "runner-td-kk9px",
+      "outcome": "ACCEPTED",
+      "accepted": true,
+      "effects": 1,
+      "pending_effects": 0,
+      "foreign_effects": 0,
+      "fragment_hash": "cea72bd94613dacb9477f25bf6660a874f512ef1cc61ba8d59a76882f1497b18",
+      "state_hash": "b07658bb0f8d4e95269cdcefece1fa827268ffdd204fe3a8c67a28aa7371e4b8",
+      "refusal": null,
+      "result_status": "STEP_COMPLETED",
+      "result_reason": "step 0 confirmed and validated",
+      "has_successor": true,
+      "appraisal": {
+        "advisory_ids": [],
+        "binding_version": "v5.1",
+        "collateral_earliest_expiration": "2026-10-29T12:24:34Z",
+        "fmspc": "00806f050000",
+        "qv_result": "OK",
+        "tcb_eval_ref_num": 20,
+        "tcb_level_date_tag": "2025-08-13T00:00:00Z",
+        "verdicts_attested": true,
+        "verifier": "TdxVerifier"
+      },
+      "timings": {
+        "spawn": 88.5432635829784,
+        "ready": 87.72174583398737,
+        "boot_key": 0.5711604999378324,
+        "evidence": 0.33334500005003065,
+        "verification": 0.2032677080715075,
+        "execution": 0.42668912501540035,
+        "destroy": 20.99517041700892
+      },
+      "total_s": 111.07289633306209,
+      "handoff": "cold",
+      "cleanup_mode": "gce_confirmed_finalizer_cleanup",
+      "indeterminate": null,
+      "ledger_measured": true,
+      "ledger_error": null,
+      "cleanup_error": null
+    }
+  ]
+}

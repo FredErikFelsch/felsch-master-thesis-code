@@ -1,0 +1,204 @@
+# V4.4c: the in-cluster evaluation harness for the frozen semantic-equivalence run (freeze gate).
+#
+# Why in-cluster: the frozen evaluation harness (booking_v4.experiment_k8s)
+# co-locates the durable Authority/Gateway with itself and the runner Job pods must
+# reach that Authority. Runner egress is confined to pods labelled app=authority
+# on 8443, so the harness pod is the Authority for this evaluation: it carries
+# app=authority, is fronted by a Service named `authority`, and lives in its own
+# namespace `agent-eval`, so nothing here touches the agent-system deployment
+# (the enforcement topology of tests_k8s), its Service endpoints or its policies.
+#
+# The runner side is the same as in agent-system: runner-sa (no token, the fixed
+# profile sets automountServiceAccountToken: false), namespace default-deny and a
+# copy of `runner-egress` (tests_k8s_offline asserts that its spec equals the
+# agent-system one). The harness plays the controller role, so eval-sa holds the
+# controller Role's verbs (Job lifecycle, pods read, pods/attach get+create). No
+# secrets, no RBAC, no deployments. Applied and awaited by scripts/gke/60_run_freeze_eval.sh.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: agent-eval
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: runner-sa
+  namespace: agent-eval
+automountServiceAccountToken: false
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: eval-sa
+  namespace: agent-eval
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: eval-harness
+  namespace: agent-eval
+rules:
+  - apiGroups: ["batch"]
+    resources: ["jobs"]
+    verbs: ["create", "get", "list", "watch", "delete"]
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["pods/attach"]
+    verbs: ["get", "create"]       # WebSocket attach = GET, see rbac.yaml
+  - apiGroups: [""]
+    resources: ["pods/log"]
+    verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: eval-can-manage-runners
+  namespace: agent-eval
+subjects:
+  - kind: ServiceAccount
+    name: eval-sa
+    namespace: agent-eval
+roleRef:
+  kind: Role
+  name: eval-harness
+  apiGroup: rbac.authorization.k8s.io
+---
+# Namespace-wide default-deny, as in agent-system.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-all
+  namespace: agent-eval
+spec:
+  podSelector: {}
+  policyTypes: ["Ingress", "Egress"]
+---
+# Runner: copy of agent-system/runner-egress (its spec is compared offline).
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: runner-egress
+  namespace: agent-eval
+spec:
+  podSelector:
+    matchLabels: {app: runner}
+  policyTypes: ["Ingress", "Egress"]
+  egress:
+    - to:
+        - podSelector:
+            matchLabels: {app: authority}
+      ports:
+        - {protocol: TCP, port: 8443}
+    - to:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: kube-system}
+      ports:
+        - {protocol: UDP, port: 53}
+        - {protocol: TCP, port: 53}
+---
+# Harness (= this evaluation's Authority + controller role): ingress from runners
+# on 8443 (and from itself: the harness reaches its own Authority through the
+# Service, a hairpin). Egress to itself, DNS and the Kubernetes API (443).
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: eval-harness-policy
+  namespace: agent-eval
+spec:
+  podSelector:
+    matchLabels: {app: authority}
+  policyTypes: ["Ingress", "Egress"]
+  ingress:
+    - from:
+        - podSelector: {matchLabels: {app: runner}}
+        - podSelector: {matchLabels: {app: authority}}
+      ports:
+        - {protocol: TCP, port: 8443}
+  egress:
+    - to:
+        - podSelector: {matchLabels: {app: authority}}
+      ports:
+        - {protocol: TCP, port: 8443}
+    - to:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: kube-system}
+      ports:
+        - {protocol: UDP, port: 53}
+        - {protocol: TCP, port: 53}
+    - to:
+        - ipBlock: {cidr: 0.0.0.0/0}   # Kubernetes API server (Job lifecycle, attach)
+      ports:
+        - {protocol: TCP, port: 443}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: authority
+  namespace: agent-eval
+spec:
+  type: ClusterIP
+  selector: {app: authority}
+  ports:
+    - {name: rpc, port: 8443, targetPort: 8443}
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: eval-harness
+  namespace: agent-eval
+  labels: {app: authority}
+spec:
+  backoffLimit: 0                 # a failed evaluation is a result, never retried
+  completions: 1
+  parallelism: 1
+  activeDeadlineSeconds: 7200
+  template:
+    metadata:
+      labels: {app: authority}
+    spec:
+      serviceAccountName: eval-sa
+      automountServiceAccountToken: true
+      restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        runAsGroup: 65532
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: harness
+          image: ${CONTROLLER_IMAGE}
+          # The harness writes results_v4_k8s/ under /app, then keeps the pod alive
+          # so 60_run_freeze_eval.sh can copy results.json/.md out. The script
+          # deletes the Job afterwards. RC=<n> is the machine-readable verdict line.
+          command: ["sh", "-c"]
+          args:
+            - |
+              python3 -m booking_v4.experiment_k8s
+              rc=$?
+              echo "RC=${rc}"
+              sleep 1800
+          env:
+            - {name: RUNNER_IMAGE, value: "${RUNNER_IMAGE}"}
+            - {name: K8S_NAMESPACE, value: "agent-eval"}
+            - {name: K8S_AUTHORITY_BIND, value: "0.0.0.0:8443"}
+            - {name: K8S_AUTHORITY_ADVERTISE, value: "authority.agent-eval.svc.cluster.local:8443"}
+            - {name: PYTHONUNBUFFERED, value: "1"}
+          ports:
+            - {name: rpc, containerPort: 8443}
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities: {drop: ["ALL"]}
+          volumeMounts:
+            - {name: results, mountPath: /app/results_v4_k8s}
+            - {name: tmp, mountPath: /tmp}          # durable store (tempfile) per scenario
+          resources:
+            limits: {memory: 1Gi}
+            requests: {memory: 512Mi, cpu: 200m}
+      volumes:
+        - name: results
+          emptyDir: {}
+        - name: tmp
+          emptyDir: {}

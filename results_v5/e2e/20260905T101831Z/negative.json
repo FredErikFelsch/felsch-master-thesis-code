@@ -1,0 +1,72 @@
+{
+  "stamp": "20260905T101831Z",
+  "run_id": "run-20260905T101830Z",
+  "results": {
+    "A14": {
+      "refusal": "evidence-missing",
+      "legacy_establish": "METHOD_NOT_FOUND",
+      "pass": true
+    },
+    "A10": {
+      "run_id": "run-20260905T101830Z",
+      "step": 0,
+      "td": "runner-td-8gttk",
+      "outcome": "REFUSED(binding-mismatch)",
+      "accepted": false,
+      "effects": 0,
+      "pending_effects": 0,
+      "foreign_effects": 0,
+      "fragment_hash": "1a62d7b7b73c4a63df36426eb7ea7f7e06fcb39dae062e04695e7a652d295fe2",
+      "state_hash": "38079dcea29e14971d3d76cd3aa226a48c807580287d5ca6f4d5e86f6c3d6f55",
+      "refusal": {
+        "rule": "binding-mismatch",
+        "detail": "",
+        "stage": "relying-party"
+      },
+      "result_status": null,
+      "timings": {
+        "spawn": 89.16595020800014,
+        "ready": 88.35583879200567,
+        "boot_key": 0.5278814580087783,
+        "evidence": 0.3551823330053594,
+        "verification": 1.9992232079966925,
+        "session": null,
+        "execution": null,
+        "destroy": 32.350737707994995
+      },
+      "total_s": 124.39897491500597,
+      "recovery_path": true,
+      "indeterminate": null,
+      "pass": true
+    },
+    "A16": {
+      "run_id": "run-20260905T101830Z",
+      "step": 0,
+      "td": "runner-td-lch76",
+      "outcome": "ANOMALOUS",
+      "accepted": false,
+      "effects": 0,
+      "pending_effects": 0,
+      "foreign_effects": 0,
+      "fragment_hash": "1a62d7b7b73c4a63df36426eb7ea7f7e06fcb39dae062e04695e7a652d295fe2",
+      "state_hash": "38079dcea29e14971d3d76cd3aa226a48c807580287d5ca6f4d5e86f6c3d6f55",
+      "refusal": null,
+      "result_status": "RUNNER_ERROR",
+      "timings": {
+        "spawn": 88.16543445800198,
+        "ready": 86.4869378329895,
+        "boot_key": 0.5218265409930609,
+        "evidence": 0.3528688750084257,
+        "verification": 1.7227760420064442,
+        "session": null,
+        "execution": 0.24338766699656844,
+        "destroy": 32.466003666006145
+      },
+      "total_s": 123.47229724901263,
+      "recovery_path": true,
+      "indeterminate": null,
+      "pass": false,
+      "note": "the runner answered a swapped fragment"
+    }
+  }
+}

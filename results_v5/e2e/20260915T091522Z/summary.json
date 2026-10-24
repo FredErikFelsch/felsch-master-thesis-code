@@ -1,0 +1,144 @@
+{
+  "stamp": "20260915T091522Z",
+  "steps_per_run": 1,
+  "pool_size": 0,
+  "manifest": {
+    "manifest_version": 1,
+    "recorded_at": "2026-09-15T09:37:50Z",
+    "git": {
+      "commit": "1dab142561533c54dba2872fe4eda1cc407e9635",
+      "dirty": true,
+      "branch": "main"
+    },
+    "policies": {
+      "P2": "66c97606690fe0cd7d442928cf4db514157e682d8f8b6ee53fb13cfdb458e655",
+      "P2.1": "254054d2ab7db1d1f5c7ab2244ceefbb5e536c469481b4ec895650859ea260d4",
+      "P3": "de054d83d565c2c882770ab165c4a935ba02dafb61e67d1877a7470892e19a52",
+      "P3+pay-approval": "28df9debbcff93a11c20ec4ce11f1014e0322e7eece59116fb968017ce52fef8"
+    },
+    "registry": {
+      "policy_schema": "ps-3",
+      "constraint": "cr-1",
+      "fact": "fr-2",
+      "fact_extension": "fr-2.1"
+    },
+    "ttl": {
+      "token_s": 120,
+      "intervention_s": 300
+    },
+    "clock_mode": "system",
+    "verifier": null,
+    "images": {
+      "CONTROLLER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:645d2f34a48eac8e230b7d9d1d9811ead22c468c9eb0ac22912b42e301e03e71",
+      "RUNNER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:645d2f34a48eac8e230b7d9d1d9811ead22c468c9eb0ac22912b42e301e03e71",
+      "RUNNER_PROCESS_SHA256": "ee153e2790a7a5481d60d04e750a7770c13a99866448bbc9756041d5c54464db",
+      "RUNNER_SOURCE_SHA256": "7273a8f6882ec0c7b57815f4ab49523295a21dd40581cf6a6cadf6d1ddd648b9",
+      "RUNNER_PYTHON": "/usr/local/bin/python3",
+      "SERVICES_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking-services@sha256:b48ebd2d7ae3de7979b2a9773427f06f462a69678c7b046ef9afc97007a1b6a6"
+    },
+    "freeze": {
+      "stamp": "20260911T203655Z",
+      "sha256": "571923965a56d55dcb8d69725a78bf9aac7f137009924d334e3d4f799b0b241f"
+    },
+    "python": "3.13.3",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "observation_check": "bound"
+  },
+  "tolerate_substrate_variance": true,
+  "runs": [
+    {
+      "run_id": "run-20260915T091522Z",
+      "accepted": false,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20260915T091522Z-r1",
+      "accepted": false,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20260915T091522Z-r2",
+      "accepted": false,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20260915T091522Z-r3",
+      "accepted": false,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20260915T091522Z-r4",
+      "accepted": false,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20260915T091522Z-r5",
+      "accepted": false,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20260915T091522Z-r6",
+      "accepted": false,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20260915T091522Z-r7",
+      "accepted": false,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20260915T091522Z-r8",
+      "accepted": false,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20260915T091522Z-r9",
+      "accepted": false,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20260915T091522Z-r10",
+      "accepted": false,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20260915T091522Z-r11",
+      "accepted": false,
+      "substrate_variance": false
+    }
+  ],
+  "summary": {
+    "repetitions": 12,
+    "accepted_runs": 0,
+    "refused_runs": 12,
+    "substrate_variance_runs": 0,
+    "substrate_variance": [],
+    "accepted_steps": 0,
+    "phases": {
+      "spawn": null,
+      "ready": null,
+      "boot_key": null,
+      "evidence": null,
+      "verification": null,
+      "execution": null,
+      "destroy": null
+    },
+    "total_s": null,
+    "handoff_counts": {
+      "warm": 0,
+      "cold": 0
+    },
+    "total_s_warm": null,
+    "total_s_cold": null,
+    "phases_warm": {
+      "spawn": null,
+      "ready": null,
+      "boot_key": null,
+      "evidence": null,
+      "verification": null,
+      "execution": null,
+      "destroy": null
+    },
+    "cleanup_mode_counts": {}
+  }
+}

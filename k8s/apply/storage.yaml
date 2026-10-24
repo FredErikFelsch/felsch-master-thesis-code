@@ -1,0 +1,20 @@
+# V4.4c: the Authority durability volume. Applied before the init Job: the trusted init Job
+# (k8s/apply/init.yaml) seeds it, then the Authority Deployment (k8s/apply/authority.yaml)
+# restores from it. ReadWriteOnce, so the init Job must complete and release it
+# before the Authority pod mounts it (scripts/gke/30_deploy.sh enforces order).
+#
+# storageClassName: premium-rwo (pd-ssd). 1 Gi is a few cents. pd-ssd is chosen
+# because a zone's pd-balanced/standard pool can be transiently exhausted
+# (ZONE_RESOURCE_POOL_EXHAUSTED) while the SSD pool is available. If provisioning
+# still fails in a zone, recreate the cluster in another zone (ZONE=...-b).
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: authority-db
+  namespace: agent-system
+spec:
+  accessModes: ["ReadWriteOnce"]
+  storageClassName: premium-rwo
+  resources:
+    requests:
+      storage: 1Gi

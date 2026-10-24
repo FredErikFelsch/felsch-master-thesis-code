@@ -1,0 +1,55 @@
+# V4.4c: the canonical fixed runner Job profile (documentation + consistency
+# anchor). This is the YAML mirror of booking_v4.k8s_backend.build_runner_job_manifest.
+# tests_k8s_offline.py asserts that the Python builder produces this Pod template
+# (with image=RUNNER_IMAGE_DIGEST, name=runner-CANONICAL). The controller builds it
+# from trusted config only. The fragment, envelope and policy do not enter it. They
+# arrive over the attach stream. Not applied directly. The controller
+# creates one such Job per fragment with a unique name.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: runner-CANONICAL
+  namespace: agent-system
+  labels: {app: runner, managed-by: trusted-runner-controller}
+spec:
+  backoffLimit: 0
+  completions: 1
+  parallelism: 1
+  # Bounds the whole Job. It must exceed the controller's start (120s) + execution
+  # (120s) budget, else Kubernetes could kill a runner the controller still awaits.
+  activeDeadlineSeconds: 300
+  ttlSecondsAfterFinished: 60
+  template:
+    metadata:
+      labels: {app: runner, managed-by: trusted-runner-controller}
+    spec:
+      serviceAccountName: runner-sa
+      automountServiceAccountToken: false
+      restartPolicy: Never
+      enableServiceLinks: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        runAsGroup: 65532
+        fsGroup: 65532
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: runner
+          image: RUNNER_IMAGE_DIGEST
+          stdin: true
+          stdinOnce: true
+          tty: false
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 65532
+            capabilities: {drop: ["ALL"]}
+          resources:
+            limits: {memory: 512Mi}
+            requests: {memory: 512Mi, cpu: 100m}
+          volumeMounts:
+            - {name: tmp, mountPath: /tmp}
+      volumes:
+        - name: tmp
+          emptyDir: {medium: Memory, sizeLimit: 16Mi}

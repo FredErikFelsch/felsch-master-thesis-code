@@ -1,0 +1,93 @@
+
+===== [15:25:00Z] START 91 cleanup probe =====
+[1;34m[v5][0m cleanup: probe namespaces v5-probe v5-netprobe v5-netprobe-open (peer pods inside are deleted first, so the CAA removes their VMs)
+[1;34m[v5][0m cleanup: kata-remote pods an earlier run left in a terminal phase
+[1;34m[v5][0m   agent-system/runner-td-xwfnx: terminal, deleting (it holds the CAA startup probe at 500)
+[1;34m[v5][0m cleanup: PeerPod CRs with no pod and no VM
+[1;34m[v5][0m   agent-system/runner-td-ggnl5-resource-v45qh: no pod, no VM for podvm-runner-td-ggnl5-4c855c9c, removing the finalizer
+[1;34m[v5][0m cleanup: node-debugger pods (kubectl debug node/…) in every namespace
+[1;34m[v5][0m cleanup: waiting up to 180 s for the CAA to delete the pod VMs of the removed pods
+[1;34m[v5][0m cleanup: PeerPod CRs whose VM no longer exists (finalizer removed), then wait for the namespaces to disappear
+[1;34m[v5][0m verify: substrate state (as declared by 12_create_cluster_v5.sh)
+  OK       cluster thesis-v5
+  OK       subnet v5-podvm 192.168.200.0/24
+  OK       fw v5-allow-peerpod-tunnel allows tcp:15150 and udp:4789
+  OK       fw v5-allow-peerpod-tunnel-return (VXLAN pod VM -> worker)
+  OK       policy v5-runner-td-policy rule 1000 (allow Google API VIP)
+  OK       policy v5-runner-td-policy rule 1001 (allow VXLAN to node subnet)
+  OK       policy v5-runner-td-policy rule 65000 (deny all)
+  OK       policy v5-runner-td-policy associated with network default
+  OK       private DNS zone v5-googleapis
+  OK       private DNS zone v5-pkgdev
+  OK       private DNS zone v5-gcrio
+  OK       CAA DaemonSet ready
+  OK       RuntimeClass kata-remote
+  OK       containerd discard_unpacked_layers=false on every node
+[1;34m[v5][0m cost-relevant resources still running:
+NAME                                 MACHINE_TYPE   STATUS   ZONE
+gke-thesis-v5-v5-pool-68db6782-66kb  e2-standard-4  RUNNING  europe-west4-a
+[1;34m[v5][0m clean: probes removed, substrate matches 12. Next: 20 (offline) needs no cluster, 90_destroy_v5.sh tears everything down.
+===== [15:25:33Z] OK    91 cleanup probe  (33s) =====
+
+===== [15:25:33Z] START 90 destroy =====
+[1;34m[v5][0m environment record: /path/to/repo/results_v5/environment/destroyed-20261016T152534Z.env
+[1;34m[v5][0m deleting every kata-remote pod so the CAA tears down the pod VMs
+[1;34m[v5][0m deleting cluster thesis-v5 (removes all namespaces, the CoCo install and the secrets)
+Deleting cluster thesis-v5...
+.................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................done.
+Deleted [https://container.googleapis.com/v1/projects/project-example/zones/europe-west4-a/clusters/thesis-v5].
+WARNING: The following filter keys were not present in any resource : name
+[1;34m[v5][0m deleting firewall rule v5-allow-peerpod-tunnel
+Deleted [https://www.googleapis.com/compute/v1/projects/project-example/global/firewalls/v5-allow-peerpod-tunnel].
+[1;34m[v5][0m deleting firewall rule v5-allow-peerpod-tunnel-return
+Deleted [https://www.googleapis.com/compute/v1/projects/project-example/global/firewalls/v5-allow-peerpod-tunnel-return].
+[1;34m[v5][0m removing association v5-runner-td-policy-default
+Updated [https://www.googleapis.com/compute/v1/projects/project-example/global/firewallPolicies/v5-runner-td-policy].
+Updated [https://www.googleapis.com/compute/v1/projects/project-example/global/firewallPolicies/v5-runner-td-policy].
+Updated [https://www.googleapis.com/compute/v1/projects/project-example/global/firewallPolicies/v5-runner-td-policy].
+Updated [https://www.googleapis.com/compute/v1/projects/project-example/global/firewallPolicies/v5-runner-td-policy].
+[1;34m[v5][0m deleting firewall policy v5-runner-td-policy
+Deleted [https://www.googleapis.com/compute/v1/projects/project-example/global/firewallPolicies/v5-runner-td-policy].
+Deleted [https://dns.googleapis.com/dns/v1/projects/project-example/managedZones/v5-googleapis/rrsets/%2A.googleapis.com./CNAME].
+Deleted [https://dns.googleapis.com/dns/v1/projects/project-example/managedZones/v5-googleapis/rrsets/private.googleapis.com./A].
+[1;34m[v5][0m deleting DNS zone v5-googleapis
+Deleted [https://dns.googleapis.com/dns/v1/projects/project-example/managedZones/v5-googleapis].
+Deleted [https://dns.googleapis.com/dns/v1/projects/project-example/managedZones/v5-pkgdev/rrsets/pkg.dev./A].
+Deleted [https://dns.googleapis.com/dns/v1/projects/project-example/managedZones/v5-pkgdev/rrsets/%2A.pkg.dev./CNAME].
+[1;34m[v5][0m deleting DNS zone v5-pkgdev
+Deleted [https://dns.googleapis.com/dns/v1/projects/project-example/managedZones/v5-pkgdev].
+Deleted [https://dns.googleapis.com/dns/v1/projects/project-example/managedZones/v5-gcrio/rrsets/gcr.io./A].
+Deleted [https://dns.googleapis.com/dns/v1/projects/project-example/managedZones/v5-gcrio/rrsets/%2A.gcr.io./CNAME].
+[1;34m[v5][0m deleting DNS zone v5-gcrio
+Deleted [https://dns.googleapis.com/dns/v1/projects/project-example/managedZones/v5-gcrio].
+[1;34m[v5][0m deleting subnet v5-podvm
+Deleted [https://www.googleapis.com/compute/v1/projects/project-example/regions/europe-west4/subnetworks/v5-podvm].
+[1;34m[v5][0m pod-VM image podvm-fedora-tdx-caa-0-21-1-ov14 kept (pass --purge-image to remove it, 11 rebuilds it in 30 to 60 min)
+[1;34m[v5][0m remaining compute instances in project-example:
+[1;34m[v5][0m V5 environment destroyed. Rebuild: 12 -> 15 -> 14 -> 18 -> 19.
+===== [15:33:13Z] OK    90 destroy  (460s) =====
+
+===== [15:33:13Z] START orphaned pvc disks =====
+Deleted [https://www.googleapis.com/compute/v1/projects/project-example/zones/europe-west4-a/disks/pvc-175302ef-8dbb-4e5e-bdba-b5ec4d6e40fe].
+Deleted [https://www.googleapis.com/compute/v1/projects/project-example/zones/europe-west4-a/disks/pvc-6214fbac-eb39-4e5f-bce1-ec7d3b0af90f].
+Deleted [https://www.googleapis.com/compute/v1/projects/project-example/zones/europe-west4-a/disks/pvc-a52ff484-a462-40d1-bd63-318510bc0c0c].
+Deleted [https://www.googleapis.com/compute/v1/projects/project-example/zones/europe-west4-a/disks/pvc-f85286af-8f9e-4146-9bb7-19249c3ec5c1].
+  deleted 4 orphaned pvc disk(s) in europe-west4-a
+===== [15:33:20Z] OK    orphaned pvc disks  (7s) =====
+
+===== [15:33:20Z] START nothing left =====
+WARNING: The following filter keys were not present in any resource : name
+===== [15:33:21Z] OK    nothing left  (1s) =====
+
+========================================
+[15:33:21Z] run 20261016T152500Z
+completed steps: 4
+  OK   91 cleanup probe
+  OK   90 destroy
+  OK   orphaned pvc disks
+  OK   nothing left
+
+VERDICT: all steps green
+total: 8 min
+log: /path/to/repo/results_v5/runs/demo-down-20261016T152500Z.log
+========================================

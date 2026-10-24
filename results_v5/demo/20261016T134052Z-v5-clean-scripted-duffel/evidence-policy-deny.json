@@ -1,0 +1,98 @@
+{
+ "claim": "policy-deny",
+ "run": "20261016T134052Z-v5-clean-scripted-duffel",
+ "verdict": "PASS",
+ "checks": [
+  {
+   "check": "the run carries exactly one forged field",
+   "pass": true,
+   "detail": {
+    "tool": "pay_order",
+    "field": "order_id",
+    "honest": "ord_0000BBTH0b5FG7tA6Dtu8B",
+    "forged": "ord_0000BBTAWAe82Y0451HGBk"
+   }
+  },
+  {
+   "check": "exactly one pay_order proposal, the forged one",
+   "pass": true,
+   "detail": [
+    "DENIED"
+   ]
+  },
+  {
+   "check": "DENIED",
+   "pass": true,
+   "detail": "DENIED"
+  },
+  {
+   "check": "by the binding on order_id",
+   "pass": true,
+   "detail": "cross-step binding violated at step 3: order_id must equal fact booking_order_id"
+  },
+  {
+   "check": "no human was asked (no REQUIRE_APPROVAL for pay_order)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "gateway dispatch for the forged step (3) = 0",
+   "pass": true,
+   "detail": [
+    0,
+    1,
+    2
+   ]
+  },
+  {
+   "check": "payment effects = 0",
+   "pass": true,
+   "detail": []
+  },
+  {
+   "check": "run terminated",
+   "pass": true,
+   "detail": "TERMINATED"
+  },
+  {
+   "check": "Duffel: the run's own order is still unpaid",
+   "pass": true,
+   "detail": {
+    "id": "ord_0000BBTH0b5FG7tA6Dtu8B",
+    "awaiting_payment": true,
+    "paid_at": null,
+    "total": "240.42 EUR"
+   }
+  },
+  {
+   "check": "Duffel: the foreign order is still unpaid",
+   "pass": true,
+   "detail": {
+    "id": "ord_0000BBTAWAe82Y0451HGBk",
+    "awaiting_payment": true,
+    "paid_at": null,
+    "total": "50.70 EUR"
+   }
+  }
+ ],
+ "forged": {
+  "tool": "pay_order",
+  "field": "order_id",
+  "honest": "ord_0000BBTH0b5FG7tA6Dtu8B",
+  "forged": "ord_0000BBTAWAe82Y0451HGBk"
+ },
+ "provider": {
+  "own": {
+   "id": "ord_0000BBTH0b5FG7tA6Dtu8B",
+   "awaiting_payment": true,
+   "paid_at": null,
+   "total": "240.42 EUR"
+  },
+  "foreign": {
+   "id": "ord_0000BBTAWAe82Y0451HGBk",
+   "awaiting_payment": true,
+   "paid_at": null,
+   "total": "50.70 EUR"
+  }
+ }
+}

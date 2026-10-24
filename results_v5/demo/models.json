@@ -1,0 +1,12 @@
+{
+  "note": "Model id per demo run where the start event carries none (runs before 2026-09-11). The 10 September matrix ran per mail: scripted, then DEMO_OPENAI_MODEL=gpt-5.4-mini, then gpt-5.6-luna (reasoning_effort none); the order is read from results_v5/demo/matrix-v5-20260910T175719Z.log, which records the nine run directories in that sequence. Runs of 7 and 9 September with model 'openai' are not attributable and stay 'openai (unrecorded)'.",
+  "evidence": "results_v5/demo/matrix-v5-20260910T175719Z.log",
+  "runs": {
+    "20260910T180400Z": {"model_id": "gpt-5.4-mini", "source": "matrix log position 2 (clean)"},
+    "20260910T181011Z": {"model_id": "gpt-5.6-luna", "source": "matrix log position 3 (clean)"},
+    "20260910T182137Z": {"model_id": "gpt-5.4-mini", "source": "matrix log position 5 (fraud)"},
+    "20260910T182853Z": {"model_id": "gpt-5.6-luna", "source": "matrix log position 6 (fraud)"},
+    "20260910T184038Z": {"model_id": "gpt-5.4-mini", "source": "matrix log position 8 (fraud-payee)"},
+    "20260910T184700Z": {"model_id": "gpt-5.6-luna", "source": "matrix log position 9 (fraud-payee)"}
+  }
+}

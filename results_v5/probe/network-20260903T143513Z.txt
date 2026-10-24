@@ -1,0 +1,19 @@
+== regular pod (baseline: A5 as in V4.4c) ==
+BLOCKED canary:9000
+BLOCKED 34.118.233.10:9000
+BLOCKED 1.1.1.1:443
+OPEN    kube-dns.kube-system.svc.cluster.local:53
+-- routes --
+default via 169.254.4.6 dev eth0 
+169.254.4.6 dev eth0 scope link 
+-- addrs --
+    inet 127.0.0.1/8 scope host lo
+    inet 10.32.1.248/32 scope global eth0
+== peer pod, tunnelled networking (A5) ==
+== pod VM subnet check (A5b precondition): NIC must be in 192.168.200.0/24 ==
+NAME                       SUBNETWORK  NETWORK_IP
+podvm-nginx-peer-ce40c7b3  v5-podvm    192.168.200.26
+== direct external networking enabled? (A5b precondition; CAA config) ==
+  GCP_NETWORK: global/networks/default
+  GCP_SUBNETWORK: regions/europe-west4/subnetworks/v5-podvm
+SUBNET_OK v5-podvm

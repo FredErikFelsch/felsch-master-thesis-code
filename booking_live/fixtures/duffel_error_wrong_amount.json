@@ -1,0 +1,19 @@
+{
+  "errors": [
+    {
+      "documentation_url": "https://duffel.com/docs/api/overview/response-handling",
+      "source": {
+        "field": "payments",
+        "pointer": "/payments"
+      },
+      "title": "Invalid payment amount",
+      "type": "validation_error",
+      "message": "Field 'payments' must match the order total amount",
+      "code": "payment_amount_does_not_match_order_amount"
+    }
+  ],
+  "meta": {
+    "request_id": "GNet8O7gOYTYLF0AEhEB",
+    "status": 422
+  }
+}

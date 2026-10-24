@@ -1,0 +1,153 @@
+{
+ "evaluation_version": 1,
+ "input": {
+  "file": "experiment/equivalence.json",
+  "sha256": "dcf7a30daa179e1ad0988c5b7deaea6b9c690422d3c02fccaff79f31998b7869",
+  "baseline": "results_v4_container/results.json",
+  "baseline_sha256": "c224dc569e23f30c84eaed8a938d6db9dda00ca2e5c59335c3a0b5dc873da19d"
+ },
+ "note": "Derived layer. The input is the unchanged raw record. Its verdict labels and its `cause` placeholder are retained there and explained here.",
+ "sets": {
+  "total": 31,
+  "compared": 28,
+  "new": 3,
+  "new_ids": [
+   "benign-transport-untouched",
+   "adv-transport-rewrites-bound-field",
+   "adv-transport-rewrites-unbound-field"
+  ],
+  "missing_from_v5": [],
+  "unexpected_new": [],
+  "expected_new_found_in_baseline": []
+ },
+ "levels": {
+  "exact": 20,
+  "invariant": 8,
+  "divergent": 0
+ },
+ "counts_consistent": true,
+ "lifecycle_differs": 5,
+ "all_invariants_corroborated": true,
+ "invariants": [
+  {
+   "name": "adv-envelope-fact-tamper",
+   "raw_level": "invariant",
+   "differences": {
+    "refusal_stage": true,
+    "verdict_label": true,
+    "lifecycle_status": true
+   },
+   "refusal_rule": "run-not-at-step",
+   "refusal_layer": "relying party, before a session",
+   "attempt_ledger_delta": 0,
+   "ledger_measured": true,
+   "corroborated_by_records": true,
+   "cause": "Baseline: DENIED. Attested: ATTESTATION_REFUSED at the relying party under 'run-not-at-step' (the run is not active at this step on this state), no machine bound for the attempt, ledger delta 0 (measured: True). Run status TERMINATED in the baseline, ACTIVE in the attested execution. Raw labels retained in the input: verdict DENIED_BY_MONITOR (baseline), NOT_DENIED (attested)."
+  },
+  {
+   "name": "adv-envelope-resign-forge",
+   "raw_level": "invariant",
+   "differences": {
+    "refusal_stage": true,
+    "verdict_label": true,
+    "lifecycle_status": true
+   },
+   "refusal_rule": "run-not-at-step",
+   "refusal_layer": "relying party, before a session",
+   "attempt_ledger_delta": 0,
+   "ledger_measured": true,
+   "corroborated_by_records": true,
+   "cause": "Baseline: DENIED. Attested: ATTESTATION_REFUSED at the relying party under 'run-not-at-step' (the run is not active at this step on this state), no machine bound for the attempt, ledger delta 0 (measured: True). Run status TERMINATED in the baseline, ACTIVE in the attested execution. Raw labels retained in the input: verdict DENIED_BY_MONITOR (baseline), NOT_DENIED (attested)."
+  },
+  {
+   "name": "adv-skip-step",
+   "raw_level": "invariant",
+   "differences": {
+    "refusal_stage": true,
+    "verdict_label": true,
+    "lifecycle_status": true
+   },
+   "refusal_rule": "run-not-at-step",
+   "refusal_layer": "relying party, before a session",
+   "attempt_ledger_delta": 0,
+   "ledger_measured": true,
+   "corroborated_by_records": true,
+   "cause": "Baseline: DENIED. Attested: ATTESTATION_REFUSED at the relying party under 'run-not-at-step' (the run is not active at this step on this state), no machine bound for the attempt, ledger delta 0 (measured: True). Run status TERMINATED in the baseline, ACTIVE in the attested execution. Raw labels retained in the input: verdict DENIED_BY_MONITOR (baseline), NOT_DENIED (attested)."
+  },
+  {
+   "name": "adv-cross-run-envelope",
+   "raw_level": "invariant",
+   "differences": {
+    "refusal_stage": true,
+    "verdict_label": true,
+    "lifecycle_status": true
+   },
+   "refusal_rule": "run-not-at-step",
+   "refusal_layer": "relying party, before a session",
+   "attempt_ledger_delta": 0,
+   "ledger_measured": true,
+   "corroborated_by_records": true,
+   "cause": "Baseline: DENIED. Attested: ATTESTATION_REFUSED at the relying party under 'run-not-at-step' (the run is not active at this step on this state), no machine bound for the attempt, ledger delta 0 (measured: True). Run status TERMINATED in the baseline, ACTIVE in the attested execution. Raw labels retained in the input: verdict DENIED_BY_MONITOR (baseline), NOT_DENIED (attested)."
+  },
+  {
+   "name": "adv-state-replay",
+   "raw_level": "invariant",
+   "differences": {
+    "refusal_stage": true,
+    "verdict_label": true,
+    "lifecycle_status": false
+   },
+   "refusal_rule": "run-not-at-step",
+   "refusal_layer": "relying party, before a session",
+   "attempt_ledger_delta": 0,
+   "ledger_measured": true,
+   "corroborated_by_records": true,
+   "cause": "Baseline: GRANT_REFUSED. Attested: ATTESTATION_REFUSED at the relying party under 'run-not-at-step' (the run is not active at this step on this state), no machine bound for the attempt, ledger delta 0 (measured: True). Run status equal in both. Raw labels retained in the input: verdict REFUSED_AT_GRANT (baseline), NOT_REFUSED (attested)."
+  },
+  {
+   "name": "adv-state-fork",
+   "raw_level": "invariant",
+   "differences": {
+    "refusal_stage": true,
+    "verdict_label": true,
+    "lifecycle_status": false
+   },
+   "refusal_rule": "run-not-at-step",
+   "refusal_layer": "relying party, before a session",
+   "attempt_ledger_delta": 0,
+   "ledger_measured": true,
+   "corroborated_by_records": true,
+   "cause": "Baseline: GRANT_REFUSED. Attested: ATTESTATION_REFUSED at the relying party under 'run-not-at-step' (the run is not active at this step on this state), no machine bound for the attempt, ledger delta 0 (measured: True). Run status equal in both. Raw labels retained in the input: verdict REFUSED_AT_GRANT (baseline), NOT_REFUSED (attested)."
+  },
+  {
+   "name": "adv-replay-completed-run",
+   "raw_level": "invariant",
+   "differences": {
+    "refusal_stage": true,
+    "verdict_label": true,
+    "lifecycle_status": false
+   },
+   "refusal_rule": "run-not-at-step",
+   "refusal_layer": "relying party, before a session",
+   "attempt_ledger_delta": 0,
+   "ledger_measured": true,
+   "corroborated_by_records": true,
+   "cause": "Baseline: GRANT_REFUSED. Attested: ATTESTATION_REFUSED at the relying party under 'run-not-at-step' (the run is not active at this step on this state), no machine bound for the attempt, ledger delta 0 (measured: True). Run status equal in both. Raw labels retained in the input: verdict REFUSED_AT_GRANT (baseline), NOT_REFUSED (attested)."
+  },
+  {
+   "name": "adv-intervention-arg-swap",
+   "raw_level": "invariant",
+   "differences": {
+    "refusal_stage": true,
+    "verdict_label": true,
+    "lifecycle_status": true
+   },
+   "refusal_rule": "step-already-has-session",
+   "refusal_layer": "relying party, before a session",
+   "attempt_ledger_delta": 0,
+   "ledger_measured": true,
+   "corroborated_by_records": true,
+   "cause": "Baseline: DENIED. Attested: ATTESTATION_REFUSED at the relying party under 'step-already-has-session' (no pending intervention for this fragment), no machine bound for the attempt, ledger delta 0 (measured: True). Run status TERMINATED in the baseline, ACTIVE in the attested execution. Raw labels retained in the input: verdict INTERVENTION_BLOCKED (baseline), INTERVENTION_BYPASSED (attested)."
+  }
+ ]
+}

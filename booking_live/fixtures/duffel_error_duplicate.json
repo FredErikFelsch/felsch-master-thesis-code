@@ -1,0 +1,19 @@
+{
+  "errors": [
+    {
+      "documentation_url": "https://duffel.com/docs/api/overview/response-handling",
+      "source": {
+        "field": "order_id",
+        "pointer": "/order_id"
+      },
+      "title": "Not eligible for hold",
+      "type": "validation_error",
+      "message": "Field 'order_id' is not eligible to be paid later (requires_instant_payment=true)",
+      "code": "order_type_not_eligible_for_payment"
+    }
+  ],
+  "meta": {
+    "request_id": "GNet_rbEuG_DNsAAE4mB",
+    "status": 422
+  }
+}

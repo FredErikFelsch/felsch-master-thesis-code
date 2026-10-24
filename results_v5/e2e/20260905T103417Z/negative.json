@@ -1,0 +1,72 @@
+{
+  "stamp": "20260905T103417Z",
+  "run_id": "run-20260905T103417Z",
+  "results": {
+    "A14": {
+      "refusal": "evidence-missing",
+      "legacy_establish": "METHOD_NOT_FOUND",
+      "pass": true
+    },
+    "A10": {
+      "run_id": "run-20260905T103417Z",
+      "step": 0,
+      "td": "runner-td-rsbsh",
+      "outcome": "REFUSED(binding-mismatch)",
+      "accepted": false,
+      "effects": 0,
+      "pending_effects": 0,
+      "foreign_effects": 0,
+      "fragment_hash": "54cd5de2ab6b5560ef2937907949f3f1cd89f76129bb75194095f37838edd2de",
+      "state_hash": "f44a808a60299853b9f154342cfa7d11a22b294af3b90aae5a0983581bad51f1",
+      "refusal": {
+        "rule": "binding-mismatch",
+        "detail": "",
+        "stage": "relying-party"
+      },
+      "result_status": null,
+      "timings": {
+        "spawn": 91.24434429100074,
+        "ready": 89.5712220830028,
+        "boot_key": 0.5288912499963772,
+        "evidence": 2.496447708006599,
+        "verification": 1.765290333001758,
+        "session": null,
+        "execution": null,
+        "destroy": 32.18535324999539
+      },
+      "total_s": 128.22032683200086,
+      "recovery_path": true,
+      "indeterminate": null,
+      "pass": true
+    },
+    "A16": {
+      "run_id": "run-20260905T103417Z",
+      "step": 0,
+      "td": "runner-td-dzwr4",
+      "outcome": "ANOMALOUS",
+      "accepted": false,
+      "effects": 0,
+      "pending_effects": 0,
+      "foreign_effects": 0,
+      "fragment_hash": "54cd5de2ab6b5560ef2937907949f3f1cd89f76129bb75194095f37838edd2de",
+      "state_hash": "f44a808a60299853b9f154342cfa7d11a22b294af3b90aae5a0983581bad51f1",
+      "refusal": null,
+      "result_status": "RUNNER_ERROR",
+      "timings": {
+        "spawn": 94.05962554199505,
+        "ready": 92.26204925001366,
+        "boot_key": 0.5231907910056179,
+        "evidence": 0.358926083004917,
+        "verification": 1.911081458994886,
+        "session": null,
+        "execution": 0.24094120800145902,
+        "destroy": 32.96789283301041
+      },
+      "total_s": 130.06165791601234,
+      "recovery_path": true,
+      "indeterminate": null,
+      "pass": true,
+      "note": "the TD refused the swapped fragment (RUNNER_ERROR, ledger 0)"
+    }
+  }
+}

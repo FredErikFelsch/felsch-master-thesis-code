@@ -1,0 +1,48 @@
+{
+ "claim": "completed",
+ "run": "20261016T132900Z-v5-clean-scripted-duffel",
+ "verdict": "PASS",
+ "checks": [
+  {
+   "check": "run COMPLETED",
+   "pass": true,
+   "detail": "COMPLETED"
+  },
+  {
+   "check": "exactly one payment",
+   "pass": true,
+   "detail": [
+    {
+     "amount_minor": 24448,
+     "currency": "EUR",
+     "order_id": "ord_0000BBTFyGEfwNswQGRxdw",
+     "paid": true,
+     "payment_id": "pay_0000BBTG98BaUHKesJOX7Q",
+     "status": "succeeded",
+     "t": 1792157644.4092858
+    }
+   ]
+  },
+  {
+   "check": "unauthorised effects = 0",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "Duffel: the order is paid",
+   "pass": true,
+   "detail": {
+    "id": "ord_0000BBTFyGEfwNswQGRxdw",
+    "awaiting_payment": false,
+    "paid_at": "2026-10-16T13:33:43Z",
+    "total": "244.48 EUR"
+   }
+  }
+ ],
+ "provider": {
+  "id": "ord_0000BBTFyGEfwNswQGRxdw",
+  "awaiting_payment": false,
+  "paid_at": "2026-10-16T13:33:43Z",
+  "total": "244.48 EUR"
+ }
+}

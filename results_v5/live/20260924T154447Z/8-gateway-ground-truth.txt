@@ -1,0 +1,1 @@
+[gateway] FAULT lose-payment-response: pay_order action_id=pay_order-demo-20260924T160807Z-5 counterparty CONFIRMED order_id=ord_0000BAjsrw3LEHN6n9dQYa payment_id=pay_0000BAjt4f5SgtH95jFcOW; response withheld from the run

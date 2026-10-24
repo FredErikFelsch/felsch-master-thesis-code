@@ -1,0 +1,61 @@
+{
+ "claim": "attestation",
+ "run": "20261016T133605Z-v5-fraud-scripted-duffel",
+ "verdict": "PASS",
+ "checks": [
+  {
+   "check": "attacks-only run (no agent step)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "a16 (tampered fragment): refused, attributed, ledger delta 0",
+   "pass": true,
+   "detail": "RUNNER_ERROR: runner internal error"
+  },
+  {
+   "check": "a10 (forged boot key): refused, attributed, ledger delta 0",
+   "pass": true,
+   "detail": "ATTESTATION_REFUSED: REFUSED(binding-mismatch)"
+  },
+  {
+   "check": "a18 (wrong substrate): refused, attributed, ledger delta 0",
+   "pass": true,
+   "detail": "ATTESTATION_REFUSED: REFUSED(substrate-profile-mismatch)"
+  },
+  {
+   "check": "at least one attack recorded",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "attacks": {
+  "a16": {
+   "label": "tampered fragment",
+   "blocked_at": "TD (hash check of the delivered octets, before the monitor)",
+   "status": "RUNNER_ERROR",
+   "reason": "runner internal error",
+   "ledger_delta": 0,
+   "attributed": true,
+   "pass": true
+  },
+  "a10": {
+   "label": "forged boot key",
+   "blocked_at": "relying party: binding-mismatch",
+   "status": "ATTESTATION_REFUSED",
+   "reason": "REFUSED(binding-mismatch)",
+   "ledger_delta": 0,
+   "attributed": true,
+   "pass": true
+  },
+  "a18": {
+   "label": "wrong substrate",
+   "blocked_at": "relying party: substrate-profile-mismatch",
+   "status": "ATTESTATION_REFUSED",
+   "reason": "REFUSED(substrate-profile-mismatch)",
+   "ledger_delta": 0,
+   "attributed": true,
+   "pass": true
+  }
+ }
+}

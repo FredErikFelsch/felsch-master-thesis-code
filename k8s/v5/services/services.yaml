@@ -1,0 +1,255 @@
+# V5 services: two runtime principals from one image (${SERVICES_IMAGE}), the trusted init,
+# and the storage each role owns. Applied by scripts/gke-v5/30_deploy_v5.sh in this order:
+# storage -> init Job (seeds both PVCs, publishes the anchors) -> authority -> gateway -> policies.
+#
+#   authority   V3 Authority + V5 relying party. Holds the signing material, the bootstrap,
+#               the frozen reference. Surface: authority.* and v5.* on 8443, the approval page
+#               on 8450 (port-forward only). Egress: DNS, the gateway's observation port 8444,
+#               HTTPS to Intel PCS (collateral for the DCAP appraisal). No gateway methods.
+#   gateway     V3 ToolGateway (verify key only) behind the durable two-phase dispatch.
+#               Execution surface 8443 (runner), observation surface 8444 (Authority, and the
+#               controller via port-forward). Egress: DNS only (the counterparty is in-process here).
+#   init        seeds authority.db and gateway.db from one minting, computes the deployment's
+#               init-data digest from the runner image, publishes only the anchors.
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata: {name: gateway-sa, namespace: agent-system}
+automountServiceAccountToken: false
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata: {name: init-sa, namespace: agent-system}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata: {name: trusted-init, namespace: agent-system}
+rules:
+  - apiGroups: [""]
+    resources: ["secrets"]
+    resourceNames: ["deployment-bootstrap"]
+    verbs: ["get", "update", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata: {name: init-can-write-bootstrap-secret, namespace: agent-system}
+subjects: [{kind: ServiceAccount, name: init-sa, namespace: agent-system}]
+roleRef: {kind: Role, name: trusted-init, apiGroup: rbac.authorization.k8s.io}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: {name: gateway-db, namespace: agent-system}
+spec:
+  accessModes: ["ReadWriteOnce"]
+  storageClassName: premium-rwo
+  resources: {requests: {storage: 1Gi}}
+---
+# --- trusted init (one shot, idempotent) ------------------------------------------------
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: trusted-init-v5
+  namespace: agent-system
+  labels: {app: trusted-init}
+spec:
+  backoffLimit: 2
+  completions: 1
+  parallelism: 1
+  activeDeadlineSeconds: 600
+  template:
+    metadata:
+      labels: {app: trusted-init}
+    spec:
+      serviceAccountName: init-sa
+      automountServiceAccountToken: true
+      restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        runAsGroup: 65532
+        fsGroup: 65532
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: init
+          image: ${SERVICES_IMAGE}
+          args: ["init", "--authority-db", "/data/authority/authority.db",
+                 "--gateway-db", "/data/gateway/gateway.db",
+                 "--freeze", "/freeze/freeze.json",
+                 "--runner-image", "${RUNNER_IMAGE}",
+                 # Which counterparty this deployment reaches. Seeded into both stores,
+                 # so it is a property of the deployment rather than of a process's
+                 # environment, and moving it means seeding again. Empty substitutes to
+                 # "mock", the V2 catalogue, which is what every recorded run used.
+                 "--world", "${BOOKING_WORLD}",
+                 "--namespace", "agent-system", "--secret-name", "deployment-bootstrap",
+                 "--publish-secret"]
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities: {drop: ["ALL"]}
+          volumeMounts:
+            - {name: authority-db, mountPath: /data/authority}
+            - {name: gateway-db, mountPath: /data/gateway}
+            - {name: freeze, mountPath: /freeze, readOnly: true}
+          resources:
+            limits: {memory: 256Mi}
+            requests: {memory: 128Mi, cpu: 50m}
+      volumes:
+        - {name: authority-db, persistentVolumeClaim: {claimName: authority-db}}
+        - {name: gateway-db, persistentVolumeClaim: {claimName: gateway-db}}
+        - {name: freeze, configMap: {name: v5-freeze}}
+---
+# --- authority role ---------------------------------------------------------------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authority
+  namespace: agent-system
+spec:
+  replicas: 1
+  strategy: {type: Recreate}
+  selector: {matchLabels: {app: authority}}
+  template:
+    metadata:
+      labels: {app: authority, role: authority}
+    spec:
+      serviceAccountName: authority-sa
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        fsGroup: 65532
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: authority
+          image: ${SERVICES_IMAGE}
+          # --gateway-observe: the Authority verifies every reported
+          # observation against the digest the gateway recorded for that effect, over the
+          # gateway's read-only observation surface. Without the flag the check is off and
+          # the run record says observation_check=unbound.
+          #
+          # The approval gate (booking_approval.service): the same restore as
+          # `service_v5 serve --role authority`, then create_run and decide_intervention closed
+          # on 8443 and the approval page on 8450. 8450 has no Service and no NetworkPolicy
+          # opening: it is reached only by `kubectl port-forward` under the admin context
+          # (49_approval_page.sh), on the passkey's origin http://localhost:8450. Only the
+          # operator shell (ui.approval_api, http://localhost:8766) may show it as a panel.
+          command: ["python3", "-m", "booking_approval.service"]
+          args: ["--db", "/data/authority.db",
+                 "--bind", "0.0.0.0:8443", "--verifier", "dcap",
+                 # The observation Service, not the execution one. `gateway` publishes
+                 # port 8443 only, and 8444 lives on `gateway-observe` (see the two Service
+                 # objects below). Pointing at `gateway:8444` sends the read to a ClusterIP
+                 # with no matching port, where it is not translated and simply disappears.
+                 # Every ledger read would then block for the full 30 s deployment timeout,
+                 # and every finalisation would fail closed with FINALIZE_REFUSED.
+                 "--gateway-observe", "gateway-observe.agent-system.svc.cluster.local:8444",
+                 "--credentials", "/approvers/approver-credentials.json",
+                 "--approval-bind", "0.0.0.0:8450", "--origin", "http://localhost:8450",
+                 "--frame-ancestor", "http://localhost:8766"]
+          env:
+            - name: PCS_API_KEY
+              valueFrom: {secretKeyRef: {name: pcs-api-key, key: key, optional: true}}
+          ports:
+            - {name: rpc, containerPort: 8443}
+            - {name: approval, containerPort: 8450}
+          # Ready means the gate is installed: 8450 listens only after it.
+          readinessProbe:
+            tcpSocket: {port: 8450}
+            initialDelaySeconds: 1
+            periodSeconds: 1
+            timeoutSeconds: 1
+            failureThreshold: 60
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities: {drop: ["ALL"]}
+          volumeMounts:
+            - {name: db, mountPath: /data}
+            - {name: tmp, mountPath: /tmp}
+            - {name: approvers, mountPath: /approvers, readOnly: true}
+          resources:
+            limits: {memory: 768Mi}
+            requests: {memory: 384Mi, cpu: 200m}
+      volumes:
+        - {name: db, persistentVolumeClaim: {claimName: authority-db}}
+        - {name: tmp, emptyDir: {medium: Memory, sizeLimit: 64Mi}}
+        - {name: approvers, configMap: {name: approver-credentials}}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: authority, namespace: agent-system}
+spec:
+  type: ClusterIP
+  selector: {app: authority}
+  ports:
+    - {name: rpc, port: 8443, targetPort: 8443}
+---
+# --- gateway role ----------------------------------------------------------------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway
+  namespace: agent-system
+spec:
+  replicas: 1
+  strategy: {type: Recreate}
+  selector: {matchLabels: {app: gateway}}
+  template:
+    metadata:
+      labels: {app: gateway, role: gateway}
+    spec:
+      serviceAccountName: gateway-sa
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        fsGroup: 65532
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: gateway
+          image: ${SERVICES_IMAGE}
+          args: ["serve", "--role", "gateway", "--db", "/data/gateway.db",
+                 "--bind", "0.0.0.0:8443", "--observe", "0.0.0.0:8444",
+                 "--world-db", "/data/world.db", "--idempotent"]
+          ports:
+            - {name: execute, containerPort: 8443}
+            - {name: observe, containerPort: 8444}
+          readinessProbe:
+            tcpSocket: {port: 8444}
+            initialDelaySeconds: 1
+            periodSeconds: 1
+            timeoutSeconds: 1
+            failureThreshold: 60
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities: {drop: ["ALL"]}
+          volumeMounts:
+            - {name: db, mountPath: /data}
+          resources:
+            limits: {memory: 512Mi}
+            requests: {memory: 256Mi, cpu: 100m}
+      volumes:
+        - {name: db, persistentVolumeClaim: {claimName: gateway-db}}
+---
+# Two Services for two capabilities. The runner resolves `gateway` (execution only). The
+# observation port is on its own Service name. It is reached by the controller through
+# pods/portforward and by the Authority for the effect-ledger check, never by the runner.
+apiVersion: v1
+kind: Service
+metadata: {name: gateway, namespace: agent-system}
+spec:
+  type: ClusterIP
+  selector: {app: gateway}
+  ports:
+    - {name: execute, port: 8443, targetPort: 8443}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: gateway-observe, namespace: agent-system}
+spec:
+  type: ClusterIP
+  selector: {app: gateway}
+  ports:
+    - {name: observe, port: 8444, targetPort: 8444}

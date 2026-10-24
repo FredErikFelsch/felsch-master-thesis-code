@@ -1,0 +1,5 @@
+
+[12:19:30Z] preflight
+[45] foreign order: {'id': 'ord_0000BAjAi5n7DckU8Cfy4j', 'awaiting_payment': False, 'paid_at': None, 'total': '31.19 EUR'}
+
+[12:19:31Z] ABORT: FOREIGN_ORDER is not an unpaid order of this test account

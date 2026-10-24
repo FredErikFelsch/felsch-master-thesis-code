@@ -1,0 +1,19 @@
+{
+  "errors": [
+    {
+      "documentation_url": "https://duffel.com/docs/api/overview/response-handling",
+      "source": {
+        "field": "currency",
+        "pointer": "/payments/0/currency"
+      },
+      "title": "Invalid payment currency",
+      "type": "validation_error",
+      "message": "Field 'currency' must match the order total currency",
+      "code": "payment_currency_does_not_match_order_currency"
+    }
+  ],
+  "meta": {
+    "request_id": "GNet-u64linmR1YAEygB",
+    "status": 422
+  }
+}

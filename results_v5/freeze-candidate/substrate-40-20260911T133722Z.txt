@@ -1,0 +1,36 @@
+CHECK offline tests:                 PASS  Ran 33 tests in 1.282s OK 
+CHECK fixture tests:                 PASS  Ran 33 tests in 0.197s OK 
+CHECK rtmr replay tests:             PASS  Ran 8 tests in 0.001s OK 
+CHECK runner phase-order tests:      PASS  Ran 9 tests in 0.004s OK 
+CHECK peer-pod cleanup tests:        PASS  Ran 5 tests in 0.010s OK 
+CHECK probe analysis dry run:        PASS  Ran 5 tests in 0.681s OK 
+CHECK cluster script (12):           PASS  Ran 14 tests in 24.954s OK 
+CHECK probe scripts (18/19):         PASS  Ran 22 tests in 0.448s OK 
+CHECK pod-VM overlay hardening:      PASS  Ran 18 tests in 1.310s OK 
+CHECK attach protocol end to end:    PASS  Ran 10 tests in 0.022s OK 
+CHECK effect ledger over the durable gateway, role surfaces: PASS  Ran 14 tests in 9.676s OK 
+CHECK V5 end to end over the real services (offline): PASS  Ran 20 tests in 22.257s OK 
+CHECK DCAP collateral cache: validity-bounded, no network per verdict: PASS  Ran 8 tests in 0.187s OK 
+CHECK continuation gate: second session only for a pending intervention: PASS  Ran 8 tests in 9.784s OK 
+CHECK 27/27 semantic equivalence of the attested path (Option A): PASS  Ran 6 tests in 43.485s OK 
+CHECK demo acts (scripted agent, V0 baseline and V3 monitor): PASS  Ran 31 tests in 11.515s OK 
+CHECK V4.2 durable semantics (regression): PASS  Ran 36 tests in 29.307s OK 
+CHECK day-B deployment artefacts (manifests, identity, scripts): PASS  Ran 17 tests in 0.232s OK 
+CHECK cluster network:               PASS  default
+CHECK caa daemonset:                 PASS  ready 1/1
+CHECK runtimeclass:                  PASS  kata-remote handler=kata-remote
+CHECK caa image pin:                 PASS  quay.io/confidential-containers/cloud-api-adaptor:v0.21.1-amd64
+CHECK containerd gke-thesis-v5-v5-pool-e81ca0da-fzcx: PASS  discard_unpacked_layers=false
+CHECK fw v5-allow-peerpod-tunnel:    PASS  VPC firewall rule
+CHECK fw v5-allow-peerpod-tunnel-return: PASS  VPC firewall rule
+CHECK fw policy rule 65000:          PASS  v5-runner-td-policy
+CHECK fw policy rule 1000:           PASS  v5-runner-td-policy
+CHECK fw policy rule 1001:           PASS  v5-runner-td-policy
+CHECK podvm subnet:                  PASS  v5-podvm=192.168.200.0/24, private-google-access=true
+CHECK fw policy association:         PASS  v5-runner-td-policy-default -> default
+CHECK annotations gke-thesis-v5-v5-pool-e81ca0da-fzcx: PASS  both remote configs = ["cc_init_data"]
+CHECK substrate profile hash:        PASS  e6bc76a16b57fe4946abd3c0872bc1539d6571acaf7929c552050b5b948e3ae3 (pin in Authority reference values)
+CHECK v5 services:                   SKIP  not deployed (30_deploy_v5.sh)
+
+VERDICT: live GKE/CoCo substrate verification PASS
+NEXT: 18_probe_peer_pod.sh -> evidence verification -> 19_probe_network.sh

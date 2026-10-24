@@ -1,0 +1,34 @@
+# Rendered by 15_render_caa_values.sh. Do not edit, re-run the script instead.
+# Credentials: none in here. The CAA uses the node SA (peerpods@project-example.iam.gserviceaccount.com).
+# 14 bypasses the entrypoint's GCP_CREDENTIALS check by starting the binary directly.
+provider: gcp
+image:
+  name: quay.io/confidential-containers/cloud-api-adaptor
+  tag: "v0.21.1-amd64"
+secrets:
+  mode: reference
+  existingSecretName: ""
+webhook:
+  enabled: false          # needs cert-manager, our profile sets runtimeClassName itself
+resourceCtrl:
+  enabled: true           # deletes dangling pod VMs (a stale TD must not survive its pod)
+daemonset:
+  updateStrategy:         # hostNetwork: a surged pod collides on :8000 with the old one
+    maxUnavailable: 1
+    maxSurge: 0
+providerConfigs:
+  gcp:
+    GCP_PROJECT_ID: "project-example"
+    GCP_ZONE: "europe-west4-a"
+    GCP_NETWORK: "global/networks/default"
+    GCP_SUBNETWORK: "regions/europe-west4/subnetworks/v5-podvm"
+    GCP_MACHINE_TYPE: "c3-standard-4"
+    GCP_DISK_TYPE: "pd-balanced"
+    GCP_CONFIDENTIAL_TYPE: "TDX"
+    DISABLECVM: "false"
+    USE_PUBLIC_IP: "false"
+    PODVM_IMAGE_NAME: "projects/project-example/global/images/podvm-fedora-tdx-caa-0-21-1-ov14"
+    ROOT_VOLUME_SIZE: "20"
+    FORWARDER_PORT: "15150"
+    VXLAN_PORT: "4789"
+    PEERPODS_LIMIT_PER_NODE: "10"

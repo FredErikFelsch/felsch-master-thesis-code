@@ -1,0 +1,8 @@
+attach opened in 0.26 s
+round 0: ok  rtt=402 ms got='echo:ping 0 a7c446e4e03e63ee'
+round 1: ok  rtt=237 ms got='echo:ping 1 fd6e579e98bc34bc'
+round 2: ok  rtt=241 ms got='echo:ping 2 bc12bf522bb273a8'
+round 3: ok  rtt=267 ms got='echo:ping 3 a1d499b2291ad0b6'
+round 4: ok  rtt=241 ms got='echo:ping 4 913c359b33d30d85'
+{"verdict": "ATTACH_OK", "rounds": 5, "rtt_ms": [402, 237, 241, 267, 241]}
+banner: ATTACH_READY also in the container log

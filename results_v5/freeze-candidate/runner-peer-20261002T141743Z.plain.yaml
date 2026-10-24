@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations: {}
+  labels:
+    app: runner
+    managed-by: trusted-runner-controller-v5
+  name: runner-peer
+  namespace: v5-probe
+spec:
+  activeDeadlineSeconds: 2400
+  automountServiceAccountToken: false
+  containers:
+  - command:
+    - /usr/local/bin/python3
+    - -m
+    - booking_v5.probe_bind
+    - --run
+    - probe-20261002T141743Z
+    - --step
+    - '1'
+    - --fragment
+    - 85ee95ee9e7c8544e6c6fa9ab4f867e9523fcde91438dc7fef1fcf51c3082e0d
+    - --state
+    - a58ae8734e6dfcc93fd4e58eb2d9720f9a27e8ee1caf649c9d882ea7de91e52a
+    - --nonce
+    - e8122e92140fdcb6e8854e736d404d8efedff6eb6792e6f10e0b249e7b4d837f
+    - --idle
+    - '1800'
+    image: europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:c0ee501820b24db46ecd33cbe8be7f5679836d38787a03bd3ab78b8da4129d60
+    name: runner
+    resources:
+      limits:
+        memory: 512Mi
+      requests:
+        cpu: 100m
+        memory: 512Mi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      readOnlyRootFilesystem: true
+    tty: false
+    volumeMounts:
+    - mountPath: /tmp
+      name: tmp
+  imagePullSecrets:
+  - name: ar-pull
+  restartPolicy: Never
+  runtimeClassName: kata-remote
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 65532
+    seccompProfile:
+      type: RuntimeDefault
+  serviceAccountName: default
+  volumes:
+  - emptyDir:
+      medium: Memory
+      sizeLimit: 16Mi
+    name: tmp

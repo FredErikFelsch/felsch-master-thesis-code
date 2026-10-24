@@ -1,0 +1,101 @@
+# V4.4c: the trusted initialisation step (k8s form of booking_v4.k8s_init).
+#
+# This runs once, before any adversarial component exists. The fixed launch
+# configuration and the authority material are created here, in a trusted context,
+# not by the orchestrator and not committed to the repository. It:
+#   1. seeds the Authority PVC (authority-db) with freshly minted trust anchors,
+#      provisioner bootstrap and human secret (Authority.create), and
+#   2. publishes {bootstrap_secret, anchors} as the Secret `deployment-bootstrap`
+#      that the controller pod mounts read-only.
+#
+# init-sa may only get, update and patch one named, pre-created Secret in this
+# namespace (deployment-bootstrap, for the controller). It cannot create Secrets:
+# the trusted deploy step pre-creates it empty (with cluster-admin), and init-sa
+# gets get/patch/update scoped by resourceNames. Kubernetes cannot name-restrict
+# `create`, so no create is granted at all. controller-sa gets no secrets verbs
+# (it only mounts deployment-bootstrap). orchestrator-sa and runner-sa get nothing.
+# Apply and wait for completion before authority.yaml / controller.yaml (see
+# scripts/gke/30_deploy.sh).
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: init-sa
+  namespace: agent-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: trusted-init
+  namespace: agent-system
+rules:
+  # Read and patch the one pre-created Secret by name. No create.
+  - apiGroups: [""]
+    resources: ["secrets"]
+    resourceNames: ["deployment-bootstrap"]
+    verbs: ["get", "update", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: init-can-write-bootstrap-secret
+  namespace: agent-system
+subjects:
+  - kind: ServiceAccount
+    name: init-sa
+    namespace: agent-system
+roleRef:
+  kind: Role
+  name: trusted-init
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: trusted-init
+  namespace: agent-system
+  labels: {app: trusted-init}
+spec:
+  backoffLimit: 2
+  completions: 1
+  parallelism: 1
+  # Generous: the trusted init is not an adversarial runner, and a first cold image
+  # pull on a freshly created GKE cluster can take a while. 600s so a slow pull is
+  # not mistaken for an init or security failure (the actual work takes seconds).
+  activeDeadlineSeconds: 600
+  template:
+    metadata:
+      labels: {app: trusted-init}
+    spec:
+      serviceAccountName: init-sa
+      automountServiceAccountToken: true      # needs the API to write the Secret
+      restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        runAsGroup: 65532
+        fsGroup: 65532
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: init
+          image: ${CONTROLLER_IMAGE}          # same code image, runs the init entrypoint
+          command: ["python3", "-m", "booking_v4.k8s_init"]
+          args:
+            - "--db"
+            - "/data/deployment.db"
+            - "--namespace"
+            - "agent-system"
+            - "--secret-name"
+            - "deployment-bootstrap"
+            - "--publish-secret"
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities: {drop: ["ALL"]}
+          volumeMounts:
+            - {name: db, mountPath: /data}
+          resources:
+            limits: {memory: 256Mi}
+            requests: {memory: 128Mi, cpu: 100m}
+      volumes:
+        - name: db
+          persistentVolumeClaim: {claimName: authority-db}

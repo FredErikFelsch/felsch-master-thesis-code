@@ -1,0 +1,77 @@
+# V4.4c: durable Authority/Gateway as an internal TCP service (V4.2 code, V4.4a
+# transport). One replica, SQLite on the authority-db PVC (k8s/apply/storage.yaml) so a
+# pod restart preserves V4.2 durability (an emptyDir would destroy it). The PVC is
+# ReadWriteOnce and is seeded by the trusted init Job first. This Deployment is
+# applied only after that Job completes and releases it. ClusterIP only, not
+# exposed outside the cluster.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authority
+  namespace: agent-system
+spec:
+  replicas: 1                     # exactly one: durable single-writer
+  strategy:
+    type: Recreate               # never two writers on the same PVC
+  selector:
+    matchLabels: {app: authority}
+  template:
+    metadata:
+      labels: {app: authority}   # NetworkPolicy selects this label
+    spec:
+      serviceAccountName: authority-sa
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        fsGroup: 65532
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: authority
+          image: ${CONTROLLER_IMAGE}   # same code image, runs the service entrypoint
+          command: ["python3", "-m", "booking_v4.service_process_tcp"]
+          # Restore-only: the DB is seeded by the trusted init Job (k8s/apply/init.yaml)
+          # before this pod starts. The Authority does not create itself and needs no
+          # Secret (the bootstrap stays in the PVC and the controller Secret).
+          # System clock: approval windows, token TTL (120 s) and intervention expiry
+          # (300 s) are live. The harness issues its approvals "now"
+          # (booking_v1.approval.live_window).
+          # --harness-bind: the fault-injection / read-back surface (test.*, read.*)
+          # lives on its own listener, 8445. It is not in the Service and the
+          # NetworkPolicy admits only 8443 from runner and controller, so no pod
+          # reaches it. The harness uses `kubectl port-forward deploy/authority`
+          # (kubelet path, outside pod NetworkPolicy). --bind does not serve test./read.
+          args: ["--db", "/data/deployment.db", "--bind", "0.0.0.0:8443",
+                 "--harness-bind", "0.0.0.0:8445"]
+          ports:
+            - {name: rpc, containerPort: 8443}
+            - {name: harness, containerPort: 8445}
+          readinessProbe:
+            tcpSocket: {port: 8443}
+            initialDelaySeconds: 1
+            periodSeconds: 1
+            timeoutSeconds: 1
+            failureThreshold: 30
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities: {drop: ["ALL"]}
+          volumeMounts:
+            - {name: db, mountPath: /data}
+          resources:
+            limits: {memory: 512Mi}
+            requests: {memory: 256Mi, cpu: 100m}
+      volumes:
+        - name: db
+          persistentVolumeClaim: {claimName: authority-db}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: authority
+  namespace: agent-system
+spec:
+  type: ClusterIP
+  selector: {app: authority}
+  ports:
+    - {name: rpc, port: 8443, targetPort: 8443}

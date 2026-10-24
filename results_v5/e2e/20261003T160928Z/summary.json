@@ -1,0 +1,235 @@
+{
+  "stamp": "20261003T160928Z",
+  "steps_per_run": 1,
+  "pool_size": 0,
+  "manifest": {
+    "manifest_version": 1,
+    "recorded_at": "2026-10-03T16:27:42Z",
+    "git": {
+      "commit": "f1ca1cba474ed6757887ba6de16c093d8f112c85",
+      "dirty": false,
+      "branch": "main"
+    },
+    "policies": {
+      "P2": "66c97606690fe0cd7d442928cf4db514157e682d8f8b6ee53fb13cfdb458e655",
+      "P2.1": "254054d2ab7db1d1f5c7ab2244ceefbb5e536c469481b4ec895650859ea260d4",
+      "P3": "de054d83d565c2c882770ab165c4a935ba02dafb61e67d1877a7470892e19a52",
+      "P3+pay-approval": "28df9debbcff93a11c20ec4ce11f1014e0322e7eece59116fb968017ce52fef8"
+    },
+    "registry": {
+      "policy_schema": "ps-3",
+      "constraint": "cr-1",
+      "fact": "fr-2",
+      "fact_extension": "fr-2.1"
+    },
+    "ttl": {
+      "token_s": 120,
+      "intervention_s": 300
+    },
+    "clock_mode": "system",
+    "verifier": "TdxVerifier",
+    "images": {
+      "CONTROLLER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:3cd6b17a404739a4701333b21acdd007c74851b453eba4a0d8f995440f3089da",
+      "RUNNER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:3cd6b17a404739a4701333b21acdd007c74851b453eba4a0d8f995440f3089da",
+      "RUNNER_PROCESS_SHA256": "ee153e2790a7a5481d60d04e750a7770c13a99866448bbc9756041d5c54464db",
+      "RUNNER_SOURCE_SHA256": "63297a9b599d1dd1830f5a5189ced40ddf9b3f7df6c49e4d7c9902d33f2b5f03",
+      "RUNNER_PYTHON": "/usr/local/bin/python3",
+      "SERVICES_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking-services@sha256:55dcff9a6807f02ed2fa765702d42680c0ab6b845030fcee028c4fcaacc153c7"
+    },
+    "freeze": {
+      "stamp": "20261003T073223Z",
+      "sha256": "9ecbd16622c87f16bebc621c661d14f1cf110d387b8c2e97c97edf2f066f6aed"
+    },
+    "python": "3.13.3",
+    "platform": "macOS-27.0-arm64-arm-64bit-Mach-O",
+    "observation_check": "bound"
+  },
+  "tolerate_substrate_variance": true,
+  "runs": [
+    {
+      "run_id": "run-20261003T160927Z",
+      "accepted": true,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20261003T160927Z-r1",
+      "accepted": true,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20261003T160927Z-r2",
+      "accepted": true,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20261003T160927Z-r3",
+      "accepted": true,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20261003T160927Z-r4",
+      "accepted": true,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20261003T160927Z-r5",
+      "accepted": true,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20261003T160927Z-r6",
+      "accepted": true,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20261003T160927Z-r7",
+      "accepted": true,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20261003T160927Z-r8",
+      "accepted": true,
+      "substrate_variance": false
+    },
+    {
+      "run_id": "run-20261003T160927Z-r9",
+      "accepted": true,
+      "substrate_variance": false
+    }
+  ],
+  "summary": {
+    "repetitions": 10,
+    "accepted_runs": 10,
+    "refused_runs": 0,
+    "substrate_variance_runs": 0,
+    "substrate_variance": [],
+    "accepted_steps": 10,
+    "phases": {
+      "spawn": {
+        "n": 10,
+        "mean": 88.47164743338945,
+        "stdev": 3.0757696594557897,
+        "min": 84.14617783401627,
+        "max": 93.51586687495,
+        "median": 87.6077932289918,
+        "q1": 86.42698052048218,
+        "q3": 90.3182607605122,
+        "iqr": 3.891280240030028,
+        "p95": 93.24141553122317
+      },
+      "ready": {
+        "n": 10,
+        "mean": 87.55373578349827,
+        "stdev": 2.9986422347314834,
+        "min": 83.38768454210367,
+        "max": 92.32739933393896,
+        "median": 86.7477356249583,
+        "q1": 85.53895040650968,
+        "q3": 89.3768457917613,
+        "iqr": 3.8378953852516133,
+        "p95": 92.18622870850376
+      },
+      "boot_key": {
+        "n": 10,
+        "mean": 0.5284129833802581,
+        "stdev": 0.0295779600414591,
+        "min": 0.5029786669183522,
+        "max": 0.577300125034526,
+        "median": 0.5140508329495788,
+        "q1": 0.5107782709528692,
+        "q3": 0.5526413120096549,
+        "iqr": 0.04186304105678573,
+        "p95": 0.5737790816056076
+      },
+      "evidence": {
+        "n": 10,
+        "mean": 0.37417552069528026,
+        "stdev": 0.03910367280294783,
+        "min": 0.3403027089079842,
+        "max": 0.4279250829713419,
+        "median": 0.35100645798956975,
+        "q1": 0.3414955724729225,
+        "q3": 0.4127368535264395,
+        "iqr": 0.07124128105351701,
+        "p95": 0.42658415815094486
+      },
+      "verification": {
+        "n": 10,
+        "mean": 0.18990796247962863,
+        "stdev": 0.09141403391251235,
+        "min": 0.12495408300310373,
+        "max": 0.4289629169506952,
+        "median": 0.17207868752302602,
+        "q1": 0.1289207601803355,
+        "q3": 0.20328120826161467,
+        "iqr": 0.07436044808127917,
+        "p95": 0.3317013794730881
+      },
+      "execution": {
+        "n": 10,
+        "mean": 0.4192096084938385,
+        "stdev": 0.01941345127704718,
+        "min": 0.39718425006140023,
+        "max": 0.4610866669099778,
+        "median": 0.4140186454169452,
+        "q1": 0.40835881273960695,
+        "q3": 0.426858417224139,
+        "iqr": 0.01849960448453203,
+        "p95": 0.45103859807713886
+      },
+      "destroy": {
+        "n": 10,
+        "mean": 18.62724020431051,
+        "stdev": 1.6039279703437497,
+        "min": 17.033671917044558,
+        "max": 20.72231879190076,
+        "median": 18.0414045000216,
+        "q1": 17.2349354584876,
+        "q3": 20.261211115051992,
+        "iqr": 3.026275656564394,
+        "p95": 20.557274016807785
+      }
+    },
+    "total_s": {
+      "n": 10,
+      "mean": 108.61059371274897,
+      "stdev": 3.209337895806227,
+      "min": 102.90327520889696,
+      "max": 112.69566829211544,
+      "median": 108.61858797830064,
+      "q1": 106.75109241806786,
+      "q3": 111.24264472944196,
+      "iqr": 4.491552311374107,
+      "p95": 112.51181786612725
+    },
+    "handoff_counts": {
+      "warm": 0,
+      "cold": 10
+    },
+    "total_s_warm": null,
+    "total_s_cold": {
+      "n": 10,
+      "mean": 108.61059371274897,
+      "stdev": 3.209337895806227,
+      "min": 102.90327520889696,
+      "max": 112.69566829211544,
+      "median": 108.61858797830064,
+      "q1": 106.75109241806786,
+      "q3": 111.24264472944196,
+      "iqr": 4.491552311374107,
+      "p95": 112.51181786612725
+    },
+    "phases_warm": {
+      "spawn": null,
+      "ready": null,
+      "boot_key": null,
+      "evidence": null,
+      "verification": null,
+      "execution": null,
+      "destroy": null
+    },
+    "cleanup_mode_counts": {
+      "gce_confirmed_finalizer_cleanup": 10
+    }
+  }
+}

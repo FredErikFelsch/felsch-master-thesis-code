@@ -1,0 +1,5 @@
+
+[09:06:30Z] preflight (start at gate)
+[model check] ok: claude-sonnet-5-5 10 in, 5 out
+
+[09:06:45Z] ABORT: docker daemon not reachable

@@ -1,0 +1,4 @@
+nginx-peer (no init-data) READY_UNMEASURED_OK after 75 s; pod VM seen: 1
+Running
+Started: Container started
+runner-peer READY 95 s

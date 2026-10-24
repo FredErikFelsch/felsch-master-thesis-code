@@ -1,0 +1,10 @@
+phase=Succeeded after 155 s
+pod VM (captured while alive): podvm-runner-tdprobe-d669f721	TDX	v5-podvm
+PROBE OPEN gateway.agent-system.svc.cluster.local:8443
+PROBE OPEN kube-dns.kube-system.svc.cluster.local:53
+PROBE BLOCKED api.duffel.com:443
+PROBE BLOCKED openbao.agent-system.svc.cluster.local:8200
+PROBE BLOCKED gateway-observe.agent-system.svc.cluster.local:8444
+PROBE BLOCKED 1.1.1.1:443
+PROBE BLOCKED 169.254.169.254:80
+PROBE SATOKEN absent

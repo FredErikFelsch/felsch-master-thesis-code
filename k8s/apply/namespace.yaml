@@ -1,0 +1,7 @@
+# V4.4c: dedicated namespace for the whole system. No cluster-admin anywhere.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: agent-system
+  labels:
+    purpose: v4-4c-runner-controller-experiment

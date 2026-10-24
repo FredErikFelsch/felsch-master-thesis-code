@@ -1,0 +1,174 @@
+{
+  "stamp": "20260912T055630Z",
+  "run_id": "run-20260912T055629Z",
+  "manifest": {
+    "manifest_version": 1,
+    "recorded_at": "2026-09-12T06:03:35Z",
+    "git": {
+      "commit": "65b111edb22a7525a2b3f6bdb54638b23dd2b5e6",
+      "dirty": true,
+      "branch": "main"
+    },
+    "policies": {
+      "P2": "66c97606690fe0cd7d442928cf4db514157e682d8f8b6ee53fb13cfdb458e655",
+      "P2.1": "254054d2ab7db1d1f5c7ab2244ceefbb5e536c469481b4ec895650859ea260d4",
+      "P3": "de054d83d565c2c882770ab165c4a935ba02dafb61e67d1877a7470892e19a52",
+      "P3+pay-approval": "28df9debbcff93a11c20ec4ce11f1014e0322e7eece59116fb968017ce52fef8"
+    },
+    "registry": {
+      "policy_schema": "ps-3",
+      "constraint": "cr-1",
+      "fact": "fr-2",
+      "fact_extension": "fr-2.1"
+    },
+    "ttl": {
+      "token_s": 120,
+      "intervention_s": 300
+    },
+    "clock_mode": "system",
+    "verifier": null,
+    "images": {
+      "CONTROLLER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:d87570b5ba274d4b9cf355341bec29985e10a117389839324ab6e358fd36ba83",
+      "RUNNER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:d87570b5ba274d4b9cf355341bec29985e10a117389839324ab6e358fd36ba83",
+      "RUNNER_PROCESS_SHA256": "ee153e2790a7a5481d60d04e750a7770c13a99866448bbc9756041d5c54464db",
+      "RUNNER_PYTHON": "/usr/local/bin/python3",
+      "SERVICES_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking-services@sha256:4fa78efa7c3772b990c9fc375409d9c15146f01c653354130fb44ca60587b1ad"
+    },
+    "freeze": {
+      "stamp": "20260911T203655Z",
+      "sha256": "571923965a56d55dcb8d69725a78bf9aac7f137009924d334e3d4f799b0b241f"
+    },
+    "python": "3.13.3",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O"
+  },
+  "results": {
+    "A14": {
+      "refusal": "evidence-missing",
+      "legacy_establish": "METHOD_NOT_FOUND",
+      "pass": true
+    },
+    "A10": {
+      "run_id": "run-20260912T055629Z",
+      "step": 0,
+      "td": "runner-td-whw44",
+      "outcome": "REFUSED(binding-mismatch)",
+      "accepted": false,
+      "effects": 0,
+      "pending_effects": 0,
+      "foreign_effects": 0,
+      "fragment_hash": "c58af7ca13e8726c4bad5776a54521b31cdf287fe04f2b325a3c2e46ff726751",
+      "state_hash": "5334cb4ec8326d1bdcb805282928d7078501a4c223973f0d3491b43ab789a1ce",
+      "refusal": {
+        "rule": "binding-mismatch",
+        "detail": "",
+        "stage": "relying-party"
+      },
+      "result_status": null,
+      "appraisal": {},
+      "timings": {
+        "spawn": 90.42180133401416,
+        "ready": 89.40072354202857,
+        "boot_key": 0.5341427910025232,
+        "evidence": 2.7629440830205567,
+        "verification": 0.25662158301565796,
+        "execution": null,
+        "destroy": 18.224825708020944
+      },
+      "total_s": 112.20033549907384,
+      "handoff": "cold",
+      "cleanup_mode": "gce_confirmed_finalizer_cleanup",
+      "indeterminate": null,
+      "ledger_measured": true,
+      "ledger_error": null,
+      "cleanup_error": null,
+      "pass": true
+    },
+    "A16": {
+      "run_id": "run-20260912T055629Z",
+      "step": 0,
+      "td": "runner-td-r4qgs",
+      "outcome": "ANOMALOUS",
+      "accepted": false,
+      "effects": 0,
+      "pending_effects": 0,
+      "foreign_effects": 0,
+      "fragment_hash": "c58af7ca13e8726c4bad5776a54521b31cdf287fe04f2b325a3c2e46ff726751",
+      "state_hash": "5334cb4ec8326d1bdcb805282928d7078501a4c223973f0d3491b43ab789a1ce",
+      "refusal": null,
+      "result_status": "RUNNER_ERROR",
+      "appraisal": {
+        "advisory_ids": [],
+        "binding_version": "v5.1",
+        "collateral_earliest_expiration": "2026-10-12T04:49:22Z",
+        "fmspc": "00806f050000",
+        "qv_result": "OK",
+        "tcb_eval_ref_num": 20,
+        "tcb_level_date_tag": "2025-08-13T00:00:00Z",
+        "verdicts_attested": true,
+        "verifier": "TdxVerifier"
+      },
+      "timings": {
+        "spawn": 91.10692508303327,
+        "ready": 89.29189283301821,
+        "boot_key": 0.5287775830365717,
+        "evidence": 0.44882266700733453,
+        "verification": 0.15247379103675485,
+        "execution": 0.2500642500235699,
+        "destroy": 18.855596542009152
+      },
+      "total_s": 111.34265991614666,
+      "handoff": "cold",
+      "cleanup_mode": "gce_confirmed_finalizer_cleanup",
+      "indeterminate": null,
+      "ledger_measured": true,
+      "ledger_error": null,
+      "cleanup_error": null,
+      "pass": true,
+      "note": "the TD refused the swapped fragment (RUNNER_ERROR, ledger 0)",
+      "ledger_rows_after": 0
+    },
+    "A11": {
+      "pass": true,
+      "refused_in_td": true,
+      "ledger_rows": 0,
+      "detail": "ProtocolError: expected 'v5-evidence', got 'runner-result'",
+      "note": "the runner bound once; a second challenge was refused in the TD (ledger 0)"
+    },
+    "A18": {
+      "run_id": "run-20260912T055629Z",
+      "step": 0,
+      "td": "runner-td-k6dpn",
+      "outcome": "REFUSED(substrate-profile-mismatch)",
+      "accepted": false,
+      "effects": 0,
+      "pending_effects": 0,
+      "foreign_effects": 0,
+      "fragment_hash": "c58af7ca13e8726c4bad5776a54521b31cdf287fe04f2b325a3c2e46ff726751",
+      "state_hash": "5334cb4ec8326d1bdcb805282928d7078501a4c223973f0d3491b43ab789a1ce",
+      "refusal": {
+        "rule": "substrate-profile-mismatch",
+        "detail": "",
+        "stage": "relying-party"
+      },
+      "result_status": null,
+      "appraisal": {},
+      "timings": {
+        "spawn": 70.40053333400283,
+        "ready": 69.4693804999697,
+        "boot_key": 0.6153288750210777,
+        "evidence": 2.6192579159978777,
+        "verification": 0.1751325000077486,
+        "execution": null,
+        "destroy": 17.581210208008997
+      },
+      "total_s": 91.39146283303853,
+      "handoff": "cold",
+      "cleanup_mode": "gce_confirmed_finalizer_cleanup",
+      "indeterminate": null,
+      "ledger_measured": true,
+      "ledger_error": null,
+      "cleanup_error": null,
+      "pass": true
+    }
+  }
+}

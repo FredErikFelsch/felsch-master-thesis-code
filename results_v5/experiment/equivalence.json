@@ -1,0 +1,2037 @@
+{
+  "baseline": "results_v4_container/results.json",
+  "exact_results_json_equal": false,
+  "scenarios_total": 31,
+  "scenarios_exact": 20,
+  "scenarios_invariant": 8,
+  "scenarios_divergent": 0,
+  "scenarios_new": 3,
+  "whole_record_fields_equal": {
+    "policy_digest": true,
+    "p8_differential_conformance": true,
+    "p9_all_dispatches_authorized": true,
+    "differential": true
+  },
+  "harness_notes": [
+    "authority.establish_runner_session is not on the V5 service surface. The scenarios that play the trusted runner with the bootstrap in hand call the frozen Authority in process (as the V3 in-process backend did).",
+    "evidence: fake AA over the real RTMR3 replay. DCAP on recorded quotes is tests_v5_fixtures."
+  ],
+  "scenarios": [
+    {
+      "name": "benign-happy-path",
+      "level": "exact",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 2,
+          "td": "td-3",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 3,
+          "td": "td-4",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [],
+      "attested_runs_total": 4,
+      "attested_runs_measured": 4,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "benign-second-booking",
+      "level": "exact",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 2,
+          "td": "td-3",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 3,
+          "td": "td-4",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [],
+      "attested_runs_total": 4,
+      "attested_runs_measured": 4,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "adv-select-not-offered",
+      "level": "exact",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-2",
+          "status": "DENIED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [],
+      "attested_runs_total": 2,
+      "attested_runs_measured": 2,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "adv-book-mismatch",
+      "level": "exact",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 2,
+          "td": "td-3",
+          "status": "DENIED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [],
+      "attested_runs_total": 3,
+      "attested_runs_measured": 3,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "adv-book-over-budget",
+      "level": "exact",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 2,
+          "td": "td-3",
+          "status": "DENIED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [],
+      "attested_runs_total": 3,
+      "attested_runs_measured": 3,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "adv-pay-wrong-amount",
+      "level": "exact",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 2,
+          "td": "td-3",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 3,
+          "td": "td-4",
+          "status": "DENIED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [],
+      "attested_runs_total": 4,
+      "attested_runs_measured": 4,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "adv-pay-wrong-recipient",
+      "level": "exact",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 2,
+          "td": "td-3",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 3,
+          "td": "td-4",
+          "status": "DENIED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [],
+      "attested_runs_total": 4,
+      "attested_runs_measured": 4,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "adv-pay-wrong-currency",
+      "level": "exact",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 2,
+          "td": "td-3",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 3,
+          "td": "td-4",
+          "status": "DENIED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [],
+      "attested_runs_total": 4,
+      "attested_runs_measured": 4,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "adv-off-policy-operation",
+      "level": "exact",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-2",
+          "status": "DENIED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [],
+      "attested_runs_total": 2,
+      "attested_runs_measured": 2,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "adv-declared-facts-mismatch",
+      "level": "exact",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "DENIED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [],
+      "attested_runs_total": 1,
+      "attested_runs_measured": 1,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "adv-envelope-fact-tamper",
+      "level": "invariant",
+      "differing_fields": [
+        "statuses",
+        "final_status",
+        "verdict",
+        "matches_prediction",
+        "reasons"
+      ],
+      "invariants": {
+        "same_executed_ops": true,
+        "p9_effects_exact": true,
+        "same_final_status_or_untouched_by_earlier_refusal": true,
+        "rejected_in_v3_implies_rejected_in_v5": true
+      },
+      "v5": {
+        "statuses": [
+          "STEP_COMPLETED",
+          "ATTESTATION_REFUSED"
+        ],
+        "final_status": "ACTIVE",
+        "verdict": "NOT_DENIED",
+        "matches_prediction": false,
+        "reasons": [
+          "step 0 confirmed and validated",
+          "REFUSED(run-not-at-step)"
+        ]
+      },
+      "baseline": {
+        "statuses": [
+          "STEP_COMPLETED",
+          "DENIED"
+        ],
+        "final_status": "TERMINATED",
+        "verdict": "DENIED_BY_MONITOR",
+        "matches_prediction": true,
+        "reasons": [
+          "step 0 confirmed and validated",
+          "envelope rejected: envelope signature does not verify"
+        ]
+      },
+      "cause": "TO BE DOCUMENTED",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-2",
+          "status": null,
+          "refusal": "run-not-at-step",
+          "refusal_detail": "the run is not active at this step on this state",
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [
+        "WireError: message is not canonical JSON: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "attested_runs_total": 2,
+      "attested_runs_measured": 2,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "adv-envelope-resign-forge",
+      "level": "invariant",
+      "differing_fields": [
+        "statuses",
+        "final_status",
+        "verdict",
+        "matches_prediction",
+        "reasons"
+      ],
+      "invariants": {
+        "same_executed_ops": true,
+        "p9_effects_exact": true,
+        "same_final_status_or_untouched_by_earlier_refusal": true,
+        "rejected_in_v3_implies_rejected_in_v5": true
+      },
+      "v5": {
+        "statuses": [
+          "STEP_COMPLETED",
+          "ATTESTATION_REFUSED"
+        ],
+        "final_status": "ACTIVE",
+        "verdict": "NOT_DENIED",
+        "matches_prediction": false,
+        "reasons": [
+          "step 0 confirmed and validated",
+          "REFUSED(run-not-at-step)"
+        ]
+      },
+      "baseline": {
+        "statuses": [
+          "STEP_COMPLETED",
+          "DENIED"
+        ],
+        "final_status": "TERMINATED",
+        "verdict": "DENIED_BY_MONITOR",
+        "matches_prediction": true,
+        "reasons": [
+          "step 0 confirmed and validated",
+          "envelope rejected: envelope signature does not verify"
+        ]
+      },
+      "cause": "TO BE DOCUMENTED",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-2",
+          "status": null,
+          "refusal": "run-not-at-step",
+          "refusal_detail": "the run is not active at this step on this state",
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [
+        "WireError: message is not canonical JSON: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "attested_runs_total": 2,
+      "attested_runs_measured": 2,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "adv-policy-swap-in-transit",
+      "level": "exact",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "DENIED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [],
+      "attested_runs_total": 1,
+      "attested_runs_measured": 1,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "adv-skip-step",
+      "level": "invariant",
+      "differing_fields": [
+        "statuses",
+        "final_status",
+        "verdict",
+        "matches_prediction",
+        "reasons"
+      ],
+      "invariants": {
+        "same_executed_ops": true,
+        "p9_effects_exact": true,
+        "same_final_status_or_untouched_by_earlier_refusal": true,
+        "rejected_in_v3_implies_rejected_in_v5": true
+      },
+      "v5": {
+        "statuses": [
+          "STEP_COMPLETED",
+          "ATTESTATION_REFUSED"
+        ],
+        "final_status": "ACTIVE",
+        "verdict": "NOT_DENIED",
+        "matches_prediction": false,
+        "reasons": [
+          "step 0 confirmed and validated",
+          "REFUSED(run-not-at-step)"
+        ]
+      },
+      "baseline": {
+        "statuses": [
+          "STEP_COMPLETED",
+          "DENIED"
+        ],
+        "final_status": "TERMINATED",
+        "verdict": "DENIED_BY_MONITOR",
+        "matches_prediction": true,
+        "reasons": [
+          "step 0 confirmed and validated",
+          "fragment step 2 does not match envelope step 1"
+        ]
+      },
+      "cause": "TO BE DOCUMENTED",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 2,
+          "td": "td-2",
+          "status": null,
+          "refusal": "run-not-at-step",
+          "refusal_detail": "the run is not active at this step on this state",
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [
+        "WireError: message is not canonical JSON: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "attested_runs_total": 2,
+      "attested_runs_measured": 2,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "adv-cross-run-envelope",
+      "level": "invariant",
+      "differing_fields": [
+        "statuses",
+        "final_status",
+        "verdict",
+        "matches_prediction",
+        "reasons"
+      ],
+      "invariants": {
+        "same_executed_ops": true,
+        "p9_effects_exact": true,
+        "same_final_status_or_untouched_by_earlier_refusal": true,
+        "rejected_in_v3_implies_rejected_in_v5": true
+      },
+      "v5": {
+        "statuses": [
+          "STEP_COMPLETED",
+          "ATTESTATION_REFUSED"
+        ],
+        "final_status": "ACTIVE",
+        "verdict": "NOT_DENIED",
+        "matches_prediction": false,
+        "reasons": [
+          "step 0 confirmed and validated",
+          "REFUSED(run-not-at-step)"
+        ]
+      },
+      "baseline": {
+        "statuses": [
+          "STEP_COMPLETED",
+          "DENIED"
+        ],
+        "final_status": "TERMINATED",
+        "verdict": "DENIED_BY_MONITOR",
+        "matches_prediction": true,
+        "reasons": [
+          "step 0 confirmed and validated",
+          "envelope rejected: envelope signature does not verify"
+        ]
+      },
+      "cause": "TO BE DOCUMENTED",
+      "attested_runs": [
+        {
+          "run_id": "run-A",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-B",
+          "step": 1,
+          "td": "td-1",
+          "status": null,
+          "refusal": "run-not-at-step",
+          "refusal_detail": "the run is not active at this step on this state",
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [
+        "WireError: message is not canonical JSON: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "attested_runs_total": 2,
+      "attested_runs_measured": 2,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "adv-orchestrator-direct-grant",
+      "level": "exact",
+      "attested_runs": [],
+      "runner_errors": [],
+      "attested_runs_total": 0,
+      "attested_runs_measured": 0,
+      "foreign_effects_zero": null,
+      "foreign_effects_status": "no-attested-runs"
+    },
+    {
+      "name": "adv-state-replay",
+      "level": "invariant",
+      "differing_fields": [
+        "statuses",
+        "verdict",
+        "matches_prediction",
+        "reasons"
+      ],
+      "invariants": {
+        "same_executed_ops": true,
+        "p9_effects_exact": true,
+        "same_final_status_or_untouched_by_earlier_refusal": true,
+        "rejected_in_v3_implies_rejected_in_v5": true
+      },
+      "v5": {
+        "statuses": [
+          "STEP_COMPLETED",
+          "STEP_COMPLETED",
+          "ATTESTATION_REFUSED"
+        ],
+        "verdict": "NOT_REFUSED",
+        "matches_prediction": false,
+        "reasons": [
+          "step 0 confirmed and validated",
+          "step 1 confirmed and validated",
+          "REFUSED(run-not-at-step)"
+        ]
+      },
+      "baseline": {
+        "statuses": [
+          "STEP_COMPLETED",
+          "STEP_COMPLETED",
+          "GRANT_REFUSED"
+        ],
+        "verdict": "REFUSED_AT_GRANT",
+        "matches_prediction": true,
+        "reasons": [
+          "step 0 confirmed and validated",
+          "step 1 confirmed and validated",
+          "stale or unknown input state (freshness)"
+        ]
+      },
+      "cause": "TO BE DOCUMENTED",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-3",
+          "status": null,
+          "refusal": "run-not-at-step",
+          "refusal_detail": "the run is not active at this step on this state",
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [
+        "WireError: message is not canonical JSON: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "attested_runs_total": 3,
+      "attested_runs_measured": 3,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "adv-state-fork",
+      "level": "invariant",
+      "differing_fields": [
+        "statuses",
+        "verdict",
+        "matches_prediction",
+        "reasons"
+      ],
+      "invariants": {
+        "same_executed_ops": true,
+        "p9_effects_exact": true,
+        "same_final_status_or_untouched_by_earlier_refusal": true,
+        "rejected_in_v3_implies_rejected_in_v5": true
+      },
+      "v5": {
+        "statuses": [
+          "STEP_COMPLETED",
+          "STEP_COMPLETED",
+          "ATTESTATION_REFUSED"
+        ],
+        "verdict": "NOT_REFUSED",
+        "matches_prediction": false,
+        "reasons": [
+          "step 0 confirmed and validated",
+          "step 1 confirmed and validated",
+          "REFUSED(run-not-at-step)"
+        ]
+      },
+      "baseline": {
+        "statuses": [
+          "STEP_COMPLETED",
+          "STEP_COMPLETED",
+          "GRANT_REFUSED"
+        ],
+        "verdict": "REFUSED_AT_GRANT",
+        "matches_prediction": true,
+        "reasons": [
+          "step 0 confirmed and validated",
+          "step 1 confirmed and validated",
+          "stale or unknown input state (freshness)"
+        ]
+      },
+      "cause": "TO BE DOCUMENTED",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-3",
+          "status": null,
+          "refusal": "run-not-at-step",
+          "refusal_detail": "the run is not active at this step on this state",
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [
+        "WireError: message is not canonical JSON: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "attested_runs_total": 3,
+      "attested_runs_measured": 3,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "adv-replay-completed-run",
+      "level": "invariant",
+      "differing_fields": [
+        "statuses",
+        "verdict",
+        "matches_prediction",
+        "reasons"
+      ],
+      "invariants": {
+        "same_executed_ops": true,
+        "p9_effects_exact": true,
+        "same_final_status_or_untouched_by_earlier_refusal": true,
+        "rejected_in_v3_implies_rejected_in_v5": true
+      },
+      "v5": {
+        "statuses": [
+          "STEP_COMPLETED",
+          "STEP_COMPLETED",
+          "STEP_COMPLETED",
+          "STEP_COMPLETED",
+          "ATTESTATION_REFUSED"
+        ],
+        "verdict": "NOT_REFUSED",
+        "matches_prediction": false,
+        "reasons": [
+          "step 0 confirmed and validated",
+          "step 1 confirmed and validated",
+          "step 2 confirmed and validated",
+          "step 3 confirmed and validated",
+          "REFUSED(run-not-at-step)"
+        ]
+      },
+      "baseline": {
+        "statuses": [
+          "STEP_COMPLETED",
+          "STEP_COMPLETED",
+          "STEP_COMPLETED",
+          "STEP_COMPLETED",
+          "GRANT_REFUSED"
+        ],
+        "verdict": "REFUSED_AT_GRANT",
+        "matches_prediction": true,
+        "reasons": [
+          "step 0 confirmed and validated",
+          "step 1 confirmed and validated",
+          "step 2 confirmed and validated",
+          "step 3 confirmed and validated",
+          "run is COMPLETED"
+        ]
+      },
+      "cause": "TO BE DOCUMENTED",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 2,
+          "td": "td-3",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 3,
+          "td": "td-4",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 3,
+          "td": "td-5",
+          "status": null,
+          "refusal": "run-not-at-step",
+          "refusal_detail": "the run is not active at this step on this state",
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [
+        "WireError: message is not canonical JSON: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "attested_runs_total": 5,
+      "attested_runs_measured": 5,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "benign-transport-untouched",
+      "level": "new",
+      "cause": "scenario absent from the baseline, added after it was frozen",
+      "attested_runs": [],
+      "runner_errors": [],
+      "attested_runs_total": 0,
+      "attested_runs_measured": 0,
+      "foreign_effects_zero": null,
+      "foreign_effects_status": "no-attested-runs"
+    },
+    {
+      "name": "adv-transport-rewrites-bound-field",
+      "level": "new",
+      "cause": "scenario absent from the baseline, added after it was frozen",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [],
+      "attested_runs_total": 2,
+      "attested_runs_measured": 2,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "adv-transport-rewrites-unbound-field",
+      "level": "new",
+      "cause": "scenario absent from the baseline, added after it was frozen",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [],
+      "attested_runs_total": 2,
+      "attested_runs_measured": 2,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "adv-token-cross-step",
+      "level": "exact",
+      "attested_runs": [],
+      "runner_errors": [],
+      "attested_runs_total": 0,
+      "attested_runs_measured": 0,
+      "foreign_effects_zero": null,
+      "foreign_effects_status": "no-attested-runs"
+    },
+    {
+      "name": "adv-token-replay",
+      "level": "exact",
+      "attested_runs": [],
+      "runner_errors": [],
+      "attested_runs_total": 0,
+      "attested_runs_measured": 0,
+      "foreign_effects_zero": null,
+      "foreign_effects_status": "no-attested-runs"
+    },
+    {
+      "name": "intervention-approved",
+      "level": "exact",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 2,
+          "td": "td-3",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 3,
+          "td": "td-4",
+          "status": "REQUIRE_APPROVAL",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 3,
+          "td": "td-5",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [],
+      "attested_runs_total": 5,
+      "attested_runs_measured": 5,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "adv-intervention-arg-swap",
+      "level": "invariant",
+      "differing_fields": [
+        "statuses",
+        "final_status",
+        "verdict",
+        "matches_prediction",
+        "reasons"
+      ],
+      "invariants": {
+        "same_executed_ops": true,
+        "p9_effects_exact": true,
+        "same_final_status_or_untouched_by_earlier_refusal": true,
+        "rejected_in_v3_implies_rejected_in_v5": true
+      },
+      "v5": {
+        "statuses": [
+          "STEP_COMPLETED",
+          "STEP_COMPLETED",
+          "STEP_COMPLETED",
+          "REQUIRE_APPROVAL",
+          "ATTESTATION_REFUSED"
+        ],
+        "final_status": "ACTIVE",
+        "verdict": "INTERVENTION_BYPASSED",
+        "matches_prediction": false,
+        "reasons": [
+          "step 0 confirmed and validated",
+          "step 1 confirmed and validated",
+          "step 2 confirmed and validated",
+          "manual intervention required at step 3: no intervention approval presented",
+          "REFUSED(step-already-has-session)"
+        ]
+      },
+      "baseline": {
+        "statuses": [
+          "STEP_COMPLETED",
+          "STEP_COMPLETED",
+          "STEP_COMPLETED",
+          "REQUIRE_APPROVAL",
+          "DENIED"
+        ],
+        "final_status": "TERMINATED",
+        "verdict": "INTERVENTION_BLOCKED",
+        "matches_prediction": true,
+        "reasons": [
+          "step 0 confirmed and validated",
+          "step 1 confirmed and validated",
+          "step 2 confirmed and validated",
+          "manual intervention required at step 3: no intervention approval presented",
+          "cross-step binding violated at step 3: recipient must equal fact booking_recipient"
+        ]
+      },
+      "cause": "TO BE DOCUMENTED",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 2,
+          "td": "td-3",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 3,
+          "td": "td-4",
+          "status": "REQUIRE_APPROVAL",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 3,
+          "td": "td-5",
+          "status": null,
+          "refusal": "step-already-has-session",
+          "refusal_detail": "no pending intervention for this fragment",
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [
+        "WireError: message is not canonical JSON: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "attested_runs_total": 5,
+      "attested_runs_measured": 5,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "adv-intervention-expired",
+      "level": "exact",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 2,
+          "td": "td-3",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 3,
+          "td": "td-4",
+          "status": "REQUIRE_APPROVAL",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 3,
+          "td": "td-5",
+          "status": "GRANT_REFUSED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [],
+      "attested_runs_total": 5,
+      "attested_runs_measured": 5,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "adv-approve-unsubmitted-fragment",
+      "level": "exact",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 2,
+          "td": "td-3",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 3,
+          "td": "td-4",
+          "status": "REQUIRE_APPROVAL",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [],
+      "attested_runs_total": 4,
+      "attested_runs_measured": 4,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "env-book-effect-fails",
+      "level": "exact",
+      "attested_runs": [
+        {
+          "run_id": "run-1",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-1",
+          "step": 2,
+          "td": "td-3",
+          "status": "EFFECT_FAILED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [],
+      "attested_runs_total": 3,
+      "attested_runs_measured": 3,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    },
+    {
+      "name": "adv-approval-rejected",
+      "level": "exact",
+      "attested_runs_total": 0,
+      "attested_runs_measured": 0,
+      "foreign_effects_zero": null,
+      "foreign_effects_status": "no-attested-runs"
+    },
+    {
+      "name": "adv-policy-tampered-after-approval",
+      "level": "exact",
+      "attested_runs": [
+        {
+          "run_id": "run-v3-diff",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 2,
+          "td": "td-3",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 3,
+          "td": "td-4",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 2,
+          "td": "td-3",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 3,
+          "td": "td-4",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 1,
+          "td": "td-2",
+          "status": "DENIED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 2,
+          "td": "td-3",
+          "status": "DENIED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 2,
+          "td": "td-3",
+          "status": "DENIED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 2,
+          "td": "td-3",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 3,
+          "td": "td-4",
+          "status": "DENIED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 2,
+          "td": "td-3",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 3,
+          "td": "td-4",
+          "status": "DENIED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 2,
+          "td": "td-3",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 3,
+          "td": "td-4",
+          "status": "DENIED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 1,
+          "td": "td-2",
+          "status": "DENIED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 0,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 0,
+          "td": "td-1",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 1,
+          "td": "td-2",
+          "status": "STEP_COMPLETED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        },
+        {
+          "run_id": "run-v3-diff",
+          "step": 2,
+          "td": "td-3",
+          "status": "EFFECT_FAILED",
+          "refusal": null,
+          "refusal_detail": null,
+          "effects": 1,
+          "pending_effects": 0,
+          "foreign_effects": 0,
+          "ledger_measured": true
+        }
+      ],
+      "runner_errors": [],
+      "attested_runs_total": 33,
+      "attested_runs_measured": 33,
+      "foreign_effects_zero": true,
+      "foreign_effects_status": "measured"
+    }
+  ]
+}

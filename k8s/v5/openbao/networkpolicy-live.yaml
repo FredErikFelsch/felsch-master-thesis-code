@@ -1,0 +1,69 @@
+# V5: the network rules a live world needs, kept apart from the base policy.
+#
+# k8s/v5/services/networkpolicy.yaml is left unchanged. NetworkPolicies are
+# additive, so applying this file widens the gateway and adds the store. Deleting it
+# narrows everything back to the mock deployment. The diff between the two is the price of
+# reaching a real counterparty, which the evaluation can then state.
+#
+# A NetworkPolicy selects pods, namespaces and CIDR blocks. It cannot say `api.duffel.com`.
+# So the network can only grant HTTPS in general, and which provider may be reached is
+# enforced one layer up, by the gateway's own allow-list (booking_live.world.ALLOWED_HOSTS,
+# with redirects refused). This layer is not described as confining the provider.
+#
+# What the network does add: `except` carves the private ranges out of the public grant, so
+# the same rule that lets the gateway reach a provider does not also let it reach other
+# workloads, the metadata server or a private control plane. The runner is untouched: it
+# keeps its policy from k8s/v5/services/networkpolicy.yaml, with no egress to OpenBao or to
+# the internet.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: gateway-live-egress
+  namespace: agent-system
+spec:
+  podSelector: {matchLabels: {app: gateway}}
+  policyTypes: ["Egress"]
+  egress:
+    # The credential store, by pod label rather than by address.
+    - to: [{podSelector: {matchLabels: {app: openbao}}}]
+      ports: [{protocol: TCP, port: 8200}]
+    # Public HTTPS, with every private range removed. 169.254.0.0/16 is the metadata
+    # server, and on GKE that is the one address whose reachability turns a compromised
+    # workload into a node-level one.
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+            except:
+              - 10.0.0.0/8
+              - 172.16.0.0/12
+              - 192.168.0.0/16
+              - 169.254.0.0/16
+              - 127.0.0.0/8
+      ports: [{protocol: TCP, port: 443}]
+---
+# OpenBao's own edge: the Kubernetes auth method validates a presented token by calling
+# TokenReview on the API server. On GKE that server sits outside the cluster network, so a
+# policy that only allowed pod-to-pod traffic would make every login fail with a permission
+# error that reads like a broken role.
+#
+# ${MASTER_CIDR} is substituted by 37_install_openbao.sh from the cluster's
+# `privateClusterConfig.masterIpv4CidrBlock`. The cluster created by 12 is not a private
+# cluster and has no such block, so 37 falls back to 0.0.0.0/0 and says so: OpenBao may then
+# reach any IPv4 address on 443.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: openbao-policy
+  namespace: agent-system
+spec:
+  podSelector: {matchLabels: {app: openbao}}
+  policyTypes: ["Ingress", "Egress"]
+  ingress:
+    # Only the gateway. The runner has no route here and no identity to present.
+    - from: [{podSelector: {matchLabels: {app: gateway}}}]
+      ports: [{protocol: TCP, port: 8200}]
+  egress:
+    - to: [{namespaceSelector: {matchLabels: {kubernetes.io/metadata.name: kube-system}}}]
+      ports: [{protocol: UDP, port: 53}, {protocol: TCP, port: 53}]
+    - to: [{ipBlock: {cidr: ${MASTER_CIDR}}}]
+      ports: [{protocol: TCP, port: 443}]

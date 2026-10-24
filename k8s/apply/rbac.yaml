@@ -1,0 +1,56 @@
+# V4.4c: the applied RBAC (supersedes the static sketch in reference/rbac-model-v4.4b.yaml).
+#
+# Enforced target matrix. It is verified live with `kubectl auth can-i --as=...`,
+# and 40_verify_platform.sh performs these checks against the real cluster:
+#
+#   resource                orchestrator-sa   controller-sa   runner-sa
+#   jobs create                 DENY             ALLOW           DENY
+#   jobs get/list/watch/delete  DENY             ALLOW           DENY
+#   pods get/list/watch         DENY             ALLOW           DENY
+#   pods/attach get/create      DENY             ALLOW           DENY
+#   pods create                 DENY             DENY            DENY
+#   secrets *                   DENY             DENY            DENY
+#   deployments write           DENY             DENY            DENY
+#   roles/rolebindings *        DENY             DENY            DENY
+#
+# orchestrator-sa and runner-sa appear in no subject list below, so they get the
+# default: no permissions. Only controller-sa is bound, to one narrow Role.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: runner-controller
+  namespace: agent-system
+rules:
+  # The controller owns the runner Job lifecycle and the pod access it needs for it.
+  - apiGroups: ["batch"]
+    resources: ["jobs"]
+    verbs: ["create", "get", "list", "watch", "delete"]
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list", "watch"]
+  # pods/attach: the runner's stdin/stdout (the frozen protocol transport). Both
+  # verbs are needed and mean the same thing ("attach"): `kubectl attach` speaks
+  # SPDY over POST, which the API server authorises as `create`. The Kubernetes
+  # Python client attaches over a WebSocket, whose HTTP handshake is always a GET,
+  # authorised as `get` (verified live: create-only -> 403 "cannot get resource
+  # pods/attach"). Neither verb is granted to any other SA. pods/log for audit.
+  - apiGroups: [""]
+    resources: ["pods/attach"]
+    verbs: ["get", "create"]
+  - apiGroups: [""]
+    resources: ["pods/log"]
+    verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: controller-can-manage-runners
+  namespace: agent-system
+subjects:
+  - kind: ServiceAccount
+    name: controller-sa
+    namespace: agent-system
+roleRef:
+  kind: Role
+  name: runner-controller
+  apiGroup: rbac.authorization.k8s.io

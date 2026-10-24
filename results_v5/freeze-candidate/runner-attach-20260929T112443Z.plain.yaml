@@ -1,0 +1,55 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations: {}
+  labels:
+    app: runner
+    managed-by: trusted-runner-controller-v5
+  name: runner-attach
+  namespace: v5-probe
+spec:
+  activeDeadlineSeconds: 1200
+  automountServiceAccountToken: false
+  containers:
+  - command:
+    - /usr/local/bin/python3
+    - -u
+    - -c
+    - "import sys\nprint('ATTACH_READY', flush=True)\nfor line in sys.stdin:\n   \
+      \ line = line.rstrip('\\n')\n    if line == 'quit': break\n    print('echo:'\
+      \ + line, flush=True)\n"
+    image: europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:468b0ca06f6c07064b5bae91a6fdd788df4330be60e5d58bbe3f47fc6aec7681
+    name: runner
+    resources:
+      limits:
+        memory: 512Mi
+      requests:
+        cpu: 100m
+        memory: 512Mi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      readOnlyRootFilesystem: true
+    stdin: true
+    stdinOnce: false
+    tty: false
+    volumeMounts:
+    - mountPath: /tmp
+      name: tmp
+  imagePullSecrets:
+  - name: ar-pull
+  restartPolicy: Never
+  runtimeClassName: kata-remote
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 65532
+    seccompProfile:
+      type: RuntimeDefault
+  serviceAccountName: default
+  volumes:
+  - emptyDir:
+      medium: Memory
+      sizeLimit: 16Mi
+    name: tmp

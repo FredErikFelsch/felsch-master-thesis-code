@@ -1,0 +1,97 @@
+--- a/src/cloud-api-adaptor/pkg/userdata/provision.go
++++ b/src/cloud-api-adaptor/pkg/userdata/provision.go
+@@ -301,32 +301,80 @@
+ 	return nil
+ }
+ 
++// newProviderWithRetry detects the user data provider, retrying until the context deadline.
++//
++// Bounded on purpose. A single attempt turns a transient metadata hiccup into a pod VM that
++// never receives its init-data; an unbounded wait turns a genuinely broken instance into a
++// hanging boot. The deadline is the caller's --user-data-fetch-timeout (180 s by default),
++// the same budget retrieveCloudConfig already spends on the user data itself.
++func newProviderWithRetry(ctx context.Context) (UserDataProvider, error) {
++	var provider UserDataProvider
++	err := retry.Do(
++		func() error {
++			p, err := newProvider(ctx)
++			if err != nil {
++				return err
++			}
++			provider = p
++			return nil
++		},
++		retry.Context(ctx),
++		retry.Attempts(0), // the context deadline is the bound, not an attempt count
++		retry.Delay(1*time.Second),
++		retry.DelayType(retry.FixedDelay),
++		retry.LastErrorOnly(true),
++		retry.OnRetry(func(n uint, err error) {
++			logger.Printf("user data provider not available yet (attempt %d): %v\n", n+1, err)
++		}),
++	)
++	return provider, err
++}
++
+ func ProvisionFiles(cfg *Config) error {
+ 	bg := context.Background()
+ 	duration := time.Duration(cfg.fetchTimeout) * time.Second
+ 	ctx, cancel := context.WithTimeout(bg, duration)
+ 	defer cancel()
+ 
+-	// some providers provision config files via process-user-data
+-	// some providers rely on cloud-init provision config files
+-	// all providers need extract files from initdata and calculate the hash value for attesters usage
+-	provider, _ := newProvider(ctx)
+-	if provider != nil {
+-		cc, err := retrieveCloudConfig(ctx, provider)
+-		if err != nil {
+-			return fmt.Errorf("failed to retrieve cloud config: %w", err)
+-		}
++	// V5 (master thesis, 23 September 2026). Upstream discarded the newProvider error here,
++	// skipped the whole cloud config and still returned nil. This service is Type=oneshot
++	// with RemainAfterExit=yes, so systemd recorded a CLEAN COMPLETION for a run that wrote
++	// nothing: /run/peerpod/initdata never appeared, the guest fell back to the allow-all
++	// policy of tmpfiles.d/policy.conf, and initdata-measure.service had no digest to extend
++	// into RTMR3. A consumer ordered After= this unit could not tell the two cases apart.
++	// Measured before this patch: the init-data was missing in 3 of 13 pod-VM boots.
++	// newProvider detects GCE with an HTTP GET against the metadata server, which is exactly
++	// the call that fails transiently right after boot, so it is retried within the same
++	// deadline and a provider that stays unavailable is an error, not a silent skip.
++	provider, err := newProviderWithRetry(ctx)
++	if err != nil {
++		return fmt.Errorf("no user data provider within %s: %w", duration, err)
++	}
+ 
+-		if err = processCloudConfig(cfg, cc); err != nil {
+-			return fmt.Errorf("failed to process cloud config: %w", err)
+-		}
+-	} else {
+-		logger.Printf("unsupported user data provider, we extract and calculate initdata hash only.\n")
++	cc, err := retrieveCloudConfig(ctx, provider)
++	if err != nil {
++		return fmt.Errorf("failed to retrieve cloud config: %w", err)
++	}
++
++	if err = processCloudConfig(cfg, cc); err != nil {
++		return fmt.Errorf("failed to process cloud config: %w", err)
+ 	}
+ 
+ 	if err := extractInitdataAndHash(cfg); err != nil {
+ 		return fmt.Errorf("failed to extract initdata hash: %w", err)
+ 	}
+ 
++	// Postcondition. Never report success without the two files a measured guest needs, so
++	// that "the unit completed" and "the init-data is on disk" are the same statement.
++	for _, path := range []string{cfg.initdataPath, cfg.digestPath} {
++		info, err := os.Stat(path)
++		if err != nil {
++			return fmt.Errorf("provisioning finished but %s is missing: %w", path, err)
++		}
++		if info.Size() == 0 {
++			return fmt.Errorf("provisioning finished but %s is empty", path)
++		}
++	}
++
+ 	return nil
+ }

@@ -1,0 +1,27 @@
+CHECK offline tests:                 PASS  Ran 27 tests in 0.146s OK 
+CHECK fixture tests:                 PASS  Ran 19 tests in 0.063s OK 
+CHECK rtmr replay tests:             PASS  Ran 8 tests in 0.001s OK 
+CHECK runner phase-order tests:      PASS  Ran 9 tests in 0.003s OK 
+CHECK peer-pod cleanup tests:        PASS  Ran 3 tests in 0.010s OK 
+CHECK probe analysis dry run:        PASS  Ran 5 tests in 0.575s OK 
+CHECK cluster script (12):           PASS  Ran 14 tests in 23.854s OK 
+CHECK probe scripts (18/19):         PASS  Ran 14 tests in 0.022s OK 
+CHECK pod-VM overlay hardening:      PASS  Ran 16 tests in 0.988s OK 
+CHECK attach protocol end to end:    PASS  Ran 7 tests in 0.017s OK 
+CHECK cluster network:               PASS  default
+CHECK caa daemonset:                 PASS  ready 1/1
+CHECK runtimeclass:                  PASS  kata-remote handler=kata-remote
+CHECK caa image pin:                 PASS  quay.io/confidential-containers/cloud-api-adaptor:v0.21.1-amd64
+CHECK containerd gke-thesis-v5-v5-pool-1457b4ec-41sf: PASS  discard_unpacked_layers=false
+CHECK fw v5-allow-peerpod-tunnel:    PASS  VPC firewall rule
+CHECK fw v5-allow-peerpod-tunnel-return: PASS  VPC firewall rule
+CHECK fw policy rule 65000:          PASS  v5-runner-td-policy
+CHECK fw policy rule 1000:           PASS  v5-runner-td-policy
+CHECK fw policy rule 1001:           PASS  v5-runner-td-policy
+CHECK podvm subnet:                  PASS  v5-podvm=192.168.200.0/24, private-google-access=true
+CHECK fw policy association:         PASS  v5-runner-td-policy-default -> default
+CHECK annotations gke-thesis-v5-v5-pool-1457b4ec-41sf: PASS  both remote configs = ["cc_init_data"]
+CHECK substrate profile hash:        PASS  e6bc76a16b57fe4946abd3c0872bc1539d6571acaf7929c552050b5b948e3ae3 (pin in Authority reference values)
+
+VERDICT: live GKE/CoCo substrate verification PASS
+NEXT: 18_probe_peer_pod.sh -> evidence verification -> 19_probe_network.sh

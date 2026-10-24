@@ -1,0 +1,177 @@
+{
+  "stamp": "20261002T075914Z",
+  "run_id": "attack-20261002T075830Z",
+  "manifest": {
+    "manifest_version": 1,
+    "recorded_at": "2026-10-02T08:04:44Z",
+    "git": {
+      "commit": "f1ca1cba474ed6757887ba6de16c093d8f112c85",
+      "dirty": true,
+      "branch": "main"
+    },
+    "policies": {
+      "P2": "66c97606690fe0cd7d442928cf4db514157e682d8f8b6ee53fb13cfdb458e655",
+      "P2.1": "254054d2ab7db1d1f5c7ab2244ceefbb5e536c469481b4ec895650859ea260d4",
+      "P3": "de054d83d565c2c882770ab165c4a935ba02dafb61e67d1877a7470892e19a52",
+      "P3+pay-approval": "28df9debbcff93a11c20ec4ce11f1014e0322e7eece59116fb968017ce52fef8"
+    },
+    "registry": {
+      "policy_schema": "ps-3",
+      "constraint": "cr-1",
+      "fact": "fr-2",
+      "fact_extension": "fr-2.1"
+    },
+    "ttl": {
+      "token_s": 120,
+      "intervention_s": 300
+    },
+    "clock_mode": "system",
+    "verifier": "TdxVerifier",
+    "images": {
+      "CONTROLLER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:048ca8db8819678dccf79330483db1008bbe3ec56e78182e4e5e910631391a24",
+      "RUNNER_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking@sha256:048ca8db8819678dccf79330483db1008bbe3ec56e78182e4e5e910631391a24",
+      "RUNNER_PROCESS_SHA256": "ee153e2790a7a5481d60d04e750a7770c13a99866448bbc9756041d5c54464db",
+      "RUNNER_SOURCE_SHA256": "dd062c91f0d97a14fa272b637b817b21f925f611afa3daa17352fac22220b1e4",
+      "RUNNER_PYTHON": "/usr/local/bin/python3",
+      "SERVICES_IMAGE": "europe-west1-docker.pkg.dev/project-example/thesis/booking-services@sha256:11aea57adb3d17c5d11208c5d997ce796602dba055090835f66ce55d92c97645"
+    },
+    "freeze": {
+      "stamp": "20260930T155610Z",
+      "sha256": "26d123d1ad8921da2f86dd63eff9192b01bf332174bf2ce77ef4925feca347d5"
+    },
+    "python": "3.13.3",
+    "platform": "macOS-27.0-arm64-arm-64bit-Mach-O",
+    "observation_check": "bound"
+  },
+  "steps": [
+    {
+      "run_id": "attack-20261002T075830Z",
+      "step": 0,
+      "td": "runner-td-cfzmj",
+      "outcome": "ACCEPTED",
+      "accepted": true,
+      "effects": 1,
+      "pending_effects": 0,
+      "foreign_effects": 0,
+      "fragment_hash": "180395ce4a3eec5706aa92e41f47cfe8282f2ccb2fb565148eb4f3bb0baa587e",
+      "state_hash": "7816da64804c5cc089c124f8b950c33bfe47b2aec6057692869ddeb5f6457c9c",
+      "refusal": null,
+      "result_status": "STEP_COMPLETED",
+      "result_reason": "step 0 confirmed and validated",
+      "has_successor": true,
+      "appraisal": {
+        "advisory_ids": [],
+        "binding_version": "v5.1",
+        "collateral_earliest_expiration": "2026-11-01T06:53:22Z",
+        "fmspc": "00806f050000",
+        "qv_result": "OK",
+        "tcb_eval_ref_num": 20,
+        "tcb_level_date_tag": "2025-08-13T00:00:00Z",
+        "verdicts_attested": true,
+        "verifier": "TdxVerifier"
+      },
+      "timings": {
+        "spawn": 84.58670204202645,
+        "ready": 83.51443579094484,
+        "boot_key": 0.5880627080332488,
+        "evidence": 0.34210916701704264,
+        "verification": 0.23062470799777657,
+        "execution": 0.598749958910048,
+        "destroy": 20.1199885829119
+      },
+      "total_s": 106.46623716689646,
+      "handoff": "cold",
+      "cleanup_mode": "gce_confirmed_finalizer_cleanup",
+      "indeterminate": null,
+      "ledger_measured": true,
+      "ledger_error": null,
+      "cleanup_error": null
+    },
+    {
+      "run_id": "attack-20261002T075830Z",
+      "step": 1,
+      "td": "runner-td-rhhjm",
+      "outcome": "ACCEPTED",
+      "accepted": true,
+      "effects": 1,
+      "pending_effects": 0,
+      "foreign_effects": 0,
+      "fragment_hash": "b0f994c698a89613cf946ff1471dc1be8c8d5b1eb1444b3f14e24cf2c7657f28",
+      "state_hash": "dff1bf4d95e921dada6b0d58277c70c3c06bbefa6382b308bf88c7fb3cd0d073",
+      "refusal": null,
+      "result_status": "STEP_COMPLETED",
+      "result_reason": "step 1 confirmed and validated",
+      "has_successor": true,
+      "appraisal": {
+        "advisory_ids": [],
+        "binding_version": "v5.1",
+        "collateral_earliest_expiration": "2026-11-01T06:53:22Z",
+        "fmspc": "00806f050000",
+        "qv_result": "OK",
+        "tcb_eval_ref_num": 20,
+        "tcb_level_date_tag": "2025-08-13T00:00:00Z",
+        "verdicts_attested": true,
+        "verifier": "TdxVerifier"
+      },
+      "timings": {
+        "spawn": 90.70513195800595,
+        "ready": 89.89056850003544,
+        "boot_key": 0.5084675829857588,
+        "evidence": 0.3379784590797499,
+        "verification": 0.16606787499040365,
+        "execution": 0.5599182919831946,
+        "destroy": 20.134720915928483
+      },
+      "total_s": 112.41228508297354,
+      "handoff": "cold",
+      "cleanup_mode": "gce_confirmed_finalizer_cleanup",
+      "indeterminate": null,
+      "ledger_measured": true,
+      "ledger_error": null,
+      "cleanup_error": null
+    },
+    {
+      "run_id": "attack-20261002T075830Z",
+      "step": 2,
+      "td": "runner-td-whdbd",
+      "outcome": "ACCEPTED",
+      "accepted": true,
+      "effects": 1,
+      "pending_effects": 0,
+      "foreign_effects": 0,
+      "fragment_hash": "cbd8ab4d39a80e7cfba066de1d1fdd9dbfb2a986993c5d7ad4ec514a88178d12",
+      "state_hash": "be59d1b63a6e04c42971cefc4a9ee58fe6b9b0450c89bda39d0ee5879631e98b",
+      "refusal": null,
+      "result_status": "FINALIZE_REFUSED",
+      "result_reason": "adopted EFFECT_RECONCILE: observation-mismatch; run parked for reconciliation",
+      "has_successor": false,
+      "appraisal": {
+        "advisory_ids": [],
+        "binding_version": "v5.1",
+        "collateral_earliest_expiration": "2026-11-01T06:53:22Z",
+        "fmspc": "00806f050000",
+        "qv_result": "OK",
+        "tcb_eval_ref_num": 20,
+        "tcb_level_date_tag": "2025-08-13T00:00:00Z",
+        "verdicts_attested": true,
+        "verifier": "TdxVerifier"
+      },
+      "timings": {
+        "spawn": 90.86658304196317,
+        "ready": 89.93454595794901,
+        "boot_key": 0.5022972080623731,
+        "evidence": 0.40506124997045845,
+        "verification": 0.12812170898541808,
+        "execution": 0.450156084029004,
+        "destroy": 17.575854666065425
+      },
+      "total_s": 109.92807395907585,
+      "handoff": "cold",
+      "cleanup_mode": "gce_confirmed_finalizer_cleanup",
+      "indeterminate": null,
+      "ledger_measured": true,
+      "ledger_error": null,
+      "cleanup_error": null
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+# Open WebUI as the chat front end of the demo. It reaches only the agent facade
+# (ui/agent_api.py) on the host. The approval panel (ui/approval_api.py) is a separate
+# origin in the same browser, and this container holds no credential.
+#
+#   python3 -m ui.agent_api --host 0.0.0.0 --port 8767      # host, brain = AGENT_BRAIN
+#   python3 -m ui.approval_api --port 8766                   # host, http://localhost:8766/
+#   docker compose -f ui/docker-compose.yml up               # http://localhost:3000/
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    ports: ["3000:8080"]
+    environment:
+      OPENAI_API_BASE_URL: http://host.docker.internal:8767/v1
+      OPENAI_API_KEY: unused                 # the facade needs no key, but Open WebUI insists on one
+      WEBUI_AUTH: "false"                    # demo: no login screen
+      ENABLE_OLLAMA_API: "false"
+      # Forward the conversation id (X-OpenWebUI-Chat-Id), because a paused run is resumed
+      # only from the chat that started it (ui/agent_api.py).
+      ENABLE_FORWARD_USER_INFO_HEADERS: "true"
+      # Every helper prompt would be a chat completion and so a run, so they are off.
+      ENABLE_TITLE_GENERATION: "false"
+      ENABLE_TAGS_GENERATION: "false"
+      ENABLE_FOLLOW_UP_GENERATION: "false"
+      ENABLE_AUTOCOMPLETE_GENERATION: "false"
+      ENABLE_RETRIEVAL_QUERY_GENERATION: "false"
+    extra_hosts: ["host.docker.internal:host-gateway"]
+    volumes: ["open-webui:/app/backend/data"]
+volumes:
+  open-webui: {}

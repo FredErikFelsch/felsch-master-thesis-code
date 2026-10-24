@@ -1,0 +1,171 @@
+# V4.4c: NetworkPolicies. These only take effect if the cluster's CNI enforces
+# NetworkPolicy (GKE: enable Dataplane V2 / network policy). The security-relevant
+# one is the runner's: default-deny, egress confined to the Authority service and DNS.
+# Verified on a live cluster with a probe pod (A5), not by YAML inspection.
+#
+# 1) Namespace-wide default-deny (ingress + egress) for every pod.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-all
+  namespace: agent-system
+spec:
+  podSelector: {}
+  policyTypes: ["Ingress", "Egress"]
+---
+# 2) Runner: no ingress. Egress only to the Authority pods on 8443, plus DNS.
+#    (Default-deny egress also blocks DNS, so DNS must be allowed explicitly.)
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: runner-egress
+  namespace: agent-system
+spec:
+  podSelector:
+    matchLabels: {app: runner}
+  policyTypes: ["Ingress", "Egress"]
+  egress:
+    - to:
+        - podSelector:
+            matchLabels: {app: authority}
+      ports:
+        - {protocol: TCP, port: 8443}
+    # DNS: the kube-system namespace, port 53 only. The textbook rule adds
+    # `podSelector: {k8s-app: kube-dns}`. On GKE Dataplane V2 that combination is
+    # dropped for DNS sent to the kube-dns Service (bisected live: namespace-only
+    # allows, namespace plus pod label and any ipBlock deny). Namespace and port keep
+    # the rule narrow: no path to any application peer or to the outside. The runner
+    # confinement is shown by the A5 canary probe, not by reading this YAML.
+    - to:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: kube-system}
+      ports:
+        - {protocol: UDP, port: 53}
+        - {protocol: TCP, port: 53}
+---
+# 3) Controller: ingress from the orchestrator on 9443. Egress to Authority, DNS,
+#    and the Kubernetes API server (443). The API CIDR can be tightened per
+#    cluster. Broadening it does not affect the runner confinement above.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: controller-policy
+  namespace: agent-system
+spec:
+  podSelector:
+    matchLabels: {app: controller}
+  policyTypes: ["Ingress", "Egress"]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels: {app: orchestrator}
+      ports:
+        - {protocol: TCP, port: 9443}
+  egress:
+    - to:
+        - podSelector:
+            matchLabels: {app: authority}
+      ports:
+        - {protocol: TCP, port: 8443}
+    # DNS: namespace and port only, see runner-egress.
+    - to:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: kube-system}
+      ports:
+        - {protocol: UDP, port: 53}
+        - {protocol: TCP, port: 53}
+    # Controller egress on TCP/443 is broadly permitted to reach the Kubernetes API
+    # server. This is any IPv4 target on 443, not a single API /32. Narrowing it to
+    # the concrete control-plane endpoint is possible per cluster but is not part of
+    # the runner-confinement claim. The controller is a trusted provisioning component
+    # with privileged credentials, and only the runner's confinement is claimed. That
+    # claim is unaffected by this rule.
+    - to:
+        - ipBlock: {cidr: 0.0.0.0/0}
+      ports:
+        - {protocol: TCP, port: 443}
+---
+# 4) Authority: ingress from controller and runner only, on 8443 (not from the
+#    orchestrator, which has no reason to reach the Authority). The harness listener
+#    (8445, authority.yaml) is admitted to no pod at all, so this rule only keeps the
+#    orchestrator off the RPC port. Egress DNS only (the external world is in-process
+#    in the mock).
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: authority-policy
+  namespace: agent-system
+spec:
+  podSelector:
+    matchLabels: {app: authority}
+  policyTypes: ["Ingress", "Egress"]
+  ingress:
+    - from:
+        - podSelector: {matchLabels: {app: controller}}
+        - podSelector: {matchLabels: {app: runner}}
+      ports:
+        - {protocol: TCP, port: 8443}
+  egress:
+    # DNS: namespace and port only, see runner-egress.
+    - to:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: kube-system}
+      ports:
+        - {protocol: UDP, port: 53}
+        - {protocol: TCP, port: 53}
+---
+# 4b) Trusted init: no ingress. Egress to DNS and the Kubernetes API (443) only, so
+#     it can patch the bootstrap Secret. On the first deploy the init Job runs
+#     before any policy exists (unconfined). This rule matters on a redeploy, where
+#     the default-deny is already present when the init Job re-runs. Without it the
+#     init could not reach the API and the redeploy would hang. app=trusted-init is
+#     a short-lived trusted Job, not an adversarial principal.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: init-egress
+  namespace: agent-system
+spec:
+  podSelector:
+    matchLabels: {app: trusted-init}
+  policyTypes: ["Ingress", "Egress"]
+  egress:
+    # DNS: namespace and port only, see runner-egress.
+    - to:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: kube-system}
+      ports:
+        - {protocol: UDP, port: 53}
+        - {protocol: TCP, port: 53}
+    - to:
+        - ipBlock: {cidr: 0.0.0.0/0}   # Kubernetes API server (patch the Secret)
+      ports:
+        - {protocol: TCP, port: 443}
+---
+# 5) Orchestrator: no ingress. Egress to the controller RPC and DNS only.
+#     No path to the Authority: the V4.4c orchestrator holds only the narrow
+#     controller RPC, so it has no reason to reach the Authority or the gateway. The
+#     trusted test harness activates runs and arms faults through `kubectl
+#     port-forward` to the harness listener, which goes through the API server and is
+#     not subject to this pod-network policy, so the harness is unaffected.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: orchestrator-egress
+  namespace: agent-system
+spec:
+  podSelector:
+    matchLabels: {app: orchestrator}
+  policyTypes: ["Ingress", "Egress"]
+  egress:
+    - to:
+        - podSelector: {matchLabels: {app: controller}}
+      ports:
+        - {protocol: TCP, port: 9443}
+    # DNS: namespace and port only, see runner-egress.
+    - to:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: kube-system}
+      ports:
+        - {protocol: UDP, port: 53}
+        - {protocol: TCP, port: 53}

@@ -1,0 +1,30 @@
+# Docker build context trimming.
+#
+# Dockerfile.k8s, Dockerfile.runner and Dockerfile.services COPY only the booking_* packages,
+# plus `attack` and k8s/v5/init-data for the services image. The recorded results add about a
+# thousand files to the context for no reason, which is slow over the macOS file-sharing layer
+# and slower still when the context is streamed to a docker-in-docker daemon.
+#
+# The results and the cache directories are read by no COPY. Backups of earlier states
+# (`*.pre-*`, `*.bak`) must not reach an image, because they would sit inside a copied package.
+results/
+results_v1_2/
+results_v2/
+results_v2_1/
+results_v3/
+results_v4_container/
+results_v4_controller/
+results_v4_durable/
+results_v4_k8s/
+results_v4_process/
+results_v5/
+
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+.git/
+.DS_Store
+
+# Backups of earlier states must not travel inside a copied package.
+**/*.pre-*
+**/*.bak

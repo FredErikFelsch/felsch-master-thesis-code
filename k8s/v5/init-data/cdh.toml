@@ -1,0 +1,8 @@
+# Confidential Data Hub configuration inside the runner TD. Image pull happens in-guest.
+# The pull is content-addressed: policy.rego (rule allow_image_source) fixes the storage
+# source and the image-name annotation to the digest-pinned reference, and the guest
+# client verifies manifest and blobs against that digest. No image signature policy is
+# configured, because the digest already names the exact content.
+[kbc]
+name = "cc_kbc"
+url = "http://kbs.trustee.svc.cluster.local:8080"
