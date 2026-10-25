@@ -863,7 +863,7 @@ def render_t5(columns: list[tuple[str, dict, dict]]) -> str:
             same.append(f"{tex(label)} \\texttt{{{vals[0]}}}")
             continue
         rows.append([label] + [r"\scriptsize\texttt{" + v + "}" for v in vals])
-    note = ("Every line verifies offline with \\texttt{freeze\\_record verify}. Long hashes are truncated here "
+    note = ("Every line verified offline with \\texttt{freeze\\_record verify} before the project identifier was replaced in the public repository (\\Cref{app:repository}). Long hashes are truncated here "
             "and complete in the freeze files. Image names without the common prefix \\texttt{"
             + tex(IMAGE_PREFIX) + "}. Image, A5c and B1 are read from the provenance of the image the "
             "line ran on. A5c replaces the setup of the metadata path in the image with an empty script. "
@@ -976,7 +976,7 @@ All series:
 - `podvm-image/`: overlay tarballs, provenance and remote build logs of ov1 to ov14.
 - `environment/`: the destroyed-cluster records.
 - `genpolicy-3.31.0/`, `opa/`: pinned tools for the offline policy checks.
-- `caa-src/`: the cloud-api-adaptor source at the pinned commit.
+- `caa-src/`: the cloud-api-adaptor source at the pinned commit. Not part of the repository, `scripts/gke-v5/14_install_coco.sh` clones it.
 """
 
 

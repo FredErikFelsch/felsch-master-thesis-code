@@ -15,3 +15,7 @@ results_v5/live/*
 
 # The OPA binary that scripts/gke-v5/41_probe_a19.sh caches for the local machine
 results_v5/opa/
+
+# Upstream clone of cloud-api-adaptor (nested git repository). scripts/gke-v5/14_install_coco.sh
+# fetches it at the pinned tag when it is needed.
+results_v5/caa-src/

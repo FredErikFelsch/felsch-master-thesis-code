@@ -257,6 +257,10 @@ The tests and the thesis tables read recorded runs from `results_v2_1`, `results
 All data is sanitised. The Google Cloud project id is replaced by `project-example`, and no
 credentials or personal data are included.
 
+Because of this replacement, `freeze_record verify` no longer passes on the freeze files of this
+repository. The init-data document names the runner image with the original project id, and its
+digest was measured on the original. The unredacted records passed the check before publication.
+
 The complete sanitised data set and a snapshot of the measured source are available on
 request. The measurement ran on a source tree with this runner hash:
 

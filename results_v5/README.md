@@ -76,4 +76,4 @@ All series:
 - `podvm-image/`: overlay tarballs, provenance and remote build logs of ov1 to ov14.
 - `environment/`: the destroyed-cluster records.
 - `genpolicy-3.31.0/`, `opa/`: pinned tools for the offline policy checks.
-- `caa-src/`: the cloud-api-adaptor source at the pinned commit.
+- `caa-src/`: the cloud-api-adaptor source at the pinned commit. Not part of the repository, `scripts/gke-v5/14_install_coco.sh` clones it.
